@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Your Name</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0a0a0a;
+    --ink-80: #1f1f1f;
+    --ink-60: #404040;
+    --ink-40: #666;
+    --ink-20: #999;
+    --ink-10: #bbb;
+    --paper: #f8f6f2;
+    --paper-2: #eeece8;
+    --white: #ffffff;
+    --rule: rgba(10,10,10,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* --- CUSTOM CURSOR --- */
+  #cursor { position: fixed; width: 8px; height: 8px; background: var(--ink); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, background .2s; mix-blend-mode: multiply; }
+  #cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--ink-40); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s cubic-bezier(.25,.46,.45,.94), width .2s, height .2s, opacity .2s; }
+  body:not(:hover) #cursor, body:not(:hover) #cursor-ring { opacity: 0; }
+
+  /* --- NOISE OVERLAY --- */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9990;
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .15em;
+    text-transform: uppercase; text-decoration: none; color: var(--ink-60);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* --- SECTIONS COMMON --- */
+  section { position: relative; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ink-40);
+  }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* --- HERO --- */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-left {
+    padding: 12rem 4rem 6rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+  .hero-name {
+    font-family: var(--serif); font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 300; line-height: .9; letter-spacing: -.02em;
+    color: var(--ink);
+  }
+  .hero-name em { font-style: italic; color: var(--ink-60); }
+  .hero-footer { display: flex; align-items: flex-end; justify-content: space-between; }
+  .hero-role {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); line-height: 2;
+  }
+  .hero-scroll {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-20);
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{transform:rotate(180deg) translateY(0)} 50%{transform:rotate(180deg) translateY(8px)} }
+
+  .hero-right {
+    padding: 12rem 4rem 6rem;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .hero-bio {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 300;
+    line-height: 1.6; color: var(--ink-80); max-width: 420px;
+    margin-bottom: 3rem;
+  }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .stat-item .stat-num {
+    font-family: var(--serif); font-size: 3rem; font-weight: 600;
+    line-height: 1; color: var(--ink);
+  }
+  .stat-item .stat-label {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); margin-top: .4rem;
+  }
+  .availability {
+    margin-top: 3rem;
+    display: inline-flex; align-items: center; gap: .75rem;
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-60);
+    border: 1px solid var(--rule); padding: .75rem 1.25rem;
+    width: fit-content;
+  }
+  .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #3a3a3a; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* big index numbers */
+  .section-number {
+    font-family: var(--serif); font-size: 7rem; font-weight: 700;
+    color: var(--rule); line-height: 1; position: absolute;
+    right: 4rem; top: 4rem; pointer-events: none; user-select: none;
+  }
+
+  /* --- ABOUT --- */
+  #about {
+    padding: 8rem 4rem;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .about-left { padding-top: .5rem; }
+  .about-title {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1; margin: 1.5rem 0 3rem;
+  }
+  .about-title em { font-style: italic; }
+  .about-tagline {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); line-height: 2.5;
+    border-top: 1px solid var(--rule); padding-top: 1.5rem; margin-top: 1.5rem;
+  }
+  .about-right {}
+  .about-body {
+    font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
+    line-height: 1.7; color: var(--ink-80); margin-bottom: 3rem;
+  }
+  .about-body strong { font-weight: 600; color: var(--ink); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .about-card {
+    background: var(--white); border: 1px solid var(--rule);
+    padding: 1.5rem; transition: background .3s;
+  }
+  .about-card:hover { background: var(--ink); }
+  .about-card:hover .ac-title, .about-card:hover .ac-body { color: var(--paper); }
+  .ac-title {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); margin-bottom: .75rem;
+    transition: color .3s;
+  }
+  .ac-body {
+    font-family: var(--serif); font-size: 1rem; font-weight: 400;
+    line-height: 1.5; color: var(--ink); transition: color .3s;
+  }
+
+  /* --- EXPERIENCE --- */
+  #experience {
+    padding: 8rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .exp-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 5rem;
+  }
+  .exp-title {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1;
+  }
+  .exp-title em { font-style: italic; }
+  .exp-total {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40);
+  }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr 160px;
+    gap: 3rem; padding: 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    transition: background .2s; cursor: default;
+    position: relative;
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--rule); }
+  .exp-item::before {
+    content: ''; position: absolute; left: -4rem; right: -4rem; top: 0; bottom: 0;
+    background: var(--ink); opacity: 0; transition: opacity .3s; z-index: -1;
+  }
+  .exp-item:hover::before { opacity: 1; }
+  .exp-item:hover .exp-period, .exp-item:hover .exp-company,
+  .exp-item:hover .exp-role, .exp-item:hover .exp-desc,
+  .exp-item:hover .exp-tag, .exp-item:hover .exp-location { color: var(--paper); }
+  .exp-item:hover .exp-tag { border-color: rgba(248,246,242,.2); }
+  .exp-period {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .15em;
+    color: var(--ink-40); padding-top: .2rem; transition: color .3s;
+  }
+  .exp-center {}
+  .exp-company {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    color: var(--ink); margin-bottom: .4rem; transition: color .3s;
+  }
+  .exp-role {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-40); margin-bottom: 1rem;
+    transition: color .3s;
+  }
+  .exp-desc {
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 300;
+    line-height: 1.7; color: var(--ink-60); transition: color .3s;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  .exp-tag {
+    font-family: var(--mono); font-size: 0.55rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-40);
+    border: 1px solid var(--rule); padding: .3rem .75rem;
+    transition: color .3s, border-color .3s;
+  }
+  .exp-right { text-align: right; }
+  .exp-location {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-40); transition: color .3s;
+  }
+
+  /* --- SKILLS --- */
+  #skills {
+    padding: 8rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink);
+  }
+  .skills-header { margin-bottom: 5rem; }
+  .skills-title {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1; color: var(--paper);
+  }
+  .skills-title em { font-style: italic; }
+  .skills-section-label { color: var(--ink-20); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .skill-category { border-right: 1px solid rgba(248,246,242,.1); padding: 3rem; }
+  .skill-category:last-child { border-right: none; }
+  .skill-cat-title {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .25em;
+    text-transform: uppercase; color: var(--ink-20); margin-bottom: 2rem;
+  }
+  .skill-row { margin-bottom: 1.5rem; }
+  .skill-name {
+    display: flex; justify-content: space-between;
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 400;
+    color: var(--paper); margin-bottom: .6rem;
+  }
+  .skill-pct { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-20); }
+  .skill-bar-track { height: 1px; background: rgba(248,246,242,.15); position: relative; }
+  .skill-bar-fill {
+    position: absolute; left: 0; top: 0; height: 100%;
+    background: var(--paper); transition: width 1.5s cubic-bezier(.25,.46,.45,.94) .3s;
+    width: 0;
+  }
+  .skill-bar-fill.animated { width: var(--pct); }
+
+  /* --- EDUCATION --- */
+  #education {
+    padding: 8rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .edu-header { margin-bottom: 5rem; }
+  .edu-title {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1;
+  }
+  .edu-title em { font-style: italic; }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .edu-item {
+    padding: 3rem; border: 1px solid var(--rule);
+    margin: -1px 0 0 -1px;
+    transition: background .3s, transform .3s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .edu-item::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 0; height: 3px; background: var(--ink);
+    transition: width .4s cubic-bezier(.25,.46,.45,.94);
+  }
+  .edu-item:hover::before { width: 100%; }
+  .edu-year {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); margin-bottom: 1.5rem;
+    display: block;
+  }
+  .edu-degree {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    line-height: 1.2; color: var(--ink); margin-bottom: .5rem;
+  }
+  .edu-school {
+    font-family: var(--serif); font-size: 1rem; font-style: italic;
+    color: var(--ink-60); margin-bottom: 1.5rem;
+  }
+  .edu-detail {
+    font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+    line-height: 1.7; color: var(--ink-60);
+  }
+  .edu-badge {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.55rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-40);
+    border: 1px solid var(--rule); padding: .3rem .75rem;
+    margin-top: 1.5rem;
+  }
+
+  /* --- ACHIEVEMENTS --- */
+  #achievements {
+    padding: 8rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-2);
+    position: relative;
+  }
+  .ach-header { margin-bottom: 5rem; }
+  .ach-title {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1;
+  }
+  .ach-title em { font-style: italic; }
+  .ach-marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.5rem 0; margin-bottom: 5rem;
+  }
+  .ach-marquee {
+    display: flex; gap: 3rem; white-space: nowrap;
+    animation: marquee 18s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-item {
+    font-family: var(--serif); font-size: 1rem; font-style: italic;
+    color: var(--ink-40); letter-spacing: .05em;
+  }
+  .marquee-sep { color: var(--ink-20); font-family: var(--mono); }
+
+  .ach-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .ach-card {
+    background: var(--white); border: 1px solid var(--rule);
+    padding: 2.5rem; position: relative; overflow: hidden;
+    transition: box-shadow .3s;
+  }
+  .ach-card:hover { box-shadow: 6px 6px 0 var(--ink); transform: translate(-3px,-3px); }
+  .ach-icon {
+    font-family: var(--serif); font-size: 3rem; font-weight: 700;
+    color: var(--rule); line-height: 1; margin-bottom: 1.5rem;
+  }
+  .ach-name {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 600;
+    color: var(--ink); margin-bottom: .5rem;
+  }
+  .ach-org {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--ink-40); margin-bottom: 1rem;
+  }
+  .ach-desc {
+    font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+    line-height: 1.7; color: var(--ink-60);
+  }
+  .ach-year {
+    position: absolute; bottom: 2rem; right: 2rem;
+    font-family: var(--serif); font-size: 2rem; font-weight: 700;
+    color: var(--rule);
+  }
+
+  /* --- CONTACT --- */
+  #contact {
+    padding: 8rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact-left { padding-right: 6rem; border-right: 1px solid var(--rule); }
+  .contact-title {
+    font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 300; line-height: .95; margin-bottom: 3rem;
+  }
+  .contact-title em { font-style: italic; }
+  .contact-body {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 300;
+    line-height: 1.7; color: var(--ink-60); margin-bottom: 3rem;
+  }
+  .contact-cta {
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: .2em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--paper); background: var(--ink);
+    padding: 1.2rem 2.5rem;
+    transition: background .3s, color .3s;
+  }
+  .contact-cta:hover { background: var(--ink-60); }
+  .cta-arrow { font-size: 1rem; transition: transform .3s; }
+  .contact-cta:hover .cta-arrow { transform: translateX(4px); }
+
+  .contact-right { padding-left: 6rem; display: flex; flex-direction: column; justify-content: center; }
+  .contact-info-list { list-style: none; }
+  .contact-info-list li {
+    display: flex; align-items: flex-start; gap: 2rem;
+    padding: 1.75rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .ci-label {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-40); min-width: 80px;
+    padding-top: .1rem;
+  }
+  .ci-value {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+    color: var(--ink);
+  }
+  .ci-value a { text-decoration: none; color: inherit; }
+  .ci-value a:hover { text-decoration: underline; }
+
+  .social-links { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+  .social-link {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .2em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink-40); border: 1px solid var(--rule);
+    padding: .6rem 1.2rem; transition: background .2s, color .2s, border-color .2s;
+  }
+  .social-link:hover {
+    background: var(--ink); color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--rule);
+  }
+  .footer-copy {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: .15em;
+    color: var(--ink-40);
+  }
+  .footer-mark {
+    font-family: var(--serif); font-size: 1rem; font-style: italic;
+    color: var(--ink-20);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 8rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-right { padding: 3rem 2rem 5rem; }
+    #about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    #experience { padding: 5rem 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .exp-right { text-align: left; }
+    .exp-item::before { left: -2rem; right: -2rem; }
+    #skills { padding: 5rem 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-category { border-right: none; border-bottom: 1px solid rgba(248,246,242,.1); }
+    #education { padding: 5rem 2rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    #achievements { padding: 5rem 2rem; }
+    .ach-list { grid-template-columns: 1fr; }
+    #contact { grid-template-columns: 1fr; padding: 5rem 2rem; }
+    .contact-left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 4rem; margin-bottom: 4rem; }
+    .contact-right { padding-left: 0; }
+    footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .section-number { font-size: 4rem; top: 2rem; right: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Alex Morgan</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-eyebrow"><div class="dot"></div><span class="section-label">Portfolio — 2025</span></div>
+      <h1 class="hero-name">Alex<br><em>Morgan</em></h1>
+    </div>
+    <div class="hero-footer">
+      <div class="hero-role">
+        Product Designer<br>& Creative Director<br>Based in New York
+      </div>
+      <div class="hero-scroll">Scroll to explore</div>
+    </div>
+  </div>
+  <div class="hero-right reveal">
+    <p class="hero-bio">Crafting digital experiences that sit at the intersection of <em>precision</em>, culture, and meaningful human connection.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">8+</div><div class="stat-label">Years Active</div></div>
+      <div class="stat-item"><div class="stat-num">42</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Industry Awards</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Continents Worked</div></div>
+    </div>
+    <div class="availability"><div class="avail-dot"></div>Available for freelance — Q1 2026</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <span class="section-label">01 — About</span>
+    <h2 class="about-title">The<br><em>Story</em><br>So Far</h2>
+    <div class="about-tagline">Design / Strategy<br>Branding / UX<br>Art Direction</div>
+  </div>
+  <div class="about-right reveal" style="transition-delay:.15s">
+    <p class="about-body">I'm a product designer and creative director with over <strong>8 years</strong> shaping how people interact with digital products. I believe great design is an act of empathy — every pixel, every flow, every word placed with <strong>intention</strong>.</p>
+    <p class="about-body">My practice spans brand identity, product design, and creative direction. I've led design teams at funded startups, worked with global agencies, and shipped products used by <strong>millions of people</strong> across the world.</p>
+    <div class="about-grid">
+      <div class="about-card"><div class="ac-title">Philosophy</div><div class="ac-body">Design should be honest, functional, and — above all — human.</div></div>
+      <div class="about-card"><div class="ac-title">Approach</div><div class="ac-body">Research-led. Systems thinking. Execution obsessed. No decorative noise.</div></div>
+      <div class="about-card"><div class="ac-title">When Not Designing</div><div class="ac-body">Running, film photography, and arguing about typography in cafes.</div></div>
+      <div class="about-card"><div class="ac-title">Currently Reading</div><div class="ac-body"><em>Dieter Rams: As Little Design as Possible</em> — for the 4th time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <span class="section-number">02</span>
+  <div class="exp-header reveal">
+    <div>
+      <span class="section-label">02 — Experience</span>
+      <h2 class="exp-title">Work<br><em>History</em></h2>
+    </div>
+    <div class="exp-total">4 Roles · 8 Years</div>
+  </div>
+
+  <div class="exp-item reveal" style="transition-delay:.1s">
+    <div class="exp-period">2022 — Present</div>
+    <div class="exp-center">
+      <div class="exp-company">Meridian Studio</div>
+      <div class="exp-role">Head of Design</div>
+      <div class="exp-desc">Leading a 9-person design team across product, brand, and motion. Defined the design system used across 3 enterprise SaaS products. Increased design team velocity by 60% through process reform and tooling standardisation.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Design Systems</span>
+        <span class="exp-tag">Leadership</span>
+        <span class="exp-tag">Figma</span>
+        <span class="exp-tag">Strategy</span>
+      </div>
+    </div>
+    <div class="exp-right"><div class="exp-location">New York, US</div></div>
+  </div>
+
+  <div class="exp-item reveal" style="transition-delay:.2s">
+    <div class="exp-period">2019 — 2022</div>
+    <div class="exp-center">
+      <div class="exp-company">Forma Agency</div>
+      <div class="exp-role">Senior Product Designer</div>
+      <div class="exp-desc">Owned end-to-end product design for fintech and healthtech clients. Delivered 12 major product launches. Introduced user research rituals that became a company-wide standard practice.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">UX Research</span>
+        <span class="exp-tag">Prototyping</span>
+        <span class="exp-tag">Fintech</span>
+      </div>
+    </div>
+    <div class="exp-right"><div class="exp-location">London, UK</div></div>
+  </div>
+
+  <div class="exp-item reveal" style="transition-delay:.3s">
+    <div class="exp-period">2017 — 2019</div>
+    <div class="exp-center">
+      <div class="exp-company">Vercel Labs</div>
+      <div class="exp-role">UI/UX Designer</div>
+      <div class="exp-desc">Designed core interface components for the developer platform used by 500k+ developers. Collaborated closely with engineering on accessibility standards.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Interface Design</span>
+        <span class="exp-tag">Accessibility</span>
+        <span class="exp-tag">Dev Tools</span>
+      </div>
+    </div>
+    <div class="exp-right"><div class="exp-location">Remote</div></div>
+  </div>
+
+  <div class="exp-item reveal" style="transition-delay:.4s">
+    <div class="exp-period">2016 — 2017</div>
+    <div class="exp-center">
+      <div class="exp-company">Blank Canvas Co.</div>
+      <div class="exp-role">Junior Designer</div>
+      <div class="exp-desc">Branding and print design for local and regional clients. A hands-on foundation in craft, client communication, and the fundamentals of visual communication.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Branding</span>
+        <span class="exp-tag">Print</span>
+        <span class="exp-tag">Adobe CC</span>
+      </div>
+    </div>
+    <div class="exp-right"><div class="exp-location">Chicago, US</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-header reveal">
+    <span class="section-label skills-section-label">03 — Skills</span>
+    <h2 class="skills-title">Craft &<br><em>Capabilities</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category reveal" style="transition-delay:.1s">
+      <div class="skill-cat-title">Design</div>
+      <div class="skill-row"><div class="skill-name"><span>UI / Visual Design</span><span class="skill-pct">97%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:97%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>UX Research</span><span class="skill-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Motion Design</span><span class="skill-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:80%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Illustration</span><span class="skill-pct">72%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:72%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Design Systems</span><span class="skill-pct">95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:95%"></div></div></div>
+    </div>
+    <div class="skill-category reveal" style="transition-delay:.2s">
+      <div class="skill-cat-title">Technical</div>
+      <div class="skill-row"><div class="skill-name"><span>Figma / Framer</span><span class="skill-pct">98%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:98%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>HTML / CSS</span><span class="skill-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:85%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>React / JS</span><span class="skill-pct">65%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:65%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Adobe Suite</span><span class="skill-pct">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:90%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Prototyping</span><span class="skill-pct">93%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:93%"></div></div></div>
+    </div>
+    <div class="skill-category reveal" style="transition-delay:.3s">
+      <div class="skill-cat-title">Soft Skills</div>
+      <div class="skill-row"><div class="skill-name"><span>Team Leadership</span><span class="skill-pct">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:92%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Client Communication</span><span class="skill-pct">96%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:96%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Art Direction</span><span class="skill-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:88%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Workshop Facilitation</span><span class="skill-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:78%"></div></div></div>
+      <div class="skill-row"><div class="skill-name"><span>Strategic Thinking</span><span class="skill-pct">87%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="--pct:87%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <span class="section-number">04</span>
+  <div class="edu-header reveal">
+    <span class="section-label">04 — Education</span>
+    <h2 class="edu-title">Academic<br><em>Background</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-item reveal" style="transition-delay:.1s">
+      <span class="edu-year">2012 — 2016</span>
+      <div class="edu-degree">Bachelor of Fine Arts in Communication Design</div>
+      <div class="edu-school">Parsons School of Design, New York</div>
+      <div class="edu-detail">Focused on interaction design, typography, and visual systems. Graduated with High Distinction. Thesis project awarded the Dean's Prize for Innovation.</div>
+      <div class="edu-badge">GPA — 3.92 / 4.0</div>
+    </div>
+    <div class="edu-item reveal" style="transition-delay:.2s">
+      <span class="edu-year">2018 — 2019</span>
+      <div class="edu-degree">Certificate in UX Research Methods</div>
+      <div class="edu-school">Nielsen Norman Group</div>
+      <div class="edu-detail">Intensive professional certification covering usability testing, contextual inquiry, survey methodology, and research synthesis. World-class UX research credential.</div>
+      <div class="edu-badge">UX Certified — #1847231</div>
+    </div>
+    <div class="edu-item reveal" style="transition-delay:.3s">
+      <span class="edu-year">2021</span>
+      <div class="edu-degree">Design Leadership Programme</div>
+      <div class="edu-school">IDEO — Online</div>
+      <div class="edu-detail">Explored human-centred design leadership, team culture building, and managing creative organisations. Cohort of 24 senior designers globally.</div>
+      <div class="edu-badge">Executive Education</div>
+    </div>
+    <div class="edu-item reveal" style="transition-delay:.4s">
+      <span class="edu-year">Ongoing</span>
+      <div class="edu-degree">Self-Directed Learning</div>
+      <div class="edu-school">Books, Workshops & Conferences</div>
+      <div class="edu-detail">Regular attendee at OFFF, Typographics, and Config. Avid reader of design criticism, cognitive science, and business strategy. Learning never stops.</div>
+      <div class="edu-badge">Continuous Education</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <span class="section-number">05</span>
+  <div class="ach-header reveal">
+    <span class="section-label">05 — Achievements</span>
+    <h2 class="ach-title">Awards &<br><em>Recognition</em></h2>
+  </div>
+  <div class="ach-marquee-wrap">
+    <div class="ach-marquee">
+      <span class="marquee-item">Awwwards Site of the Day</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">D&AD Wood Pencil</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Webby Award — Best Design</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Fast Company Innovation by Design</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Communication Arts Award of Excellence</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Red Dot Design Award</span><span class="marquee-sep">✦</span>
+      <!-- repeat for seamless loop -->
+      <span class="marquee-item">Awwwards Site of the Day</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">D&AD Wood Pencil</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Webby Award — Best Design</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Fast Company Innovation by Design</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Communication Arts Award of Excellence</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">Red Dot Design Award</span><span class="marquee-sep">✦</span>
+    </div>
+  </div>
+  <div class="ach-list">
+    <div class="ach-card reveal" style="transition-delay:.1s">
+      <div class="ach-icon">01</div>
+      <div class="ach-name">Awwwards — Site of the Day</div>
+      <div class="ach-org">Awwwards Foundation</div>
+      <div class="ach-desc">Recognised for outstanding web design on the Meridian Studio redesign project. Scored 9.4 overall including top marks for creativity and usability.</div>
+      <div class="ach-year">2024</div>
+    </div>
+    <div class="ach-card reveal" style="transition-delay:.2s">
+      <div class="ach-icon">02</div>
+      <div class="ach-name">D&AD Wood Pencil</div>
+      <div class="ach-org">Design & Art Direction</div>
+      <div class="ach-desc">Won in the Digital Design category for the Forma Agency rebrand — a systemic identity overhaul spanning print, digital, and environmental touchpoints.</div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-card reveal" style="transition-delay:.3s">
+      <div class="ach-icon">03</div>
+      <div class="ach-name">Webby Award — Best UI</div>
+      <div class="ach-org">The Webby Awards</div>
+      <div class="ach-desc">Best User Interface in the Financial Services category for a payment product serving over 2 million active users in 28 countries.</div>
+      <div class="ach-year">2022</div>
+    </div>
+    <div class="ach-card reveal" style="transition-delay:.4s">
+      <div class="ach-icon">04</div>
+      <div class="ach-name">Forbes 30 Under 30</div>
+      <div class="ach-org">Forbes Magazine</div>
+      <div class="ach-desc">Listed in the Design category for contributions to digital product design and the design community through writing and open source tooling.</div>
+      <div class="ach-year">2021</div>
+    </div>
+    <div class="ach-card reveal" style="transition-delay:.5s">
+      <div class="ach-icon">05</div>
+      <div class="ach-name">Red Dot Design Award</div>
+      <div class="ach-org">Red Dot GmbH</div>
+      <div class="ach-desc">Awarded Best of the Best in Communication Design for a healthcare data visualisation platform enabling clinical insights for non-technical staff.</div>
+      <div class="ach-year">2020</div>
+    </div>
+    <div class="ach-card reveal" style="transition-delay:.6s">
+      <div class="ach-icon">06</div>
+      <div class="ach-name">Dean's Prize — Parsons</div>
+      <div class="ach-org">Parsons School of Design</div>
+      <div class="ach-desc">Awarded for thesis project "Invisible Infrastructure" — a typographic study of urban wayfinding systems and their impact on civic belonging.</div>
+      <div class="ach-year">2016</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <span class="section-label">06 — Contact</span>
+    <h2 class="contact-title">Let's<br>Work<br><em>Together</em></h2>
+    <p class="contact-body">Whether you have a brand to build, a product to shape, or simply want to talk about design — I'd love to hear from you. Open to full-time, contract, and consulting arrangements.</p>
+    <a href="mailto:alex@alexmorgan.co" class="contact-cta">Send me a message <span class="cta-arrow">→</span></a>
+  </div>
+  <div class="contact-right reveal" style="transition-delay:.2s">
+    <ul class="contact-info-list">
+      <li><span class="ci-label">Email</span><div class="ci-value"><a href="mailto:alex@alexmorgan.co">alex@alexmorgan.co</a></div></li>
+      <li><span class="ci-label">Phone</span><div class="ci-value">+1 (212) 555 0147</div></li>
+      <li><span class="ci-label">Location</span><div class="ci-value">New York, NY — USA</div></li>
+      <li><span class="ci-label">Availability</span><div class="ci-value">Open from January 2026</div></li>
+      <li><span class="ci-label">Timezone</span><div class="ci-value">EST (UTC−5)</div></li>
+    </ul>
+    <div class="social-links">
+      <a href="#" class="social-link">LinkedIn</a>
+      <a href="#" class="social-link">Dribbble</a>
+      <a href="#" class="social-link">Behance</a>
+      <a href="#" class="social-link">Read.cv</a>
+      <a href="#" class="social-link">Twitter / X</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Alex Morgan — All rights reserved</span>
+  <span class="footer-mark">Designed with intention.</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  function animateRing() { rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateRing); }
+  animateRing();
+  document.querySelectorAll('a, button, .exp-item, .ach-card, .about-card, .edu-item').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.style.width='14px'; cur.style.height='14px'; ring.style.width='56px'; ring.style.height='56px'; });
+    el.addEventListener('mouseleave', () => { cur.style.width='8px'; cur.style.height='8px'; ring.style.width='36px'; ring.style.height='36px'; });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Skill bars animate on enter
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('animated'); barObserver.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  bars.forEach(b => barObserver.observe(b));
+
+  // Nav colour on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.backdropFilter = window.scrollY > 60 ? 'blur(12px)' : 'none';
+    nav.style.background = window.scrollY > 60 ? 'rgba(248,246,242,.85)' : 'transparent';
+  });
+</script>
+</body>
+</html>
