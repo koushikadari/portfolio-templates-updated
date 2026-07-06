@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meera Anand — Chartered Accountant & Financial Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#E9EAE6;
+    --cream-2:#DFE1DC;
+    --ink:#1E241F;
+    --ink-soft:#4B534C;
+    --rust:#BE6134;
+    --sage:#6C7A55;
+    --gold:#C99A3B;
+    --wine:#7B3B3F;
+    --line:rgba(30,36,31,0.14);
+    --paper:#F6F7F4;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    cursor:auto;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;margin:0;letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--rust);display:inline-block;}
+  section{position:relative;}
+  :focus-visible{outline:2px solid var(--rust);outline-offset:3px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(233,234,230,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1240px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;}
+  .logo-mark{
+    width:36px;height:36px;border:1.5px solid var(--ink);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;
+    background:var(--paper);
+  }
+  nav ul{list-style:none;display:flex;gap:34px;margin:0;padding:0;}
+  nav ul a{font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .2s;}
+  nav ul a:hover{color:var(--rust);}
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    padding:11px 22px;border-radius:100px;border:1px solid var(--ink);
+    background:var(--ink);color:var(--paper);cursor:pointer;
+    transition:transform .2s, background .2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--rust);border-color:var(--rust);}
+  .btn.ghost{background:transparent;color:var(--ink);}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper);}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:168px 0 90px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(38px,5vw,64px);line-height:1.05;margin:18px 0 22px;}
+  .hero h1 em{font-style:italic;color:var(--rust);font-weight:500;}
+  .hero p.lede{font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:480px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+  .hero-meta{display:flex;gap:28px;padding-top:24px;border-top:1px solid var(--line);}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace;}
+  .hero-meta strong{display:block;font-size:20px;font-family:'Fraunces',serif;font-weight:600;}
+  .hero-meta span{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;}
+
+  .hero-visual{position:relative;}
+  .portrait-card{
+    aspect-ratio:4/5;border-radius:var(--radius);
+    background:linear-gradient(155deg,#2C3527 0%, #1E241F 55%, #3A2A22 100%);
+    position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;padding:24px;
+  }
+  .portrait-card::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(180deg, transparent 0 38px, rgba(255,255,255,.05) 38px 39px);
+    opacity:.5;
+  }
+  .portrait-tag{
+    position:relative;background:var(--paper);color:var(--ink);
+    padding:10px 16px;border-radius:12px;font-size:13px;font-weight:600;
+    display:flex;align-items:center;gap:8px;
+  }
+  .portrait-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);}
+  .float-badge{
+    position:absolute;top:-22px;right:-18px;background:var(--gold);color:var(--ink);
+    border-radius:16px;padding:16px 18px;box-shadow:0 14px 30px rgba(30,36,31,.18);
+    font-family:'Fraunces',serif;
+    transform:rotate(-4deg);
+  }
+  .float-badge strong{display:block;font-size:26px;line-height:1;}
+  .float-badge span{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+
+  /* ---------- Ticker ---------- */
+  .ticker-strip{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--ink);color:var(--cream);
+    overflow:hidden;padding:14px 0;
+  }
+  .ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite;}
+  .ticker-track span{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;
+    padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:10px;
+  }
+  .ticker-track span::after{content:"◆";color:var(--rust);font-size:8px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;}}
+
+  /* ---------- Section shell ---------- */
+  .section{padding:100px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:52px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.4vw,42px);max-width:600px;}
+  .section-head p{color:var(--ink-soft);max-width:360px;font-size:15px;line-height:1.6;}
+  .rule{height:1px;background:var(--line);width:100%;margin:0;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:56px;}
+  .ledger-card{
+    background:var(--paper);border-radius:var(--radius);padding:28px;
+    border:1px solid var(--line);
+  }
+  .ledger-card .row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+  .ledger-card .row:last-child{border-bottom:none;}
+  .ledger-card .row span:first-child{color:var(--ink-soft);}
+  .ledger-card .row span:last-child{font-weight:600;font-family:'IBM Plex Mono',monospace;}
+  .about-copy p{font-size:16.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:18px;}
+  .pull-quote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:24px;line-height:1.4;
+    color:var(--ink);border-left:3px solid var(--rust);padding-left:22px;margin:28px 0;
+  }
+
+  /* ---------- Stats ---------- */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat-pill{
+    border-radius:var(--radius);padding:26px 22px;color:var(--paper);
+  }
+  .stat-pill h3{font-size:38px;color:inherit;}
+  .stat-pill p{margin:8px 0 0;font-size:13px;font-weight:600;opacity:.9;}
+  .stat-pill.c1{background:var(--rust);}
+  .stat-pill.c2{background:var(--sage);}
+  .stat-pill.c3{background:var(--wine);}
+  .stat-pill.c4{background:var(--ink);}
+
+  /* ---------- Services ---------- */
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .service-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(30,36,31,.1);}
+  .icon-box{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .icon-box svg{width:22px;height:22px;}
+  .service-card h4{font-size:18px;margin-bottom:8px;}
+  .service-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
+  .service-card.a .icon-box{background:#F1DCCB;color:var(--rust);}
+  .service-card.b .icon-box{background:#E1E6D6;color:var(--sage);}
+  .service-card.c .icon-box{background:#F0E1C7;color:var(--gold);}
+  .service-card.d .icon-box{background:#E9D4D5;color:var(--wine);}
+
+  /* ---------- Skills categories ---------- */
+  .skills-cats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .skill-cat{background:var(--paper);padding:24px 20px;}
+  .skill-cat h5{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--rust);margin-bottom:14px;}
+  .skill-cat ul{list-style:none;margin:0;padding:0;}
+  .skill-cat li{font-size:13.5px;padding:6px 0;color:var(--ink-soft);border-bottom:1px dashed var(--line);}
+  .skill-cat li:last-child{border-bottom:none;}
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative;padding-left:32px;border-left:1px solid var(--line);}
+  .tl-item{position:relative;padding-bottom:48px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-38px;top:4px;width:11px;height:11px;
+    border-radius:50%;background:var(--paper);border:2px solid var(--rust);
+  }
+  .tl-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .tl-head h4{font-size:20px;}
+  .tl-head span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .tl-company{color:var(--rust);font-weight:600;font-size:14px;margin-bottom:10px;}
+  .tl-item ul{margin:10px 0 0;padding-left:18px;color:var(--ink-soft);font-size:14.5px;line-height:1.7;}
+
+  /* ---------- Work / case studies ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .work-card{border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;color:var(--paper);min-height:340px;display:flex;flex-direction:column;}
+  .work-card.w1{background:linear-gradient(160deg,var(--rust),#8f4423);}
+  .work-card.w2{background:linear-gradient(160deg,var(--sage),#495338);}
+  .work-card.w3{background:linear-gradient(160deg,var(--wine),#4d2528);}
+  .work-tag{
+    align-self:flex-start;background:rgba(255,255,255,.18);font-size:11px;font-weight:600;
+    padding:6px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:18px;
+  }
+  .work-card h4{font-size:21px;color:var(--paper);margin-bottom:10px;line-height:1.3;}
+  .work-flow{font-size:13px;line-height:1.65;opacity:.92;margin-bottom:auto;}
+  .work-flow b{display:inline;font-weight:700;}
+  .work-result{
+    margin-top:18px;display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.25);padding-top:14px;
+  }
+  .work-result strong{font-family:'Fraunces',serif;font-size:26px;}
+  .work-result span{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.05em;max-width:110px;text-align:right;}
+
+  /* ---------- Technical bars ---------- */
+  .bars{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;}
+  .bar-item span{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:8px;}
+  .bar-item span em{font-style:normal;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:12px;}
+  .bar-track{height:8px;background:var(--cream-2);border-radius:100px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--rust);border-radius:100px;width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1);}
+
+  /* ---------- Two column lists (education/certs) ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .entry-list .entry{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .entry-list .entry:last-child{border-bottom:none;}
+  .entry-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--rust);min-width:26px;padding-top:3px;}
+  .entry h5{font-size:16px;margin-bottom:4px;}
+  .entry p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- Achievements ---------- */
+  .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ach-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;gap:14px;align-items:flex-start;}
+  .ach-icon{width:38px;height:38px;flex:none;border-radius:10px;background:var(--cream-2);display:flex;align-items:center;justify-content:center;}
+  .ach-icon svg{width:18px;height:18px;color:var(--gold);}
+  .ach-card h5{font-size:15px;margin-bottom:4px;}
+  .ach-card p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.5;}
+
+  /* ---------- Industry pills ---------- */
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{
+    padding:10px 18px;border-radius:100px;border:1px solid var(--line);
+    font-size:13.5px;font-weight:500;background:var(--paper);
+  }
+
+  /* ---------- Tools marquee ---------- */
+  .tools-strip{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;}
+  .tools-track{display:flex;width:max-content;animation:scroll 26s linear infinite;gap:64px;align-items:center;}
+  .tools-track span{font-family:'Fraunces',serif;font-size:20px;color:var(--ink-soft);white-space:nowrap;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;background:none;border:none;text-align:left;padding:22px 0;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-family:'Fraunces',serif;font-size:18px;color:var(--ink);
+  }
+  .faq-q .plus{width:22px;height:22px;position:relative;flex:none;}
+  .faq-q .plus::before,.faq-q .plus::after{content:"";position:absolute;background:var(--ink);top:50%;left:50%;transform:translate(-50%,-50%);}
+  .faq-q .plus::before{width:14px;height:1.5px;}
+  .faq-q .plus::after{width:1.5px;height:14px;transition:transform .25s;}
+  .faq-item.open .plus::after{transform:translate(-50%,-50%) rotate(90deg) scale(0);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;padding-bottom:22px;margin:0;max-width:640px;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;}
+  .contact-info h2{font-size:clamp(30px,4vw,48px);margin-bottom:18px;}
+  .contact-info p{color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:400px;margin-bottom:28px;}
+  .contact-rows .row{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line);}
+  .contact-rows .row:last-child{border-bottom:1px solid var(--line);}
+  .contact-rows .row .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);width:90px;flex:none;}
+  .contact-rows .row .val{font-weight:600;}
+  .social-row{display:flex;gap:10px;margin-top:24px;}
+  .social-row a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
+  .social-row a:hover{background:var(--ink);color:var(--paper);}
+  .social-row svg{width:16px;height:16px;}
+
+  form.card-form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:32px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:8px;}
+  .field input,.field textarea{
+    width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    font-family:'Inter',sans-serif;font-size:14px;background:var(--cream);color:var(--ink);
+  }
+  .field input:focus,.field textarea:focus{outline:2px solid var(--rust);outline-offset:1px;border-color:transparent;}
+  .field textarea{resize:vertical;min-height:100px;}
+  .card-form .btn{width:100%;justify-content:center;margin-top:6px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--cream);padding:64px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr repeat(3,0.8fr);gap:36px;margin-bottom:48px;}
+  .foot-brand p{color:#B9C0B4;font-size:14px;line-height:1.7;max-width:280px;margin-top:14px;}
+  footer h5{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#9BA592;margin-bottom:16px;}
+  footer ul{list-style:none;margin:0;padding:0;}
+  footer li{margin-bottom:10px;}
+  footer a{color:#D8DCD1;font-size:14px;transition:color .2s;}
+  footer a:hover{color:var(--rust);}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:24px;flex-wrap:wrap;gap:12px;}
+  .foot-bottom p{margin:0;font-size:12.5px;color:#8A9382;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    nav ul{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:340px;margin:0 auto;}
+    .stats-grid,.service-grid,.work-grid,.ach-grid{grid-template-columns:repeat(2,1fr);}
+    .skills-cats{grid-template-columns:repeat(2,1fr);}
+    .two-col{grid-template-columns:1fr;}
+    .bars{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    .stats-grid,.service-grid,.work-grid,.ach-grid,.skills-cats{grid-template-columns:1fr;}
+    .hero-meta{flex-wrap:wrap;row-gap:16px;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="logo-mark">MA</span> Meera Anand</div>
+    <nav><ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <a href="#contact" class="btn">Book a consultation</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Chartered Accountant · Dubai, UAE</p>
+        <h1>Numbers that feel <em>clear</em>, sound, and worth trusting.</h1>
+        <p class="lede">I help ambitious companies turn financial complexity into confident decisions — through precise reporting, sharp forecasting, and audits that hold up to scrutiny.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn">Download Resume</a>
+          <a href="#contact" class="btn ghost">Contact Me</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>9+</strong><span>Years Experience</span></div>
+          <div><strong>240+</strong><span>Clients Served</span></div>
+          <div><strong>$46M+</strong><span>Assets Managed</span></div>
+          <div><strong>98%</strong><span>Client Retention</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="portrait-card">
+          <div class="float-badge"><strong>18%</strong><span>Avg. Cost Reduction</span></div>
+          <div class="portrait-tag"><span class="dot"></span> Available for engagements</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-strip">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- duplicated via JS for seamless loop -->
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        <div class="ledger-card" style="margin-top:18px;">
+          <div class="row"><span>Based in</span><span>Dubai, UAE</span></div>
+          <div class="row"><span>Focus</span><span>Reporting · Tax · Audit</span></div>
+          <div class="row"><span>Industries</span><span>7 sectors</span></div>
+          <div class="row"><span>Certification</span><span>CA, ACCA</span></div>
+          <div class="row"><span>Availability</span><span>Open to new work</span></div>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <p class="eyebrow" style="margin-bottom:14px;">Who I am</p>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:20px;">Finance professional with 9+ years across accounting, taxation, and business analysis.</h2>
+        <p>I started my career auditing mid-market manufacturers, and over nine years I've moved through audit, corporate tax, and financial planning — always drawn to the point where a spreadsheet becomes a decision. My clients range from family-run trading houses to VC-backed startups scaling across the GCC.</p>
+        <p class="pull-quote">"Good accounting doesn't just record the past — it gives a business the confidence to plan its next move."</p>
+        <p>Outside client work, I write short explainers on UAE corporate tax and mentor early-career accountants preparing for their ACCA finals.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="rule"></div></div>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>The work, in numbers.</h2>
+        <p>A quick ledger of scale — the kind of detail that usually lives three pages deep in a CV.</p>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-pill c1"><h3 data-count="500">0</h3><p>Tax Returns Filed</p></div>
+        <div class="stat-pill c2"><h3 data-count="80">0</h3><p>Audits Completed</p></div>
+        <div class="stat-pill c3"><h3 data-count="35">0</h3><p>Certifications & CPE Hrs (00s)</p></div>
+        <div class="stat-pill c4"><h3 data-count="12">0</h3><p>Industries Covered</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Where I can help.</h2>
+        <p>Engagements are scoped to fit — from a single audit to an ongoing advisory retainer.</p>
+      </div>
+      <div class="service-grid reveal">
+        <div class="service-card a">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg></div>
+          <h4>Financial Reporting</h4>
+          <p>Monthly and annual statements built for accuracy and board-ready clarity.</p>
+        </div>
+        <div class="service-card b">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></div>
+          <h4>Budget Planning</h4>
+          <p>Zero-based and rolling budgets that hold teams accountable without slowing them down.</p>
+        </div>
+        <div class="service-card c">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+          <h4>Tax Filing & Planning</h4>
+          <p>UAE corporate tax, VAT, and cross-border structuring handled end to end.</p>
+        </div>
+        <div class="service-card d">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h4>Internal Audit</h4>
+          <p>Process and controls review that finds risk before it finds you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Core skills, by discipline.</h2>
+        <p>Nine years spread across five practice areas.</p>
+      </div>
+      <div class="skills-cats reveal">
+        <div class="skill-cat">
+          <h5>Accounting</h5>
+          <ul><li>Financial Accounting</li><li>Bookkeeping</li><li>Journal Entries</li><li>General Ledger</li><li>Bank Reconciliation</li></ul>
+        </div>
+        <div class="skill-cat">
+          <h5>Financial Analysis</h5>
+          <ul><li>Ratio Analysis</li><li>Forecasting</li><li>Budgeting</li><li>Cost Analysis</li><li>Variance Analysis</li></ul>
+        </div>
+        <div class="skill-cat">
+          <h5>Taxation</h5>
+          <ul><li>VAT</li><li>Corporate Tax</li><li>Income Tax</li><li>Tax Planning</li></ul>
+        </div>
+        <div class="skill-cat">
+          <h5>Audit</h5>
+          <ul><li>Internal Audit</li><li>External Audit</li><li>Risk Assessment</li><li>Compliance</li></ul>
+        </div>
+        <div class="skill-cat">
+          <h5>ERP Software</h5>
+          <ul><li>SAP</li><li>Oracle</li><li>Tally</li><li>Odoo</li><li>QuickBooks</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Professional experience.</h2>
+        <p>A timeline of engagements, not just employers.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-head"><h4>Senior Financial Consultant</h4><span>2022 — Present</span></div>
+          <div class="tl-company">Meridian Advisory, Dubai</div>
+          <ul>
+            <li>Manage monthly financial reporting for 14 retained clients across retail and logistics.</li>
+            <li>Reduced average client operational costs by 18% through vendor renegotiation and process audits.</li>
+            <li>Lead annual budgeting and statutory audit coordination.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h4>Financial Analyst</h4><span>2019 — 2022</span></div>
+          <div class="tl-company">Al Fahim Trading Group</div>
+          <ul>
+            <li>Built the group's first rolling 13-week cash flow model, still in use today.</li>
+            <li>Delivered variance analysis that identified $1.2M in avoidable annual spend.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h4>Audit Associate</h4><span>2016 — 2019</span></div>
+          <div class="tl-company">Kapoor & Associates, Chartered Accountants</div>
+          <ul>
+            <li>Executed statutory and internal audits for manufacturing and healthcare clients.</li>
+            <li>Trained two audit cohorts on risk-based sampling methodology.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK / CASE STUDIES -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Selected work.</h2>
+        <p>A few engagements worth a longer look — problem, approach, result.</p>
+      </div>
+      <div class="work-grid reveal">
+        <div class="work-card w1">
+          <span class="work-tag">Cost Optimization</span>
+          <h4>Rebuilding a distributor's cost base</h4>
+          <div class="work-flow"><b>Problem —</b> margins eroding despite steady revenue.<br><br><b>Approach —</b> full vendor audit and contract renegotiation across 40 suppliers.<br><br><b>Result —</b> costs cut without touching headcount.</div>
+          <div class="work-result"><strong>22%</strong><span>Expense Reduction</span></div>
+        </div>
+        <div class="work-card w2">
+          <span class="work-tag">Forecasting</span>
+          <h4>A 13-week cash flow model for a trading group</h4>
+          <div class="work-flow"><b>Problem —</b> recurring cash crunches with no early warning.<br><br><b>Approach —</b> rolling weekly forecast tied to live receivables data.<br><br><b>Result —</b> zero surprise shortfalls in 18 months.</div>
+          <div class="work-result"><strong>0</strong><span>Missed Payroll Cycles</span></div>
+        </div>
+        <div class="work-card w3">
+          <span class="work-tag">Tax Automation</span>
+          <h4>Automating VAT filing for a five-entity group</h4>
+          <div class="work-flow"><b>Problem —</b> manual VAT prep taking 6 days per quarter.<br><br><b>Approach —</b> built a QuickBooks-to-filing template with built-in reconciliation checks.<br><br><b>Result —</b> filing time cut to under a day.</div>
+          <div class="work-result"><strong>83%</strong><span>Faster Filing</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Tools I'm fluent in.</h2>
+        <p>Self-rated, benchmarked against day-to-day use.</p>
+      </div>
+      <div class="bars reveal">
+        <div class="bar-item"><span>Excel <em>Advanced</em></span><div class="bar-track"><div class="bar-fill" data-width="96"></div></div></div>
+        <div class="bar-item"><span>Power BI <em>Advanced</em></span><div class="bar-track"><div class="bar-fill" data-width="88"></div></div></div>
+        <div class="bar-item"><span>SAP <em>Advanced</em></span><div class="bar-track"><div class="bar-fill" data-width="84"></div></div></div>
+        <div class="bar-item"><span>SQL <em>Intermediate</em></span><div class="bar-track"><div class="bar-fill" data-width="62"></div></div></div>
+        <div class="bar-item"><span>Python <em>Intermediate</em></span><div class="bar-track"><div class="bar-fill" data-width="58"></div></div></div>
+        <div class="bar-item"><span>Tableau <em>Advanced</em></span><div class="bar-track"><div class="bar-fill" data-width="80"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION + CERTIFICATIONS -->
+  <section class="section">
+    <div class="wrap two-col">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:20px;">Education</p>
+        <div class="entry-list">
+          <div class="entry"><div class="entry-num">01</div><div><h5>B.Com, Accounting & Finance</h5><p>University of Delhi — 2015 · Distinction</p></div></div>
+          <div class="entry"><div class="entry-num">02</div><div><h5>Chartered Accountancy (ICAI)</h5><p>Institute of Chartered Accountants of India — 2018</p></div></div>
+          <div class="entry"><div class="entry-num">03</div><div><h5>Postgraduate Diploma, International Taxation</h5><p>ICAI — 2021</p></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:20px;">Certifications</p>
+        <div class="entry-list">
+          <div class="entry"><div class="entry-num">01</div><div><h5>ACCA</h5><p>Association of Chartered Certified Accountants — 2020</p></div></div>
+          <div class="entry"><div class="entry-num">02</div><div><h5>IFRS Certification</h5><p>ACCA — 2021</p></div></div>
+          <div class="entry"><div class="entry-num">03</div><div><h5>SAP Finance (FICO)</h5><p>SAP — 2022</p></div></div>
+          <div class="entry"><div class="entry-num">04</div><div><h5>FMVA</h5><p>Corporate Finance Institute — 2023</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS & AWARDS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Achievements & recognition.</h2>
+        <p>Milestones that mattered more than the plaque.</p>
+      </div>
+      <div class="ach-grid reveal">
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.6 6.4L21 9l-5 4.3L17.4 21 12 17.3 6.6 21 8 13.3 3 9l6.4-.6z"/></svg></div><div><h5>Finance Excellence Award</h5><p>Meridian Advisory, 2024</p></div></div>
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg></div><div><h5>Managed $20M+ Budget</h5><p>Group-level annual planning, 2023</p></div></div>
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><div><h5>500+ Tax Filings</h5><p>Zero penalty notices across career</p></div></div>
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M6 20V4M18 20v-6"/></svg></div><div><h5>Employee of the Year</h5><p>Al Fahim Trading Group, 2021</p></div></div>
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h6"/></svg></div><div><h5>Profit Margin +12%</h5><p>Client-wide average improvement, 2023</p></div></div>
+        <div class="ach-card"><div class="ach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M4 8l8-6 8 6M4 8v13h16V8"/></svg></div><div><h5>Leadership Award</h5><p>ICAI Regional Chapter, 2020</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRY EXPERTISE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Industries I've worked across.</h2>
+        <p>Different rules, same discipline.</p>
+      </div>
+      <div class="pill-row reveal">
+        <span class="pill">Manufacturing</span>
+        <span class="pill">Healthcare</span>
+        <span class="pill">Retail</span>
+        <span class="pill">Banking</span>
+        <span class="pill">Construction</span>
+        <span class="pill">Logistics</span>
+        <span class="pill">Education</span>
+        <span class="pill">Hospitality</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS MARQUEE -->
+  <div class="tools-strip">
+    <div class="tools-track" id="toolsTrack"></div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="wrap" style="max-width:760px;">
+      <div class="section-head reveal" style="margin-bottom:20px;">
+        <h2>Frequently asked.</h2>
+      </div>
+      <div class="reveal" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q">Do you provide tax consulting? <span class="plus"></span></button>
+          <div class="faq-a"><p>Yes — corporate tax, VAT, and cross-border structuring for UAE-based and regional entities.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Which accounting software do you use? <span class="plus"></span></button>
+          <div class="faq-a"><p>Primarily SAP, QuickBooks, Zoho Books, and Tally, depending on what a client already runs.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can you prepare financial statements? <span class="plus"></span></button>
+          <div class="faq-a"><p>Yes, including monthly management accounts and year-end statutory statements ready for audit.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you offer remote consulting? <span class="plus"></span></button>
+          <div class="faq-a"><p>Most engagements run hybrid — on-site for audits and quarterly reviews, remote for ongoing reporting.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Let's talk about your numbers.</h2>
+        <p>Whether it's a single audit or an ongoing advisory retainer, I typically respond within one business day.</p>
+        <div class="contact-rows">
+          <div class="row"><span class="lbl">Email</span><span class="val">meera.anand@meridianfin.co</span></div>
+          <div class="row"><span class="lbl">Phone</span><span class="val">+971 50 123 4567</span></div>
+          <div class="row"><span class="lbl">Location</span><span class="val">Dubai, UAE</span></div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg></a>
+          <a href="#" aria-label="Portfolio download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg></a>
+          <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <form class="card-form reveal" onsubmit="return false;">
+        <div class="field"><label for="fname">Name</label><input id="fname" type="text" placeholder="Your full name"></div>
+        <div class="field"><label for="femail">Email</label><input id="femail" type="email" placeholder="you@company.com"></div>
+        <div class="field"><label for="fsubj">Subject</label><input id="fsubj" type="text" placeholder="What's this about?"></div>
+        <div class="field"><label for="fmsg">Message</label><textarea id="fmsg" placeholder="Tell me a bit about your business and what you need."></textarea></div>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo" style="color:var(--cream);"><span class="logo-mark" style="background:transparent;border-color:var(--cream);color:var(--cream);">MA</span> Meera Anand</div>
+        <p>Chartered Accountant & Financial Consultant helping GCC businesses report, plan, and grow with confidence.</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#experience">Experience</a></li><li><a href="#work">Work</a></li></ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul><li><a href="#services">Financial Reporting</a></li><li><a href="#services">Tax Planning</a></li><li><a href="#services">Internal Audit</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul><li><a href="#contact">meera.anand@meridianfin.co</a></li><li><a href="#contact">+971 50 123 4567</a></li><li><a href="#contact">Dubai, UAE</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Meera Anand. All rights reserved.</p>
+      <p>Privacy Policy · Designed with care</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ticker content
+  const tickerItems = ["Financial Reporting","Corporate Tax","Internal Audit","Budget Forecasting","Risk Assessment","VAT Compliance","Cash Flow Modeling","Cost Optimization"];
+  const track = document.getElementById('tickerTrack');
+  const full = tickerItems.concat(tickerItems).map(t => `<span>${t}</span>`).join('');
+  track.innerHTML = full;
+
+  // Tools marquee content
+  const tools = ["Excel","Power BI","SAP","Oracle","QuickBooks","Xero","Zoho Books","Odoo","Tally","SQL","Python","Tableau"];
+  const toolsTrack = document.getElementById('toolsTrack');
+  toolsTrack.innerHTML = tools.concat(tools).map(t => `<span>${t}</span>`).join('');
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Animated counters
+  const counters = document.querySelectorAll('[data-count]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        let current = 0;
+        const step = Math.max(1, Math.round(target / 40));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 25);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(c => counterIO.observe(c));
+
+  // Bar fills
+  const bars = document.querySelectorAll('.bar-fill');
+  const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.getAttribute('data-width') + '%';
+        barIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => barIO.observe(b));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
