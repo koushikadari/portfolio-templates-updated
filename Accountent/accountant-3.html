@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eleanor Ward — Portfolio Accountant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F2E8;
+    --paper:#FBF9F3;
+    --ink:#16261F;
+    --emerald:#1F4B3F;
+    --emerald-dark:#0F2E25;
+    --gold:#B4823F;
+    --gold-light:#E4C89A;
+    --slate:#6C7268;
+    --line: rgba(22,38,31,0.14);
+    --white:#FFFFFF;
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    background:var(--cream);
+    position:relative;
+    overflow-x:hidden;
+  }
+  .mesh-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(680px circle at 12% 8%, rgba(180,130,63,0.16), transparent 60%),
+      radial-gradient(760px circle at 88% 4%, rgba(31,75,63,0.20), transparent 55%),
+      radial-gradient(640px circle at 50% 55%, rgba(180,130,63,0.10), transparent 60%),
+      radial-gradient(820px circle at 90% 92%, rgba(31,75,63,0.14), transparent 55%);
+  }
+  .orb{
+    position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+  .orb-emerald{background:radial-gradient(circle, rgba(31,75,63,0.5), transparent 70%);}
+  .orb-gold{background:radial-gradient(circle, rgba(180,130,63,0.45), transparent 70%);}
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(26px,-30px) scale(1.08);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .orb{animation:none;}
+  }
+  section, header, .cta-band, footer{position:relative;}
+  section, .cta-band{overflow:hidden;}
+  section > .wrap, header .wrap, .cta-band .wrap{position:relative;z-index:1;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px;}
+  img{display:block;max-width:100%;}
+
+  [contenteditable="true"]{outline:none;border-radius:2px;}
+  [contenteditable="true"]:hover{background:rgba(180,130,63,0.08);box-shadow:0 0 0 4px rgba(180,130,63,0.08);}
+  [contenteditable="true"]:focus{background:rgba(180,130,63,0.12);box-shadow:0 0 0 4px rgba(180,130,63,0.14);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,46,37,0.72);
+    backdrop-filter:blur(14px) saturate(160%);
+    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    transition:box-shadow .3s, background .3s;
+  }
+  header.scrolled{background:rgba(15,46,37,0.92);box-shadow:0 8px 30px -12px rgba(0,0,0,0.35);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{width:34px;height:34px;position:relative;flex:none;}
+  .brand-mark span{position:absolute;display:block;border-radius:2px;}
+  .brand-mark .a{width:16px;height:34px;background:var(--gold);left:0;top:0;}
+  .brand-mark .b{width:16px;height:22px;background:var(--white);left:18px;top:12px;}
+  .brand-name{color:var(--white);font-family:'Fraunces',serif;font-size:19px;font-weight:600;}
+  .brand-sub{color:var(--gold-light);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;margin-top:1px;}
+  nav ul{list-style:none;display:flex;gap:34px;margin:0;padding:0;}
+  nav ul li a{color:rgba(255,255,255,0.72);font-size:14.5px;transition:color .15s;}
+  nav ul li a:hover{color:var(--white);}
+  nav ul li a.active{color:var(--gold-light);}
+  .nav-cta{background:var(--gold);color:var(--emerald-dark);font-size:14px;font-weight:500;padding:11px 22px;border-radius:8px;border:1px solid var(--gold);}
+  .nav-cta:hover{background:transparent;color:var(--gold);}
+  @media(max-width:880px){nav ul{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 60px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+  .eyebrow{
+    display:inline-block;background:var(--white);border:1px solid var(--line);
+    padding:8px 16px;font-size:13px;color:var(--emerald);font-weight:500;
+    border-radius:24px;margin-bottom:22px;
+  }
+  .eyebrow .mono{color:var(--gold);margin-right:6px;}
+  .hero h1{font-size:52px;font-weight:600;line-height:1.05;}
+  .hero h1 em{font-style:normal;color:var(--emerald);border-bottom:3px solid var(--gold);}
+  .hero p.lead{color:var(--slate);font-size:16.5px;max-width:480px;margin:22px 0 30px;}
+  .hero-actions{display:flex;gap:14px;margin-bottom:44px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;font-size:14.5px;font-weight:500;border-radius:8px;border:1px solid transparent;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;}
+  .btn-primary{background:var(--emerald);color:var(--white);}
+  .btn-primary:hover{background:var(--emerald-dark);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .stat-row{display:flex;gap:0;border-top:1px solid var(--line);padding-top:26px;}
+  .stat{flex:1;padding-right:24px;}
+  .stat .num{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:500;color:var(--emerald);}
+  .stat .lbl{font-size:12.5px;color:var(--slate);margin-top:4px;}
+
+  /* photo panel */
+  .photo-panel{
+    position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
+    box-shadow: 0 30px 60px -20px rgba(15,46,37,0.5), 0 0 0 1px rgba(255,255,255,0.08) inset;
+    background:
+      radial-gradient(120% 90% at 15% 10%, rgba(228,200,154,0.28), transparent 55%),
+      radial-gradient(100% 80% at 90% 100%, rgba(228,200,154,0.14), transparent 60%),
+      linear-gradient(160deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+  }
+  .photo-panel::before{
+    content:"";position:absolute;inset:0;border-radius:20px;padding:1px;pointer-events:none;z-index:2;
+    background:linear-gradient(160deg, rgba(228,200,154,0.55), transparent 40%, transparent 70%, rgba(228,200,154,0.25));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .photo-watermark{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;
+    font-family:'Fraunces',serif;font-weight:700;color:rgba(255,255,255,0.06);
+    font-size:58px;line-height:0.95;text-align:center;letter-spacing:-0.01em;text-transform:uppercase;
+    pointer-events:none;
+  }
+  .photo-slot{position:absolute;inset:0;}
+  .photo-slot img{width:100%;height:100%;object-fit:cover;}
+  .photo-empty{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    color:rgba(255,255,255,0.55);
+  }
+  .photo-empty svg{opacity:0.6;}
+  .upload-btn{
+    position:absolute;bottom:18px;right:18px;background:rgba(255,255,255,0.94);color:var(--emerald-dark);
+    font-size:13px;font-weight:500;padding:10px 16px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.18);
+  }
+  .upload-btn:hover{background:var(--white);}
+  .upload-btn input{display:none;}
+  .photo-tag{
+    position:absolute;top:18px;left:18px;background:var(--gold);color:var(--emerald-dark);
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:6px 11px;border-radius:6px;letter-spacing:0.04em;
+  }
+
+  section{padding:70px 0;}
+  .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:42px;}
+  .section-head .code{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:14px;}
+  .section-head h2{font-size:32px;font-weight:600;}
+  .section-head p{color:var(--slate);font-size:14.5px;margin-top:6px;}
+  .section-tight{padding-top:0;}
+  .divider{border:none;border-top:1px solid var(--line);}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start;}
+  .about-photo{
+    position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--emerald-dark);
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+  .about-photo .upload-btn{bottom:12px;right:12px;padding:8px 12px;font-size:12px;}
+  .about-body p{color:var(--slate);font-size:15px;margin:0 0 16px;max-width:600px;}
+  .badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;}
+  .badge{
+    border:1px solid var(--line);background:var(--white);padding:8px 14px;font-size:13px;
+    border-radius:20px;color:var(--emerald-dark);font-family:'IBM Plex Mono',monospace;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .badge:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 10px 20px -12px rgba(180,130,63,0.4);}
+
+  /* ---------- SERVICES (ledger line items) ---------- */
+  .ledger{border-top:1px solid var(--line);}
+  .ledger-row{
+    display:grid;grid-template-columns:64px 1fr 260px;gap:24px;padding:26px 22px;margin:0 -22px;
+    border-bottom:1px solid var(--line);align-items:start;transition:background .15s;border-radius:2px;
+  }
+  .ledger-row:hover{background:rgba(180,130,63,0.06);}
+  .ledger-row .code{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:15px;padding-top:2px;}
+  .ledger-row h3{font-size:19px;font-weight:600;margin-bottom:6px;}
+  .ledger-row p{color:var(--slate);font-size:14px;margin:0;}
+  .ledger-row .tag{color:var(--slate);font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-align:right;padding-top:4px;}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
+  .proj-card{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;}
+  .proj-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -20px rgba(15,46,37,0.28);}
+  .proj-media{position:relative;aspect-ratio:16/10;background:var(--emerald-dark);}
+  .proj-media img{width:100%;height:100%;object-fit:cover;}
+  .proj-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,0.5);}
+  .proj-media .upload-btn{padding:8px 13px;font-size:12px;bottom:12px;right:12px;}
+  .proj-body{padding:22px 24px 26px;}
+  .proj-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+  .proj-figure{font-family:'IBM Plex Mono',monospace;color:var(--emerald);font-size:20px;font-weight:500;}
+  .proj-body h3{font-size:18px;font-weight:600;margin-bottom:8px;}
+  .proj-body p{color:var(--slate);font-size:13.8px;margin:0;}
+  .proj-tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .proj-tags span{font-size:11.5px;font-family:'IBM Plex Mono',monospace;color:var(--slate);border:1px solid var(--line);padding:4px 8px;border-radius:2px;}
+
+  /* ---------- EXPERIENCE / SKILLS / EDUCATION ---------- */
+  .exp{background:var(--emerald-dark);color:var(--white);}
+  .exp .section-head h2, .exp .code{color:var(--white);}
+  .exp .section-head p{color:rgba(255,255,255,0.55);}
+  .exp-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;}
+
+  .timeline{position:relative;padding-left:28px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:rgba(255,255,255,0.16);}
+  .tl-item{position:relative;padding-bottom:36px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-28px;top:5px;width:11px;height:11px;border-radius:50%;
+    background:var(--emerald-dark);border:2px solid var(--gold);
+  }
+  .tl-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .tl-role{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--white);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--gold-light);white-space:nowrap;}
+  .tl-org{font-size:13.5px;color:var(--gold-light);margin-bottom:10px;}
+  .tl-item ul{margin:0;padding-left:18px;color:rgba(255,255,255,0.68);font-size:14px;}
+  .tl-item li{margin-bottom:5px;}
+
+  .side-card{background:rgba(255,255,255,0.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:24px 24px 26px;margin-bottom:22px;}
+  .side-card h3{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);font-weight:500;margin-bottom:18px;}
+  .skill-row{margin-bottom:14px;}
+  .skill-row:last-child{margin-bottom:0;}
+  .skill-top{display:flex;justify-content:space-between;font-size:13.5px;color:rgba(255,255,255,0.85);margin-bottom:6px;}
+  .skill-top .pct{font-family:'IBM Plex Mono',monospace;color:var(--gold-light);font-size:12px;}
+  .skill-bar{height:4px;background:rgba(255,255,255,0.12);border-radius:2px;overflow:hidden;}
+  .skill-bar span{display:block;height:100%;background:var(--gold);border-radius:2px;}
+
+  .edu-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .edu-item:last-child{border-bottom:none;padding-bottom:0;}
+  .edu-item .deg{font-size:14.5px;font-weight:500;color:var(--white);margin-bottom:3px;}
+  .edu-item .sch{font-size:12.5px;color:rgba(255,255,255,0.6);}
+  .edu-item .yr{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--gold-light);margin-top:4px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .cta-band{background:var(--gold);}
+  .cta-inner{display:flex;align-items:center;justify-content:space-between;padding:52px 0 36px;gap:24px;}
+  .cta-inner h2{font-size:28px;color:var(--emerald-dark);}
+  .cta-inner p{color:rgba(15,46,37,0.75);margin-top:8px;font-size:14.5px;}
+  .cta-inner .btn-primary{background:var(--emerald-dark);}
+
+  .contact-info{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid rgba(15,46,37,0.18);padding:26px 0 40px;
+  }
+  .contact-item{padding-right:24px;border-right:1px solid rgba(15,46,37,0.18);}
+  .contact-item:last-child{border-right:none;}
+  .contact-lbl{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.1em;
+    text-transform:uppercase;color:rgba(15,46,37,0.6);margin-bottom:8px;
+  }
+  .contact-val{display:block;font-size:15px;font-weight:500;color:var(--emerald-dark);}
+  a.contact-val:hover{text-decoration:underline;}
+
+  footer{background:var(--emerald-dark);color:rgba(255,255,255,0.6);padding:44px 0 30px;font-size:13.5px;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .foot-links{display:flex;gap:22px;}
+  .foot-links a:hover{color:var(--white);}
+
+  @media(max-width:900px){
+    .contact-info{grid-template-columns:1fr 1fr;row-gap:20px;}
+    .contact-item{border-right:none;padding-right:0;}
+    .hero-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .exp-grid{grid-template-columns:1fr;}
+    .ledger-row{grid-template-columns:40px 1fr;}
+    .ledger-row .tag{display:none;}
+    .hero h1{font-size:38px;}
+    .wrap{padding:0 22px;}
+    .cta-inner{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+<div class="mesh-bg"></div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark"><span class="a"></span><span class="b"></span></div>
+      <div>
+        <div class="brand-name" contenteditable="true">Eleanor Ward</div>
+        <div class="brand-sub">Portfolio Accountant</div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Case studies</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-cta">Book a consult</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid reveal in-view">
+    <div>
+      <div class="eyebrow"><span class="mono">§ 01</span>Hi, I'm Eleanor — <span contenteditable="true">glad you're here</span></div>
+      <h1 contenteditable="true">Portfolio Accountant<br>for funds that need <em>clean books</em></h1>
+      <p class="lead" contenteditable="true">Seasoned accountant with 12+ years in fast-paced financial environments. I prepare NAVs, reconcile complex portfolios, and turn dense financial data into reports stakeholders actually trust.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary">Hire me</button>
+        <button class="btn btn-ghost">Download CV</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num mono" contenteditable="true">180+</div><div class="lbl">Portfolios managed</div></div>
+        <div class="stat"><div class="num mono" contenteditable="true">$3B+</div><div class="lbl">Assets reported on</div></div>
+        <div class="stat"><div class="num mono" contenteditable="true">12+</div><div class="lbl">Years experience</div></div>
+      </div>
+    </div>
+
+    <div class="photo-panel">
+      <div class="photo-watermark">ELEANOR<br>WARD</div>
+      <div class="photo-slot" id="heroPhotoSlot">
+        <div class="photo-empty" id="heroPhotoEmpty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+          <span style="font-size:13px;">No photo yet</span>
+        </div>
+      </div>
+      <span class="photo-tag mono">IMG / 01</span>
+      <label class="upload-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+        Add photo
+        <input type="file" accept="image/*" onchange="loadImage(this,'heroPhotoSlot','heroPhotoEmpty')">
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="orb orb-gold" style="width:340px;height:340px;top:-120px;left:-100px;"></div>
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <div class="photo-slot" id="aboutPhotoSlot">
+        <div class="photo-empty" id="aboutPhotoEmpty">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+        </div>
+      </div>
+      <label class="upload-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+        Add photo
+        <input type="file" accept="image/*" onchange="loadImage(this,'aboutPhotoSlot','aboutPhotoEmpty')">
+      </label>
+    </div>
+    <div class="about-body">
+      <div class="section-head reveal" style="margin-bottom:20px;">
+        <span class="code mono">§ 02</span>
+        <h2>About me</h2>
+      </div>
+      <p contenteditable="true">I'm a portfolio accountant with a background spanning fund accounting, real estate, and investment management. Over 12+ years I've prepared NAVs and financial statements for portfolios ranging from a handful of properties to global holdings worth billions — always with an eye for the reconciling item everyone else missed.</p>
+      <p contenteditable="true">My approach is simple: numbers should be accurate, timely, and explainable in plain English to whoever is reading them — auditors, investors, or the property manager down the hall.</p>
+      <div class="badges">
+        <span class="badge">Fund Accounting</span>
+        <span class="badge">NAV Calculation</span>
+        <span class="badge">GAAP Reporting</span>
+        <span class="badge">Reconciliations</span>
+        <span class="badge">Bloomberg / FactSet</span>
+        <span class="badge">Excel Modeling</span>
+        <span class="badge">Audit Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exp" id="experience">
+  <div class="orb orb-gold" style="width:380px;height:380px;top:-140px;right:-120px;opacity:0.7;"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="code mono">§ 03</span>
+      <div>
+        <h2>Experience &amp; education</h2>
+        <p>Where I've worked, what I bring, and how I trained for it</p>
+      </div>
+    </div>
+    <div class="exp-grid reveal">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role" contenteditable="true">Portfolio Accountant</span>
+            <span class="tl-date mono">2019 — Present</span>
+          </div>
+          <div class="tl-org" contenteditable="true">Meridian Capital Partners</div>
+          <ul>
+            <li contenteditable="true">Calculate monthly NAVs and prepare financial statements for a $3B+ multi-strategy portfolio.</li>
+            <li contenteditable="true">Lead reconciliations across custodians and brokers, resolving variances before quarter close.</li>
+            <li contenteditable="true">Coordinate directly with external auditors, cutting audit query turnaround by half.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role" contenteditable="true">Staff Accountant</span>
+            <span class="tl-date mono">2015 — 2019</span>
+          </div>
+          <div class="tl-org" contenteditable="true">Northbridge Holdings</div>
+          <ul>
+            <li contenteditable="true">Managed monthly close for a seven-property commercial real estate portfolio.</li>
+            <li contenteditable="true">Prepared annual budgets and investor reporting packages for five ownership groups.</li>
+            <li contenteditable="true">Built Excel models that cut month-end reporting time from six days to three.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role" contenteditable="true">Junior Accountant</span>
+            <span class="tl-date mono">2013 — 2015</span>
+          </div>
+          <div class="tl-org" contenteditable="true">Chandran REIT</div>
+          <ul>
+            <li contenteditable="true">Supported general ledger entries, accounts payable, and bank reconciliations.</li>
+            <li contenteditable="true">Assisted with year-end audit schedules and tax filing preparation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="side-card">
+          <h3>Skills</h3>
+          <div class="skill-row">
+            <div class="skill-top"><span contenteditable="true">Fund &amp; NAV accounting</span><span class="pct mono">95%</span></div>
+            <div class="skill-bar"><span style="width:95%;"></span></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span contenteditable="true">Financial reporting (GAAP)</span><span class="pct mono">92%</span></div>
+            <div class="skill-bar"><span style="width:92%;"></span></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span contenteditable="true">Excel &amp; financial modeling</span><span class="pct mono">90%</span></div>
+            <div class="skill-bar"><span style="width:90%;"></span></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span contenteditable="true">Bloomberg / FactSet</span><span class="pct mono">80%</span></div>
+            <div class="skill-bar"><span style="width:80%;"></span></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span contenteditable="true">Reconciliations</span><span class="pct mono">96%</span></div>
+            <div class="skill-bar"><span style="width:96%;"></span></div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <div class="deg" contenteditable="true">B.S. in Accounting</div>
+            <div class="sch" contenteditable="true">University of Michigan</div>
+            <div class="yr mono">2013</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg" contenteditable="true">Certified Public Accountant (CPA)</div>
+            <div class="sch" contenteditable="true">State Board of Accountancy</div>
+            <div class="yr mono">2016</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="orb orb-emerald" style="width:320px;height:320px;bottom:-140px;left:-90px;"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="code mono">§ 04</span>
+      <div>
+        <h2>Services</h2>
+        <p>What I handle, in the order a portfolio actually needs it</p>
+      </div>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-row">
+        <div class="code mono">1010</div>
+        <div>
+          <h3 contenteditable="true">Fund pricing &amp; NAV calculation</h3>
+          <p contenteditable="true">Timely, accurate net asset values, yields, and distributions prepared for review — with a paper trail an auditor can follow.</p>
+        </div>
+        <div class="tag">recurring · monthly</div>
+      </div>
+      <div class="ledger-row">
+        <div class="code mono">1020</div>
+        <div>
+          <h3 contenteditable="true">Financial statement preparation</h3>
+          <p contenteditable="true">GAAP financial statements, cash flow statements, and income tax reporting, built for internal and external stakeholders alike.</p>
+        </div>
+        <div class="tag">recurring · quarterly</div>
+      </div>
+      <div class="ledger-row">
+        <div class="code mono">1030</div>
+        <div>
+          <h3 contenteditable="true">Reconciliations &amp; variance analysis</h3>
+          <p contenteditable="true">General ledger, custodian, and intercompany reconciliations — every variance investigated and resolved, not just flagged.</p>
+        </div>
+        <div class="tag">recurring · monthly</div>
+      </div>
+      <div class="ledger-row">
+        <div class="code mono">1040</div>
+        <div>
+          <h3 contenteditable="true">Budgeting &amp; forecast support</h3>
+          <p contenteditable="true">Annual budgets, estimates, and variance reporting that give portfolio managers a clear read on where the numbers are heading.</p>
+        </div>
+        <div class="tag">project-based</div>
+      </div>
+      <div class="ledger-row">
+        <div class="code mono">1050</div>
+        <div>
+          <h3 contenteditable="true">Audit &amp; compliance support</h3>
+          <p contenteditable="true">Direct support during external audits — responding to queries, assembling schedules, and tightening internal controls.</p>
+        </div>
+        <div class="tag">as needed</div>
+      </div>
+      <div class="ledger-row">
+        <div class="code mono">1060</div>
+        <div>
+          <h3 contenteditable="true">Investor &amp; client reporting</h3>
+          <p contenteditable="true">Clear, client-ready performance statements and reports that hold up to scrutiny from brokers and investors alike.</p>
+        </div>
+        <div class="tag">recurring · quarterly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="projects">
+  <div class="orb orb-gold" style="width:300px;height:300px;top:-100px;right:-80px;"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="code mono">§ 05</span>
+      <div>
+        <h2>Case studies</h2>
+        <p>Selected portfolios and engagements — add a photo or screenshot to each</p>
+      </div>
+    </div>
+    <div class="proj-grid reveal">
+
+      <div class="proj-card">
+        <div class="proj-media">
+          <div class="photo-slot" id="proj1Slot">
+            <div class="proj-empty" id="proj1Empty">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+              <span style="font-size:12px;">Add project image</span>
+            </div>
+          </div>
+          <label class="upload-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+            Add image
+            <input type="file" accept="image/*" onchange="loadImage(this,'proj1Slot','proj1Empty')">
+          </label>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-figure mono">$3.0B</span></div>
+          <h3 contenteditable="true">Global portfolio financial reporting</h3>
+          <p contenteditable="true">Prepared financial statement reports for a premier client trading in the global market, including daily cash reconciliations across multiple currencies.</p>
+          <div class="proj-tags"><span>GAAP</span><span>Multi-currency</span><span>Reporting</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media">
+          <div class="photo-slot" id="proj2Slot">
+            <div class="proj-empty" id="proj2Empty">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+              <span style="font-size:12px;">Add project image</span>
+            </div>
+          </div>
+          <label class="upload-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+            Add image
+            <input type="file" accept="image/*" onchange="loadImage(this,'proj2Slot','proj2Empty')">
+          </label>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-figure mono">424</span></div>
+          <h3 contenteditable="true">Brokerage account reconciliation program</h3>
+          <p contenteditable="true">Monthly balancing and performance updates across 424 brokerage accounts holding over $400M in assets, plus quarterly statements to brokers.</p>
+          <div class="proj-tags"><span>Reconciliation</span><span>Brokerage</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media">
+          <div class="photo-slot" id="proj3Slot">
+            <div class="proj-empty" id="proj3Empty">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+              <span style="font-size:12px;">Add project image</span>
+            </div>
+          </div>
+          <label class="upload-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+            Add image
+            <input type="file" accept="image/*" onchange="loadImage(this,'proj3Slot','proj3Empty')">
+          </label>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-figure mono">Q/YR</span></div>
+          <h3 contenteditable="true">Institutional client quarterly financials</h3>
+          <p contenteditable="true">Presented an institutional investor's quarterly and yearly financial statements ahead of deadline, plus fluctuation analysis between actual and budget.</p>
+          <div class="proj-tags"><span>Budgeting</span><span>Investor relations</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media">
+          <div class="photo-slot" id="proj4Slot">
+            <div class="proj-empty" id="proj4Empty">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+              <span style="font-size:12px;">Add project image</span>
+            </div>
+          </div>
+          <label class="upload-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+            Add image
+            <input type="file" accept="image/*" onchange="loadImage(this,'proj4Slot','proj4Empty')">
+          </label>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-figure mono">1.1M sqft</span></div>
+          <h3 contenteditable="true">Multi-property real estate portfolio</h3>
+          <p contenteditable="true">Full accounting for seven high-rise office buildings across five owners, from monthly statements to annual budgets and tenant audits.</p>
+          <div class="proj-tags"><span>Real estate</span><span>Property accounting</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="cta-band" id="contact">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2 contenteditable="true">Let's balance the books, properly.</h2>
+        <p contenteditable="true">Available for portfolio accounting engagements, fund reporting, and reconciliation clean-up projects.</p>
+      </div>
+      <a href="mailto:eleanor.ward@example.com" class="btn btn-primary">Get in touch</a>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-lbl">Email</span>
+        <a href="mailto:eleanor.ward@example.com" class="contact-val" contenteditable="true">eleanor.ward@example.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-lbl">Phone</span>
+        <span class="contact-val" contenteditable="true">+1 (312) 555-0148</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-lbl">Location</span>
+        <span class="contact-val" contenteditable="true">Chicago, IL — open to remote</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-lbl">Availability</span>
+        <span class="contact-val" contenteditable="true">Open to new engagements from Aug 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div contenteditable="true">© 2026 Eleanor Ward — Portfolio Accountant</div>
+    <div class="foot-links">
+      <a href="mailto:eleanor@example.com">eleanor@example.com</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Download CV</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function loadImage(input, slotId, emptyId){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const slot = document.getElementById(slotId);
+    const empty = document.getElementById(emptyId);
+    if(empty) empty.remove();
+    let img = slot.querySelector('img');
+    if(!img){
+      img = document.createElement('img');
+      slot.appendChild(img);
+    }
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+const siteHeader = document.querySelector('header');
+window.addEventListener('scroll', function(){
+  siteHeader.classList.toggle('scrolled', window.scrollY > 12);
+}, {passive:true});
+
+const io = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

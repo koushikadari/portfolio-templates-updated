@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sarah Mitchell | CPA & Financial Advisor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0e0d0b;
+    --cream: #f7f3ec;
+    --parchment: #ede8de;
+    --gold: #b8935a;
+    --gold-light: #d4a96a;
+    --gold-pale: #f0e0c8;
+    --slate: #3a3530;
+    --mist: #9c9690;
+    --white: #fefefe;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSOR ─── */
+  * { cursor: none !important; }
+  #cursor {
+    position: fixed; width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform .15s ease, background .2s;
+  }
+  #cursor-ring {
+    position: fixed; width: 34px; height: 34px;
+    border: 1.5px solid var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: all .35s cubic-bezier(.25,.46,.45,.94);
+    opacity: 0.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(247,243,236,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,147,90,.18);
+    transition: all .4s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600;
+    color: var(--ink); letter-spacing: .04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    font-size: .78rem; font-weight: 500;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--slate); text-decoration: none;
+    position: relative; padding-bottom: 3px;
+    transition: color .25s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width .3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: .75rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold); border: 1.5px solid var(--gold);
+    padding: .55rem 1.4rem; text-decoration: none;
+    transition: all .3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--white); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 6rem;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: .72rem; font-weight: 500;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 36px; height: 1px; background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5.5vw, 5.2rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 1rem; font-weight: 300;
+    color: var(--mist); line-height: 1.75;
+    max-width: 400px; margin-bottom: 2.8rem;
+  }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+  .btn-primary {
+    font-size: .78rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    background: var(--gold); color: var(--white);
+    padding: .9rem 2.2rem; text-decoration: none;
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold-light); transform: translateX(-101%);
+    transition: transform .3s ease;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-ghost {
+    font-size: .78rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--slate); text-decoration: none;
+    display: flex; align-items: center; gap: .6rem;
+    transition: color .3s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost svg { transition: transform .3s; }
+  .btn-ghost:hover svg { transform: translateX(4px); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2rem; border-top: 1px solid var(--parchment);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 600; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: .72rem; font-weight: 400;
+    letter-spacing: .1em; color: var(--mist);
+    margin-top: .3rem; text-transform: uppercase;
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-img-wrap {
+    position: absolute; inset: 0;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-img-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #2c2820 0%, #1a1710 60%, #0e0d0b 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(184,147,90,.04) 30px, rgba(184,147,90,.04) 31px),
+      repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(184,147,90,.04) 30px, rgba(184,147,90,.04) 31px);
+  }
+  .hero-portrait-frame {
+    position: absolute; bottom: 0; right: 0; left: 8%;
+    height: 88%;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .portrait-placeholder {
+    width: 75%; aspect-ratio: 3/4;
+    background: linear-gradient(180deg, rgba(184,147,90,.15) 0%, rgba(184,147,90,.35) 100%);
+    border: 1px solid rgba(184,147,90,.3);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1rem;
+    color: rgba(184,147,90,.5);
+  }
+  .portrait-icon { font-size: 4rem; opacity: .4; }
+  .portrait-text { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
+
+  .hero-badge {
+    position: absolute; top: 3rem; right: 3rem;
+    width: 90px; height: 90px;
+    border: 1.5px solid rgba(184,147,90,.5);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    animation: spin-badge 20s linear infinite;
+    color: rgba(184,147,90,.7);
+    font-size: .55rem; letter-spacing: .15em;
+    text-align: center; text-transform: uppercase;
+    line-height: 1.5;
+  }
+  @keyframes spin-badge {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .section-label {
+    font-size: .7rem; font-weight: 500;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .8rem;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; color: var(--ink);
+    line-height: 1.2; margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 6rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-box {
+    aspect-ratio: 3/4; max-height: 480px;
+    background: linear-gradient(160deg, var(--parchment) 0%, var(--gold-pale) 100%);
+    border: 1px solid rgba(184,147,90,.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 5rem; opacity: .4;
+  }
+  .about-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 120px; height: 120px;
+    border: 2px solid var(--gold-pale); z-index: -1;
+  }
+  .about-accent-2 {
+    position: absolute; top: -1.5rem; left: -1.5rem;
+    width: 80px; height: 80px;
+    background: var(--gold-pale); z-index: -1;
+  }
+  .about-text p {
+    font-size: .95rem; font-weight: 300;
+    color: var(--slate); line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .credentials {
+    display: flex; flex-wrap: wrap; gap: .7rem;
+    margin-top: 1.8rem;
+  }
+  .credential-tag {
+    font-size: .7rem; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    background: var(--parchment);
+    border: 1px solid rgba(184,147,90,.3);
+    color: var(--slate); padding: .45rem 1rem;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--cream); }
+  .services-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-bottom: 4rem;
+    align-items: end;
+  }
+  .services-desc {
+    font-size: .95rem; font-weight: 300;
+    color: var(--mist); line-height: 1.85;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px; background: rgba(184,147,90,.15);
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    transition: all .4s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold); transform: scaleX(0);
+    transform-origin: left; transition: transform .4s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: var(--white); }
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1.2rem;
+    display: block;
+  }
+  .service-num {
+    position: absolute; top: 1.5rem; right: 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300;
+    color: rgba(184,147,90,.1); line-height: 1;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400;
+    color: var(--ink); margin-bottom: .8rem;
+  }
+  .service-desc {
+    font-size: .85rem; font-weight: 300;
+    color: var(--mist); line-height: 1.75;
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--ink); color: var(--cream); }
+  #experience .section-title { color: var(--cream); }
+  #experience .section-label { color: var(--gold-light); }
+  #experience .section-label::before { background: var(--gold-light); }
+
+  .exp-grid {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 5rem; margin-top: 3rem;
+  }
+  .exp-side-text {
+    font-size: .9rem; font-weight: 300;
+    color: rgba(247,243,236,.5); line-height: 1.85;
+  }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: .5rem; bottom: .5rem;
+    width: 1px; background: rgba(184,147,90,.25);
+  }
+  .timeline-item {
+    padding-left: 2.5rem; margin-bottom: 2.8rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -4px; top: .5rem;
+    width: 9px; height: 9px;
+    border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,147,90,.2);
+  }
+  .timeline-period {
+    font-size: .7rem; font-weight: 500;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .5rem;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; color: var(--cream);
+    margin-bottom: .3rem;
+  }
+  .timeline-company {
+    font-size: .85rem; color: rgba(247,243,236,.5);
+    margin-bottom: .8rem; font-weight: 300;
+  }
+  .timeline-desc {
+    font-size: .85rem; font-weight: 300;
+    color: rgba(247,243,236,.6); line-height: 1.7;
+  }
+
+  /* ─── CASE STUDIES ─── */
+  #work { background: var(--parchment); }
+  .cases-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; margin-top: 3rem;
+  }
+  .case-card {
+    background: var(--white);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .case-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(14,13,11,.08);
+  }
+  .case-tag {
+    font-size: .65rem; font-weight: 500;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .case-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--ink);
+    margin-bottom: .8rem; line-height: 1.3;
+  }
+  .case-desc {
+    font-size: .87rem; font-weight: 300;
+    color: var(--mist); line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .case-result {
+    display: flex; gap: 1.5rem;
+    padding-top: 1.2rem; border-top: 1px solid var(--parchment);
+  }
+  .case-metric { text-align: center; }
+  .case-metric-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; color: var(--gold); font-weight: 600;
+  }
+  .case-metric-label {
+    font-size: .65rem; color: var(--mist);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .case-corner {
+    position: absolute; bottom: 0; right: 0;
+    width: 80px; height: 80px;
+    background: var(--parchment);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--white); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; margin-top: 3rem;
+  }
+  .testimonial-card {
+    padding: 2.2rem; border: 1px solid var(--parchment);
+    position: relative; transition: border-color .3s;
+  }
+  .testimonial-card:hover { border-color: rgba(184,147,90,.4); }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--gold); line-height: .8;
+    margin-bottom: .5rem; opacity: .3;
+  }
+  .testimonial-text {
+    font-size: .9rem; font-weight: 300;
+    color: var(--slate); line-height: 1.8;
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--parchment);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--gold);
+  }
+  .author-name {
+    font-size: .85rem; font-weight: 500; color: var(--ink);
+  }
+  .author-role {
+    font-size: .72rem; color: var(--mist);
+    letter-spacing: .06em;
+  }
+  .stars { color: var(--gold); font-size: .8rem; margin-bottom: 1rem; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--ink); }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-label { color: var(--gold-light); }
+  #contact .section-label::before { background: var(--gold-light); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 5rem; margin-top: 3rem;
+    align-items: start;
+  }
+  .contact-info-text {
+    font-size: .9rem; font-weight: 300;
+    color: rgba(247,243,236,.5); line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .contact-item-icon {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(184,147,90,.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: .9rem; flex-shrink: 0;
+  }
+  .contact-item-label {
+    font-size: .65rem; font-weight: 500;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(247,243,236,.35); margin-bottom: .2rem;
+  }
+  .contact-item-value {
+    font-size: .87rem; color: rgba(247,243,236,.75);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-field { display: flex; flex-direction: column; gap: .5rem; }
+  .form-label {
+    font-size: .68rem; font-weight: 500;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(247,243,236,.4);
+  }
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(184,147,90,.2);
+    color: var(--cream);
+    padding: .85rem 1.1rem;
+    font-family: 'Jost', sans-serif; font-size: .88rem;
+    outline: none; transition: border-color .3s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: rgba(184,147,90,.6);
+  }
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(247,243,236,.2);
+  }
+  .form-submit {
+    font-size: .78rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    background: var(--gold); color: var(--white);
+    border: none; padding: 1.1rem 2.5rem;
+    align-self: flex-start;
+    font-family: 'Jost', sans-serif;
+    position: relative; overflow: hidden;
+    transition: all .3s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #080807;
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(184,147,90,.12);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: rgba(247,243,236,.5);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy {
+    font-size: .72rem; color: rgba(247,243,236,.25);
+    letter-spacing: .06em;
+  }
+  .footer-links {
+    display: flex; gap: 1.8rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: .7rem; letter-spacing: .15em;
+    text-transform: uppercase; color: rgba(247,243,236,.3);
+    text-decoration: none; transition: color .25s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ─── DECORATIVE LINE ─── */
+  .gold-line {
+    width: 60px; height: 2px; background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    /* Hide custom cursor on touch devices */
+    #cursor, #cursor-ring { display: none; }
+    * { cursor: auto !important; }
+
+    /* Nav */
+    nav {
+      padding: 1rem 1.5rem;
+      flex-wrap: wrap; gap: .5rem;
+    }
+    .nav-links { display: none; }
+    .nav-cta { padding: .45rem 1rem; font-size: .7rem; }
+
+    /* Hero — single column, full-width */
+    .hero {
+      display: flex; flex-direction: column;
+      min-height: auto;
+    }
+    .hero-right { display: none; }
+    .hero-left {
+      padding: 6.5rem 1.5rem 3rem;
+      text-align: left;
+    }
+    .hero-title { font-size: 2.6rem; }
+    .hero-subtitle { font-size: .9rem; max-width: 100%; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: .9rem; }
+    .btn-primary { width: 100%; text-align: center; padding: 1rem; }
+    .hero-stats {
+      gap: 1.5rem; flex-wrap: wrap;
+      margin-top: 2.5rem; padding-top: 1.5rem;
+    }
+    .stat-num { font-size: 2rem; }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    .container { padding: 0 1.5rem; }
+
+    /* About */
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-img-box { max-height: 280px; }
+    .about-accent, .about-accent-2 { display: none; }
+    .section-title { font-size: 2rem; }
+
+    /* Services */
+    .services-intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 0; }
+    .service-card { padding: 2rem 1.5rem; }
+
+    /* Experience */
+    .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .timeline-role { font-size: 1.1rem; }
+
+    /* Cases */
+    .cases-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .case-result { flex-wrap: wrap; gap: 1rem; }
+
+    /* Testimonials */
+    .testimonials-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; gap: 1rem; }
+    .form-submit { width: 100%; text-align: center; }
+
+    /* Footer */
+    footer {
+      flex-direction: column; gap: 1rem;
+      text-align: center; padding: 2rem 1.5rem;
+    }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Sarah <span>Mitchell</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Chartered Public Accountant</p>
+    <h1 class="hero-title">
+      Clarity in<br/>Every <em>Number.</em><br/>Strategy in<br/>Every Decision.
+    </h1>
+    <p class="hero-subtitle">
+      Trusted financial advisor with 14+ years helping businesses and individuals achieve fiscal precision, compliance, and sustainable growth.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary"><span>Explore Services</span></a>
+      <a href="#work" class="btn-ghost">
+        View Case Studies
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">340+</div>
+        <div class="stat-label">Clients Served</div>
+      </div>
+      <div>
+        <div class="stat-num">$2.1B</div>
+        <div class="stat-label">Assets Managed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-img-bg"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-portrait-frame">
+        <div class="portrait-placeholder">
+          <div class="portrait-icon">👤</div>
+          <div class="portrait-text">Your Photo Here</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">CPA<br/>Certified<br/>★</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-accent-2"></div>
+        <div class="about-img-box">👤</div>
+        <div class="about-accent"></div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Numbers Are My<br/><em>Native Language</em></h2>
+        <div class="gold-line"></div>
+        <p>I'm Sarah Mitchell, a Chartered Public Accountant with over 14 years of experience across public accounting, corporate finance, and private wealth advisory. My career began at Deloitte, where I developed an instinct for finding value in financial complexity.</p>
+        <p>Today, I operate an independent practice serving entrepreneurs, SMEs, and high-net-worth individuals who demand more than compliance — they demand insight. I combine technical rigour with a genuine understanding of my clients' ambitions.</p>
+        <p>I hold a CPA designation, an MBA from the Wharton School, and certifications in tax planning and forensic accounting.</p>
+        <div class="credentials">
+          <span class="credential-tag">CPA Certified</span>
+          <span class="credential-tag">MBA — Wharton</span>
+          <span class="credential-tag">Tax Planning</span>
+          <span class="credential-tag">Forensic Accounting</span>
+          <span class="credential-tag">QuickBooks ProAdvisor</span>
+          <span class="credential-tag">XERO Certified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-intro">
+      <div class="reveal">
+        <p class="section-label">What I Offer</p>
+        <h2 class="section-title">Comprehensive<br/><em>Financial Services</em></h2>
+      </div>
+      <p class="services-desc reveal">
+        From foundational bookkeeping to sophisticated tax strategy, every service is delivered with the precision and discretion your finances deserve. No cookie-cutter solutions — only strategies built around your specific goals.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <span class="service-icon">📊</span>
+        <h3 class="service-name">Tax Planning & Filing</h3>
+        <p class="service-desc">Strategic federal, state, and international tax planning. Maximize legitimate deductions, minimize liability, and ensure full compliance across all jurisdictions.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <span class="service-icon">📋</span>
+        <h3 class="service-name">Financial Reporting</h3>
+        <p class="service-desc">Accurate, GAAP-compliant financial statements and reports. Board-ready presentations that tell the true story of your financial position and performance.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <span class="service-icon">🏢</span>
+        <h3 class="service-name">Business Advisory</h3>
+        <p class="service-desc">CFO-level guidance for growing businesses — cash flow analysis, budgeting, forecasting, profitability strategy, and KPI dashboards tailored to your industry.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">04</span>
+        <span class="service-icon">🔍</span>
+        <h3 class="service-name">Audit & Assurance</h3>
+        <p class="service-desc">Independent audits that build stakeholder trust. Internal control reviews, risk assessments, and compliance audits across various industry verticals.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">05</span>
+        <span class="service-icon">💼</span>
+        <h3 class="service-name">Bookkeeping & Payroll</h3>
+        <p class="service-desc">Meticulous day-to-day recordkeeping, bank reconciliations, accounts payable/receivable management, and full-service payroll processing.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">06</span>
+        <span class="service-icon">📈</span>
+        <h3 class="service-name">Wealth Management</h3>
+        <p class="service-desc">Integrated financial planning for individuals and families — retirement strategy, estate planning, investment tax efficiency, and multi-generational wealth transfer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Career Journey</p>
+    <h2 class="section-title">A Track Record of<br/><em>Excellence</em></h2>
+    <div class="exp-grid">
+      <div>
+        <p class="exp-side-text">
+          My career spans Big Four public accounting, corporate treasury, and independent advisory — giving me a rare breadth of perspective that I bring to every client engagement.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-period">2019 — Present</div>
+          <div class="timeline-role">Principal & Founder</div>
+          <div class="timeline-company">Mitchell Financial Advisory LLC, New York</div>
+          <div class="timeline-desc">Built and scaled an independent practice serving 80+ active clients across real estate, technology, healthcare, and professional services sectors.</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-period">2015 — 2019</div>
+          <div class="timeline-role">Senior Tax Manager</div>
+          <div class="timeline-company">KPMG LLP, New York</div>
+          <div class="timeline-desc">Led cross-functional tax engagements for Fortune 500 clients. Specialized in international tax structuring and M&A due diligence. Managed a team of 12 professionals.</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-period">2011 — 2015</div>
+          <div class="timeline-role">Audit Associate → Manager</div>
+          <div class="timeline-company">Deloitte & Touche LLP, Chicago</div>
+          <div class="timeline-desc">Financial statement audits for mid-market and emerging-growth companies. Developed deep expertise in revenue recognition, internal controls, and SEC reporting.</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-period">2009 — 2011</div>
+          <div class="timeline-role">Financial Analyst</div>
+          <div class="timeline-company">JP Morgan Chase, Chicago</div>
+          <div class="timeline-desc">Corporate treasury and financial analysis supporting a $4.2B commercial lending portfolio. Produced monthly P&L reporting and variance analysis for senior leadership.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="container">
+    <p class="section-label">Client Outcomes</p>
+    <h2 class="section-title">Real Results,<br/><em>Real Impact</em></h2>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-tag">Tax Strategy · SME</div>
+        <h3 class="case-title">Reducing a Tech Startup's Annual Tax Liability by 38%</h3>
+        <p class="case-desc">A SaaS company was leaving significant R&D tax credits on the table. Through a comprehensive review of their qualifying activities and a restructured entity strategy, we reclaimed and projected credits over a 3-year horizon.</p>
+        <div class="case-result">
+          <div class="case-metric">
+            <div class="case-metric-num">38%</div>
+            <div class="case-metric-label">Tax Reduction</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">$420K</div>
+            <div class="case-metric-label">Annual Savings</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">3yr</div>
+            <div class="case-metric-label">Planning Horizon</div>
+          </div>
+        </div>
+        <div class="case-corner"></div>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-tag">Financial Restructuring · Real Estate</div>
+        <h3 class="case-title">Cash Flow Transformation for a Multi-Property Real Estate Group</h3>
+        <p class="case-desc">A family-owned real estate holding company was struggling with cash flow visibility across 14 properties. We implemented consolidated reporting, optimised their depreciation schedules, and restructured debt obligations.</p>
+        <div class="case-result">
+          <div class="case-metric">
+            <div class="case-metric-num">+62%</div>
+            <div class="case-metric-label">Cash Flow Clarity</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">14</div>
+            <div class="case-metric-label">Properties Consolidated</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">$1.1M</div>
+            <div class="case-metric-label">Debt Renegotiated</div>
+          </div>
+        </div>
+        <div class="case-corner"></div>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-tag">Audit Prep · Healthcare</div>
+        <h3 class="case-title">Preparing a Medical Group for a Clean External Audit</h3>
+        <p class="case-desc">A regional medical practice faced their first external audit after rapid expansion. We cleaned up 18 months of records, resolved classification inconsistencies, and coached staff on ongoing compliance procedures — resulting in a clean opinion.</p>
+        <div class="case-result">
+          <div class="case-metric">
+            <div class="case-metric-num">✓</div>
+            <div class="case-metric-label">Clean Opinion</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">18mo</div>
+            <div class="case-metric-label">Records Remediated</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">100%</div>
+            <div class="case-metric-label">Compliance Rate</div>
+          </div>
+        </div>
+        <div class="case-corner"></div>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-tag">Wealth Planning · Individual</div>
+        <h3 class="case-title">Tax-Efficient Retirement Strategy for a Senior Executive</h3>
+        <p class="case-desc">A C-suite executive nearing retirement had accumulated deferred compensation and stock options with complex tax implications. We designed a phased liquidation and Roth conversion strategy that minimised the tax impact over five years.</p>
+        <div class="case-result">
+          <div class="case-metric">
+            <div class="case-metric-num">$890K</div>
+            <div class="case-metric-label">Tax Deferred</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">5yr</div>
+            <div class="case-metric-label">Phased Strategy</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">27%</div>
+            <div class="case-metric-label">Effective Rate Reduction</div>
+          </div>
+        </div>
+        <div class="case-corner"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <p class="section-label">Client Voices</p>
+    <h2 class="section-title">What Clients<br/><em>Say</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Sarah transformed how we think about our finances. She doesn't just file our taxes — she helps us build a strategy that lets us reinvest and grow. Genuinely invaluable.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div>
+            <div class="author-name">Marcus Reid</div>
+            <div class="author-role">CEO, Prism Analytics Inc.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">We went through a complex acquisition last year. Sarah's forensic attention to the financial due diligence gave our board the confidence to proceed. She found issues no one else did.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div>
+            <div class="author-name">Diana Ortega</div>
+            <div class="author-role">CFO, Halcyon Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">As a solo physician running my own practice, I had no idea how much I was overpaying. Sarah restructured everything and now I feel fully in control of my financial future.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div>
+            <div class="author-name">Dr. James Okoye</div>
+            <div class="author-role">Independent Practice Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Start a<br/><em>Conversation</em></h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-info-text">
+          Whether you need a one-time consultation or an ongoing advisory partnership, I'm here to help you make sense of your finances — and make them work harder for you.
+        </p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon">✉</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">sarah@mitchellfinancial.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-value">+1 (212) 555-0192</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Office</div>
+              <div class="contact-item-value">350 Fifth Avenue, Suite 4100, New York, NY</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div>
+              <div class="contact-item-label">Availability</div>
+              <div class="contact-item-value">Mon–Fri, 9:00 AM – 6:00 PM EST</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="John"/>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Doe"/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="john@example.com"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Service Needed</label>
+          <input type="text" class="form-input" placeholder="e.g. Tax Planning, Bookkeeping..."/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" rows="4" placeholder="Tell me about your financial goals or challenges..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sarah <span>Mitchell</span></div>
+  <p class="footer-copy">© 2025 Sarah Mitchell CPA. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .service-card, .case-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
+      ring.style.borderColor = 'var(--gold-light)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.borderColor = 'var(--gold)';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Sticky nav
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 40
+      ? '0 4px 30px rgba(14,13,11,.08)' : 'none';
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Message Sent';
+    btn.style.background = '#6b8a5e';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
