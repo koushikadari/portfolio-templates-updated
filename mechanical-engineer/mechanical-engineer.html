@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alex Morgan — Mechanical Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F2EFE9;
+      --bg2: #E8E4DC;
+      --surface: #FFFFFF;
+      --ink: #1C1C1C;
+      --ink-2: #4A4A4A;
+      --ink-3: #888;
+      --accent: #1A3A5C;
+      --accent-2: #2E6DA4;
+      --accent-light: #D6E8F5;
+      --rule: #D0C8BC;
+      --gold: #B8963E;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-light: 'Barlow', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4%; height: 64px;
+      background: rgba(242,239,233,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.25rem;
+      letter-spacing: 0.08em; color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 500; font-size: 0.9rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-2); text-decoration: none;
+      position: relative; padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--accent);
+      transition: width 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 8px 20px; border: 1.5px solid var(--accent);
+      color: var(--accent); text-decoration: none;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover { background: var(--accent); color: white; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 1.5px; background: var(--ink); transition: all 0.3s; display: block; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh; padding-top: 64px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-left {
+      padding: 8% 6% 6% 8%;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-name {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 0.95; letter-spacing: -0.01em;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .hero-name .last { color: var(--accent); }
+    .hero-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-2); margin-bottom: 2rem;
+      border-left: 3px solid var(--gold); padding-left: 14px;
+    }
+    .hero-intro {
+      font-size: 1.05rem; color: var(--ink-2);
+      max-width: 440px; line-height: 1.75; margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 14px 32px; background: var(--accent); color: white;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,58,92,0.25); }
+    .btn-outline {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 14px 32px; border: 1.5px solid var(--ink);
+      color: var(--ink); text-decoration: none; transition: all 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-stats {
+      margin-top: 3rem; display: flex; gap: 2.5rem;
+      padding-top: 2rem; border-top: 1px solid var(--rule);
+    }
+    .stat-num {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 2.4rem; color: var(--accent); display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem; color: var(--ink-3);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      font-family: var(--font-display); font-weight: 500;
+    }
+
+    /* HERO RIGHT */
+    .hero-right {
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+    .hero-bg-block {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 85%; background: var(--accent);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 0.08;
+    }
+    .photo-frame {
+      position: relative; z-index: 2;
+      width: 360px; height: 460px;
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute; top: -16px; left: -16px;
+      right: 16px; bottom: -16px;
+      border: 2px solid var(--gold);
+      z-index: -1;
+    }
+    .photo-frame::after {
+      content: '';
+      position: absolute; top: 16px; left: 16px;
+      right: -16px; bottom: -16px;
+      background: var(--accent); opacity: 0.12;
+      z-index: -1;
+    }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(145deg, #C8D8E8 0%, #8AAAC4 50%, var(--accent) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: white; gap: 1rem;
+    }
+    .photo-placeholder svg { width: 100px; height: 100px; opacity: 0.6; }
+    .photo-placeholder p { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.1em; opacity: 0.6; }
+    .photo-badge {
+      position: absolute; bottom: -20px; right: -30px;
+      background: var(--gold); color: white;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 12px 20px; z-index: 3;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 8%;
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink-3); text-decoration: none;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+    .scroll-arrow { font-size: 1.1rem; }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 100px 8%; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+    }
+    .eyebrow-num {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.2em; color: var(--gold); font-weight: 600;
+    }
+    .eyebrow-line { flex: none; width: 40px; height: 1px; background: var(--rule); }
+    .eyebrow-label {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 500;
+    }
+    .section-title {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1; letter-spacing: -0.01em; margin-bottom: 1rem;
+    }
+    .section-title em { font-style: normal; color: var(--accent); }
+    .section-sub {
+      font-size: 1rem; color: var(--ink-2); max-width: 580px;
+      font-weight: 300; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 4rem; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .about-text p { font-size: 1.05rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.2rem; font-weight: 300; }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .about-highlights {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.2rem; margin-top: 2.5rem;
+    }
+    .highlight-item {
+      padding: 1.2rem; background: var(--bg);
+      border-left: 3px solid var(--accent);
+    }
+    .highlight-item h4 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.04em; margin-bottom: 0.3rem;
+    }
+    .highlight-item p { font-size: 0.88rem; color: var(--ink-3); margin: 0; }
+    .about-visual {
+      position: relative; padding: 2rem;
+    }
+    .about-visual-card {
+      background: var(--accent); color: white; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .about-visual-card::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border: 40px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .about-visual-card::after {
+      content: '';
+      position: absolute; bottom: -60px; left: -20px;
+      width: 200px; height: 200px;
+      border: 50px solid rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .about-visual-card h3 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.5rem; letter-spacing: 0.04em; margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .about-list { list-style: none; position: relative; z-index: 1; }
+    .about-list li {
+      padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.95rem; opacity: 0.9;
+    }
+    .about-list li .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex: none;
+    }
+    .about-visual-corner {
+      position: absolute; bottom: 0; right: 2rem;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 7rem; color: var(--bg); opacity: 0.06;
+      line-height: 1; user-select: none;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--bg); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .skill-category {
+      background: var(--surface); padding: 2rem;
+      border-top: 3px solid var(--accent);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-category:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    .skill-cat-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-light); display: flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .skill-cat-icon svg { width: 22px; height: 22px; fill: var(--accent); }
+    .skill-cat-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.1rem; letter-spacing: 0.06em; margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .skill-bar-wrap { margin-bottom: 1rem; }
+    .skill-bar-label {
+      display: flex; justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .skill-bar-label span { font-size: 0.88rem; color: var(--ink-2); font-weight: 400; }
+    .skill-bar-label .pct { color: var(--accent); font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; }
+    .skill-bar-track {
+      height: 4px; background: var(--bg2); border-radius: 2px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; background: var(--accent); border-radius: 2px;
+      width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .skill-bar-fill.gold { background: var(--gold); }
+    .skill-tag-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .skill-tag {
+      font-family: var(--font-display); font-size: 0.82rem;
+      letter-spacing: 0.06em; padding: 5px 12px;
+      background: var(--bg); color: var(--ink-2);
+      border: 1px solid var(--rule);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--surface); }
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
+      width: 1px; background: var(--rule);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 3.5rem;
+    }
+    .timeline-dot {
+      position: absolute; left: -40px; top: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .timeline-dot-inner {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline-item:first-child .timeline-dot-inner { background: var(--gold); }
+    .timeline-item:first-child .timeline-dot { border-color: var(--gold); }
+    .timeline-meta {
+      display: flex; gap: 1rem; align-items: center;
+      margin-bottom: 0.6rem; flex-wrap: wrap;
+    }
+    .timeline-date {
+      font-family: var(--font-display); font-size: 0.82rem;
+      letter-spacing: 0.12em; color: var(--accent); font-weight: 600;
+      text-transform: uppercase;
+    }
+    .timeline-dot-sep { width: 4px; height: 4px; background: var(--rule); border-radius: 50%; }
+    .timeline-company {
+      font-family: var(--font-display); font-size: 0.82rem;
+      letter-spacing: 0.12em; color: var(--gold); font-weight: 600;
+      text-transform: uppercase;
+    }
+    .timeline-role {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.3rem; letter-spacing: 0.02em; margin-bottom: 0.8rem;
+    }
+    .timeline-location {
+      font-size: 0.85rem; color: var(--ink-3);
+      display: flex; align-items: center; gap: 5px; margin-bottom: 1rem;
+    }
+    .timeline-desc { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .timeline-tag {
+      font-family: var(--font-display); font-size: 0.78rem;
+      letter-spacing: 0.06em; padding: 3px 10px;
+      background: var(--accent-light); color: var(--accent);
+    }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--bg); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .edu-card {
+      background: var(--surface); padding: 2.2rem;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .edu-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--accent);
+    }
+    .edu-card:hover { border-bottom-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .edu-year {
+      font-family: var(--font-display); font-size: 0.82rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .edu-degree {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.2rem; letter-spacing: 0.02em; margin-bottom: 0.4rem;
+    }
+    .edu-school { font-size: 0.95rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+    .edu-detail { font-size: 0.88rem; color: var(--ink-3); }
+    .edu-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-family: var(--font-display); font-size: 0.78rem;
+      letter-spacing: 0.08em; padding: 4px 10px;
+      background: var(--bg); color: var(--ink-3);
+    }
+
+    /* ─── ACHIEVEMENTS ─── */
+    #achievements { background: var(--accent); color: white; }
+    #achievements .section-title em { color: var(--gold); }
+    #achievements .section-sub { color: rgba(255,255,255,0.65); }
+    #achievements .section-eyebrow .eyebrow-label { color: rgba(255,255,255,0.45); }
+    #achievements .eyebrow-line { background: rgba(255,255,255,0.2); }
+    .achievements-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .ach-card {
+      padding: 2rem; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s; position: relative;
+    }
+    .ach-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+    .ach-icon {
+      width: 48px; height: 48px; margin-bottom: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08);
+    }
+    .ach-icon svg { width: 24px; height: 24px; fill: var(--gold); }
+    .ach-year {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.16em; color: var(--gold); font-weight: 600;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .ach-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.05rem; margin-bottom: 0.6rem; letter-spacing: 0.02em;
+    }
+    .ach-desc { font-size: 0.88rem; opacity: 0.65; line-height: 1.6; font-weight: 300; }
+    .ach-ribbon {
+      position: absolute; top: -1px; right: 24px;
+      width: 24px; height: 32px;
+      background: var(--gold); clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .project-card {
+      background: var(--surface); overflow: hidden;
+      transition: all 0.35s;
+      cursor: pointer;
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .project-img {
+      height: 220px; position: relative; overflow: hidden;
+    }
+    .project-img-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .proj-bg-1 { background: linear-gradient(135deg, #1A3A5C 0%, #2E6DA4 100%); }
+    .proj-bg-2 { background: linear-gradient(135deg, #2C3E50 0%, #4A6B5C 100%); }
+    .proj-bg-3 { background: linear-gradient(135deg, #5C3A1A 0%, #B8963E 100%); }
+    .proj-bg-4 { background: linear-gradient(135deg, #3A1A5C 0%, #6B4A8C 100%); }
+    .proj-bg-5 { background: linear-gradient(135deg, #1A5C3A 0%, #2E8A5A 100%); }
+    .proj-bg-6 { background: linear-gradient(135deg, #5C1A1A 0%, #A44444 100%); }
+    .project-img-bg svg { width: 80px; height: 80px; fill: rgba(255,255,255,0.2); }
+    .project-img-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .project-cat {
+      position: absolute; top: 1rem; left: 1rem;
+      font-family: var(--font-display); font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: rgba(0,0,0,0.4); color: rgba(255,255,255,0.85);
+      padding: 4px 10px;
+    }
+    .project-body { padding: 1.6rem; }
+    .project-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.15rem; letter-spacing: 0.02em; margin-bottom: 0.6rem;
+    }
+    .project-desc { font-size: 0.88rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; margin-bottom: 1rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tech {
+      font-family: var(--font-display); font-size: 0.78rem;
+      letter-spacing: 0.06em; padding: 3px 9px;
+      background: var(--bg); color: var(--ink-3);
+      border: 1px solid var(--rule);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--surface); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; }
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; flex: none;
+      background: var(--bg); display: flex;
+      align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 20px; height: 20px; fill: var(--accent); }
+    .contact-info-label {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 600; margin-bottom: 0.2rem;
+    }
+    .contact-info-val {
+      font-size: 0.95rem; color: var(--ink); font-weight: 400;
+    }
+    .contact-info-val a { color: var(--accent); text-decoration: none; }
+    .contact-info-val a:hover { text-decoration: underline; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .social-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border: 1px solid var(--rule);
+      font-family: var(--font-display); font-size: 0.85rem;
+      letter-spacing: 0.08em; color: var(--ink-2);
+      text-decoration: none; transition: all 0.25s;
+    }
+    .social-link:hover { background: var(--accent); color: white; border-color: var(--accent); }
+    .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* FORM */
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 600;
+    }
+    .form-input, .form-textarea {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid var(--rule); background: var(--bg);
+      font-family: var(--font-body); font-size: 0.95rem;
+      color: var(--ink); outline: none;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent); background: var(--surface);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 15px 36px; background: var(--accent); color: white;
+      border: none; cursor: pointer; align-self: flex-start;
+      transition: all 0.25s; display: flex; align-items: center; gap: 8px;
+    }
+    .form-submit:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,58,92,0.25); }
+    .form-submit svg { width: 16px; height: 16px; fill: white; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.4);
+      padding: 2.5rem 8%; display: flex;
+      align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+      letter-spacing: 0.08em; color: white; text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: 0.85rem; }
+    .footer-nav { display: flex; gap: 2rem; }
+    .footer-nav a {
+      font-family: var(--font-display); font-size: 0.82rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+
+    /* ─── MOBILE NAV OVERLAY ─── */
+    .mobile-nav-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--bg); padding: 2rem;
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-nav-overlay.open { transform: translateX(0); }
+    .mobile-nav-close {
+      align-self: flex-end; font-size: 1.5rem;
+      background: none; border: none; cursor: pointer;
+      color: var(--ink); margin-bottom: 3rem;
+    }
+    .mobile-nav-links { display: flex; flex-direction: column; gap: 2rem; }
+    .mobile-nav-links a {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 2.5rem; letter-spacing: -0.01em;
+      color: var(--ink); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-nav-links a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; padding-bottom: 60px; }
+      .hero-right { display: none; }
+      .hero-left { padding: 120px 8% 4rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .achievements-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 70px 6%; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .achievements-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-nav { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">AM<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileClose">✕</button>
+  <nav class="mobile-nav-links">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#achievements" class="mobile-link">Awards</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow reveal">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Mechanical Engineer · Dubai, UAE</span>
+    </div>
+    <h1 class="hero-name reveal reveal-delay-1">
+      Alex<br><span class="last">Morgan</span>
+    </h1>
+    <div class="hero-title reveal reveal-delay-2">Design & Systems Engineer</div>
+    <p class="hero-intro reveal reveal-delay-3">
+      Transforming complex engineering challenges into precise, innovative solutions. Specializing in thermal systems, structural analysis, and sustainable mechanical design with 8+ years of industrial experience.
+    </p>
+    <div class="hero-actions reveal reveal-delay-4">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats reveal reveal-delay-4">
+      <div>
+        <span class="stat-num" data-count="8">0</span>
+        <span class="stat-label">Years Exp.</span>
+      </div>
+      <div>
+        <span class="stat-num" data-count="40">0</span>
+        <span class="stat-label">Projects Done</span>
+      </div>
+      <div>
+        <span class="stat-num" data-count="12">0</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-block"></div>
+    <div class="photo-frame">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="35" r="22" fill="white" opacity="0.5"/>
+          <ellipse cx="50" cy="80" rx="34" ry="22" fill="white" opacity="0.4"/>
+        </svg>
+        <p>Your Photo Here</p>
+      </div>
+      <div class="photo-badge">Available for Work</div>
+    </div>
+  </div>
+  <a href="#about" class="hero-scroll"><span class="scroll-arrow">↓</span> Scroll Down</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-eyebrow reveal">
+        <span class="eyebrow-num">01</span>
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-label">About Me</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Engineering <em>Precision</em><br>Built for Impact</h2>
+      <div class="about-text reveal reveal-delay-2">
+        <p>I'm a <strong>Mechanical Engineer</strong> with over 8 years of experience designing and optimizing complex mechanical systems across the automotive, aerospace, and energy sectors.</p>
+        <p>My passion lies in bridging the gap between theoretical engineering and real-world applications — using cutting-edge simulation tools and hands-on expertise to deliver solutions that are both technically sound and commercially viable.</p>
+        <p>Driven by curiosity and a commitment to sustainability, I aim to contribute to forward-thinking organizations that push the boundaries of what's mechanically possible.</p>
+      </div>
+      <div class="about-highlights reveal reveal-delay-3">
+        <div class="highlight-item">
+          <h4>Thermal Systems</h4>
+          <p>HVAC, heat exchangers, and thermal management design</p>
+        </div>
+        <div class="highlight-item">
+          <h4>CAD/CAE Expert</h4>
+          <p>SolidWorks, AutoCAD, ANSYS simulation workflows</p>
+        </div>
+        <div class="highlight-item">
+          <h4>R&D Focus</h4>
+          <p>Prototype development and iterative testing</p>
+        </div>
+        <div class="highlight-item">
+          <h4>Team Leader</h4>
+          <p>Cross-functional teams of 5–20 engineers</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal reveal-delay-2">
+      <div class="about-visual-card">
+        <h3>Core Expertise</h3>
+        <ul class="about-list">
+          <li><span class="dot"></span> Mechanical Design & Analysis</li>
+          <li><span class="dot"></span> Thermodynamics & Heat Transfer</li>
+          <li><span class="dot"></span> Fluid Mechanics & CFD</li>
+          <li><span class="dot"></span> Structural Analysis (FEA)</li>
+          <li><span class="dot"></span> Product Development & Prototyping</li>
+          <li><span class="dot"></span> Project Management (PMP)</li>
+          <li><span class="dot"></span> Lean / Six Sigma Manufacturing</li>
+          <li><span class="dot"></span> Sustainable Engineering Design</li>
+        </ul>
+        <div class="about-visual-corner">ME</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">02</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Technical Proficiency</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Skills &amp; <em>Toolset</em></h2>
+    <p class="section-sub reveal reveal-delay-2">A comprehensive blend of technical expertise and professional competencies developed across diverse engineering environments.</p>
+  </div>
+  <div class="skills-grid">
+    <!-- CAD/CAE -->
+    <div class="skill-category reveal">
+      <div class="skill-cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h7v2H5v14h14v-5h2v7H3V3zm16 0h2v7h-2V5h-5V3h5zm-2 9l-7 7-3-3 1.4-1.4L10 16.2l5.6-5.6L17 12z"/></svg>
+      </div>
+      <div class="skill-cat-title">CAD / CAE Software</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>SolidWorks</span><span class="pct">95%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>AutoCAD</span><span class="pct">90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>ANSYS (FEA/CFD)</span><span class="pct">85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>CATIA V5</span><span class="pct">75%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+      </div>
+    </div>
+    <!-- Engineering Sciences -->
+    <div class="skill-category reveal reveal-delay-1">
+      <div class="skill-cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <div class="skill-cat-title">Engineering Sciences</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Thermodynamics</span><span class="pct">92%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Fluid Mechanics</span><span class="pct">88%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Structural Analysis</span><span class="pct">85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Materials Science</span><span class="pct">80%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+      </div>
+    </div>
+    <!-- Professional Skills -->
+    <div class="skill-category reveal reveal-delay-2">
+      <div class="skill-cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <div class="skill-cat-title">Professional Skills</div>
+      <div class="skill-tag-wrap">
+        <span class="skill-tag">Project Management</span>
+        <span class="skill-tag">Team Leadership</span>
+        <span class="skill-tag">Problem Solving</span>
+        <span class="skill-tag">Technical Writing</span>
+        <span class="skill-tag">Risk Assessment</span>
+        <span class="skill-tag">Client Communication</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">Lean Six Sigma</span>
+        <span class="skill-tag">Budget Planning</span>
+        <span class="skill-tag">Mentoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">03</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Work History</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Professional <em>Experience</em></h2>
+    <p class="section-sub reveal reveal-delay-2">A track record of delivering impactful engineering solutions across energy, automotive, and manufacturing sectors.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">2021 – Present</span>
+        <div class="timeline-dot-sep"></div>
+        <span class="timeline-company">ADNOC Engineering · Abu Dhabi</span>
+      </div>
+      <div class="timeline-role">Senior Mechanical Design Engineer</div>
+      <div class="timeline-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        UAE
+      </div>
+      <p class="timeline-desc">Lead mechanical design for upstream oil &amp; gas facilities, managing a team of 12 engineers. Designed thermal management systems for compressor stations, reducing energy consumption by 18%. Spearheaded implementation of ANSYS-based simulation pipelines that cut prototype-to-production cycles by 30%.</p>
+      <div class="timeline-tags">
+        <span class="timeline-tag">SolidWorks</span>
+        <span class="timeline-tag">ANSYS CFD</span>
+        <span class="timeline-tag">Team Lead</span>
+        <span class="timeline-tag">Thermal Design</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">2018 – 2021</span>
+        <div class="timeline-dot-sep"></div>
+        <span class="timeline-company">Siemens Energy · Munich</span>
+      </div>
+      <div class="timeline-role">Mechanical Systems Engineer</div>
+      <div class="timeline-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5 2.5-2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Germany
+      </div>
+      <p class="timeline-desc">Developed turbine cooling system components and heat exchanger designs for gas turbine platforms. Collaborated with cross-functional teams in Germany and UK to meet ISO standards and efficiency targets. Achieved a 12% improvement in component lifespan through advanced material selection.</p>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Turbine Systems</span>
+        <span class="timeline-tag">FEA Analysis</span>
+        <span class="timeline-tag">ISO Standards</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-meta">
+        <span class="timeline-date">2016 – 2018</span>
+        <div class="timeline-dot-sep"></div>
+        <span class="timeline-company">Toyota Motor Corp. · Aichi</span>
+      </div>
+      <div class="timeline-role">Graduate Mechanical Engineer</div>
+      <div class="timeline-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Japan
+      </div>
+      <p class="timeline-desc">Contributed to powertrain component design and validation for hybrid electric vehicle platforms. Ran fatigue life simulations and participated in full vehicle prototype testing, gaining hands-on experience with Toyota's lean manufacturing and kaizen methodologies.</p>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Automotive</span>
+        <span class="timeline-tag">Powertrain</span>
+        <span class="timeline-tag">Kaizen / Lean</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">04</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Academic Background</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Education &amp; <em>Training</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-badge">Postgraduate</div>
+      <div class="edu-year">2014 – 2016</div>
+      <div class="edu-degree">M.Sc. Mechanical Engineering</div>
+      <div class="edu-school">Imperial College London</div>
+      <div class="edu-detail">Specialization: Thermofluids &amp; Energy Systems · Distinction</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-badge">Undergraduate</div>
+      <div class="edu-year">2010 – 2014</div>
+      <div class="edu-degree">B.Eng. Mechanical Engineering</div>
+      <div class="edu-school">University of Manchester</div>
+      <div class="edu-detail">First Class Honours · Dean's List 2013 &amp; 2014</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-badge">Certification</div>
+      <div class="edu-year">2019</div>
+      <div class="edu-degree">Project Management Professional (PMP)</div>
+      <div class="edu-school">Project Management Institute (PMI)</div>
+      <div class="edu-detail">License No. PMI-2019-3847291</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-3">
+      <div class="edu-badge">Certification</div>
+      <div class="edu-year">2020</div>
+      <div class="edu-degree">Certified SolidWorks Professional (CSWP)</div>
+      <div class="edu-school">Dassault Systèmes</div>
+      <div class="edu-detail">Mechanical Design + Simulation Track</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">05</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Recognitions</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Awards &amp; <em>Achievements</em></h2>
+    <p class="section-sub reveal reveal-delay-2">Recognition from industry bodies, academic institutions, and global engineering competitions.</p>
+  </div>
+  <div class="achievements-grid">
+    <div class="ach-card reveal">
+      <div class="ach-ribbon"></div>
+      <div class="ach-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+      </div>
+      <div class="ach-year">2023</div>
+      <div class="ach-title">ADNOC Innovation Award</div>
+      <div class="ach-desc">Recognized for pioneering a heat recovery system that reduced operational fuel costs by $2.4M annually.</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-1">
+      <div class="ach-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <div class="ach-year">2022</div>
+      <div class="ach-title">IMechE Best Paper Award</div>
+      <div class="ach-desc">Published and awarded for research on advanced composite materials for high-temperature turbine applications.</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-2">
+      <div class="ach-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2zm-6.47 9L12 14l6.47-3L12 8.18 5.53 11zM12 16l-7-3.18V17c0 3.31 3.13 6 7 6s7-2.69 7-6v-4.18L12 16z"/></svg>
+      </div>
+      <div class="ach-year">2016</div>
+      <div class="ach-title">Imperial College MSc Distinction</div>
+      <div class="ach-desc">Graduated with Distinction (top 5% of cohort) in Thermofluids & Energy Systems program.</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-3">
+      <div class="ach-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </div>
+      <div class="ach-year">2021</div>
+      <div class="ach-title">Six Sigma Black Belt</div>
+      <div class="ach-desc">Certified Six Sigma Black Belt with demonstrated cost savings of $800K through process optimization projects.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">06</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Portfolio</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Featured <em>Projects</em></h2>
+    <p class="section-sub reveal reveal-delay-2">A selection of engineering projects demonstrating technical depth, innovation, and real-world impact.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-1">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.48 2 11c0 2.76 1.3 5.22 3.33 6.84L4 21l4.1-1.37c1.2.47 2.54.74 3.9.74 5.52 0 10-3.48 10-8S17.52 3 12 3z"/></svg>
+        </div>
+        <span class="project-cat">Thermal Systems</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Gas Turbine Heat Recovery Unit</div>
+        <p class="project-desc">Designed and optimized a waste heat recovery system for a 50MW gas turbine, achieving 18% reduction in fuel consumption through advanced CFD analysis.</p>
+        <div class="project-stack">
+          <span class="project-tech">ANSYS Fluent</span>
+          <span class="project-tech">SolidWorks</span>
+          <span class="project-tech">MATLAB</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-2">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+        </div>
+        <span class="project-cat">Structural Analysis</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Offshore Platform Support Structure</div>
+        <p class="project-desc">Performed full FEA fatigue analysis on offshore pipeline support clamps operating in high-salinity environments, recommending material upgrades that extended design life by 40%.</p>
+        <div class="project-stack">
+          <span class="project-tech">ANSYS FEA</span>
+          <span class="project-tech">AutoCAD</span>
+          <span class="project-tech">ASME Standards</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-3">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+        </div>
+        <span class="project-cat">Product Design</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Ergonomic Industrial Exoskeleton</div>
+        <p class="project-desc">Led the mechanical design of a passive upper-limb exoskeleton for assembly line workers, reducing musculoskeletal strain by 35% in field trials.</p>
+        <div class="project-stack">
+          <span class="project-tech">SolidWorks</span>
+          <span class="project-tech">3D Printing</span>
+          <span class="project-tech">Biomechanics</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-4">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <span class="project-cat">HVAC</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">High-Rise HVAC Optimization — Dubai</div>
+        <p class="project-desc">Redesigned the chilled water distribution network for a 55-story commercial tower in Dubai, improving system efficiency by 22% and reducing annual operating costs by AED 1.2M.</p>
+        <div class="project-stack">
+          <span class="project-tech">Carrier HAP</span>
+          <span class="project-tech">AutoCAD MEP</span>
+          <span class="project-tech">ASHRAE 90.1</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-5">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2Z"/></svg>
+        </div>
+        <span class="project-cat">Renewable Energy</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Solar Thermal Concentrator Array</div>
+        <p class="project-desc">Mechanical design and structural analysis of a parabolic trough solar concentrator field for a 5MW pilot plant, optimizing tracking mechanism tolerances for desert conditions.</p>
+        <div class="project-stack">
+          <span class="project-tech">SolidWorks Simulation</span>
+          <span class="project-tech">AutoCAD</span>
+          <span class="project-tech">MATLAB</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-img">
+        <div class="project-img-bg proj-bg-6">
+          <div class="project-img-grid"></div>
+          <svg viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
+        </div>
+        <span class="project-cat">Automation</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Automated Pipeline Inspection Robot</div>
+        <p class="project-desc">Designed mechanical locomotion and sensor housing systems for an in-pipe inspection robot capable of navigating 6–12" diameter pipelines in oil &amp; gas infrastructure.</p>
+        <div class="project-stack">
+          <span class="project-tech">CATIA V5</span>
+          <span class="project-tech">ANSYS</span>
+          <span class="project-tech">Rapid Prototyping</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-num">07</span>
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Get in Touch</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">Let's <em>Collaborate</em></h2>
+    <p class="section-sub reveal reveal-delay-2">Open to new engineering roles, consulting engagements, and collaborative research opportunities across the GCC and internationally.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-val"><a href="mailto:alex.morgan@email.com">alex.morgan@email.com</a></div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Phone</div>
+          <div class="contact-info-val">+971 50 123 4567</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Location</div>
+          <div class="contact-info-val">Dubai, United Arab Emirates</div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="social-link">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="John" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Smith" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="john@company.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input class="form-input" type="text" placeholder="Engineering Opportunity / Consulting Inquiry"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about the opportunity or project you have in mind…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#hero" class="footer-logo">ALEX<span>.</span>MORGAN</a>
+  <p>© 2025 Alex Morgan · Mechanical Engineer · Dubai, UAE</p>
+  <nav class="footer-nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  // ── NAV scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileNav.classList.remove('open'));
+  });
+
+  // ── Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Skill bars animate
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-category').forEach(el => barObserver.observe(el));
+
+  // ── Counter animation
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const inc = Math.ceil(target / 40);
+          const timer = setInterval(() => {
+            current = Math.min(current + inc, target);
+            el.textContent = current + (target >= 40 ? '+' : '+');
+            if (current >= target) clearInterval(timer);
+          }, 40);
+        });
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const heroEl = document.querySelector('.hero-stats');
+  if (heroEl) counterObserver.observe(heroEl);
+
+  // ── Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#2E8A5A';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> Send Message`;
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+
+  // ── Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = link.getAttribute('href') === '#' + e.target.id ? 'var(--accent)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+</body>
+</html>
