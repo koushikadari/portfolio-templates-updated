@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Harrington — Architecture & Design</title>
+<meta name="description" content="Architecture portfolio of Daniel Harrington — creating spaces that honor the dialogue between light, material, and human experience.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f5f2ed;
+  --fg: #2a2d32;
+  --muted: #8a8a8a;
+  --border: #e0dbd4;
+  --card: #efece6;
+  --secondary: #e8e4dd;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: auto; }
+
+/* SCROLL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* STAT COUNTER */
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 300;
+}
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,242,237,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transform: translateY(-100%); animation: nav-slide-down 0.6s 0.3s ease-out forwards; }
+@keyframes nav-slide-down {
+  to { transform: translateY(0); }
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(1.5rem, 5vw, 6rem); height: 64px; max-width: 1400px; margin: 0 auto; }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--fg); transition: width 0.3s ease; }
+.nav-links a:hover { color: var(--fg); }
+.nav-links a:hover::after { width: 100%; }
+
+/* SECTION PADDING */
+.section { padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 6rem); }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); }
+.hero-label { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; opacity: 0; animation: hero-fade-up 0.7s 0.2s ease-out forwards; }
+.hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; opacity: 0; animation: hero-fade-up 0.9s 0.4s ease-out forwards; }
+.hero h1 em { font-weight: 300; }
+.hero-desc { max-width: 480px; margin-top: 2.5rem; font-size: 1.05rem; line-height: 1.7; color: var(--muted); opacity: 0; animation: hero-fade-up 0.7s 0.7s ease-out forwards; }
+.hero-actions { margin-top: 3rem; display: flex; gap: 2rem; align-items: center; opacity: 0; animation: hero-fade-up 0.7s 1s ease-out forwards; }
+.hero-actions a { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; transition: opacity 0.3s; }
+.hero-actions a:first-child { border-bottom: 1px solid var(--fg); padding-bottom: 4px; }
+.hero-actions a:last-child { color: var(--muted); }
+.hero-actions a:hover { opacity: 0.6; }
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll indicator */
+.scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: hero-fade-up 0.7s 1.3s ease-out forwards; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--fg), transparent); animation: scroll-pulse 2s ease-in-out infinite; }
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.2); }
+}
+.scroll-text { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(2rem, 4vw, 4rem); }
+.section-label { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.section-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; font-style: italic; }
+.about-text p { font-size: 1.05rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.5rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+.stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+
+/* PROJECTS */
+.projects-list { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 5rem); margin-top: 3rem; }
+.project { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+.project:nth-child(even) { direction: rtl; }
+.project:nth-child(even) > * { direction: ltr; }
+.project-img { aspect-ratio: 4/3; background: var(--card); border: 1px solid var(--border); overflow: hidden; }
+.project-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); transition: transform 0.6s ease, filter 0.6s ease; }
+.project-img:hover img { transform: scale(1.03); filter: grayscale(0%); }
+.project-info { padding-top: 1rem; }
+.project-meta { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.project-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; margin-bottom: 1rem; }
+.project-desc { font-size: 0.95rem; line-height: 1.7; color: var(--muted); }
+
+/* SKILLS */
+.skills-section { background: var(--secondary); }
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; margin-top: 3rem; }
+.skill-cat h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+.skill-cat li { list-style: none; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+
+/* EDUCATION */
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); }
+.edu-item { border-left: 2px solid var(--border); padding-left: 1.5rem; margin-bottom: 2.5rem; }
+.edu-year { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+.edu-degree { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; }
+.edu-inst { font-size: 0.9rem; color: var(--muted); margin-top: 0.25rem; }
+.edu-detail { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-top: 0.5rem; }
+.cert-list { list-style: none; }
+.cert-list li { font-size: 1rem; color: var(--muted); padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+.cert-list li:last-child { border-bottom: none; }
+
+/* CONTACT */
+.contact-section { background: var(--fg); color: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
+.contact-label { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; margin-bottom: 1rem; }
+.contact-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; font-style: italic; }
+.contact-intro { font-size: 1rem; opacity: 0.7; line-height: 1.7; margin-top: 1.5rem; }
+.contact-details { padding-top: 0.5rem; }
+.contact-item { margin-bottom: 2rem; }
+.contact-item-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; margin-bottom: 0.5rem; }
+.contact-item a, .contact-item p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 300; transition: opacity 0.3s; }
+.contact-item a:hover { opacity: 0.7; }
+.contact-item p { opacity: 0.7; font-family: 'DM Sans', sans-serif; font-size: 1rem; }
+.social-links { display: flex; gap: 1.5rem; padding-top: 1rem; }
+.social-links a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.4; transition: opacity 0.3s; }
+.social-links a:hover { opacity: 1; }
+
+/* FOOTER */
+.footer { padding: 2rem clamp(1.5rem, 5vw, 6rem); border-top: 1px solid var(--border); text-align: center; }
+.footer p { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+/* BACK TO TOP */
+.back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--fg); color: var(--bg); border: none; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 90; }
+.back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+.back-to-top:hover { opacity: 0.8; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .about-grid, .project, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+  .project:nth-child(even) { direction: ltr; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .scroll-indicator { display: none; }
+}
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">D.H.</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="position:relative;">
+  <p class="hero-label">Architecture & Design Studio</p>
+  <h1>Daniel<br><em>Harrington</em></h1>
+  <p class="hero-desc">Creating spaces that honor the dialogue between light, material, and human experience — where architecture becomes a quiet act of meaning.</p>
+  <div class="hero-actions">
+    <a href="#projects">View Work</a>
+    <a href="#contact">Get in Touch</a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-inner about-grid">
+    <div class="reveal-left">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Design Philosophy</h2>
+    </div>
+    <div class="reveal-right">
+      <div class="about-text">
+        <p>With over 12 years of experience shaping built environments, I believe architecture should serve as a bridge between aspiration and place. My work draws from the richness of context — climate, culture, materiality — to create spaces that feel both inevitable and surprising.</p>
+        <p>Every project begins with listening: to the site, to the client's vision, and to the silent qualities that make a space worth inhabiting. From private residences to cultural institutions, I approach each commission with the same rigor, curiosity, and respect for craft.</p>
+      </div>
+      <div class="stats">
+        <div class="reveal reveal-delay-1"><p class="stat-num">12+</p><p class="stat-label">Years Experience</p></div>
+        <div class="reveal reveal-delay-2"><p class="stat-num">45</p><p class="stat-label">Projects Completed</p></div>
+        <div class="reveal reveal-delay-3"><p class="stat-num">8</p><p class="stat-label">Awards Won</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Selected Work</p>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="projects-list">
+
+      <div class="project">
+        <div class="project-img reveal-scale"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Horizon Residence"></div>
+        <div class="project-info reveal reveal-delay-2">
+          <p class="project-meta">Zürich, Switzerland — 2023</p>
+          <h3 class="project-name">Horizon Residence</h3>
+          <p class="project-desc">A lakeside dwelling that dissolves the boundary between interior refuge and alpine landscape, using rammed earth walls and floor-to-ceiling glazing.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-img reveal-scale"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="The Lumen Pavilion"></div>
+        <div class="project-info reveal reveal-delay-2">
+          <p class="project-meta">Basel, Switzerland — 2022</p>
+          <h3 class="project-name">The Lumen Pavilion</h3>
+          <p class="project-desc">A temporary exhibition structure exploring the interplay of perforated steel and natural light, creating an ever-changing dialogue with its surroundings.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-img reveal-scale"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" alt="Casa Terra"></div>
+        <div class="project-info reveal reveal-delay-2">
+          <p class="project-meta">Porto, Portugal — 2021</p>
+          <h3 class="project-name">Casa Terra</h3>
+          <p class="project-desc">Rooted in the tradition of Portuguese vernacular architecture, this home reinterprets the courtyard typology through contemporary materiality and spatial openness.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-img reveal-scale"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" alt="Atelier Noir"></div>
+        <div class="project-info reveal reveal-delay-2">
+          <p class="project-meta">London, United Kingdom — 2020</p>
+          <h3 class="project-name">Atelier Noir</h3>
+          <p class="project-desc">A converted warehouse turned creative studio, where industrial heritage meets refined minimalism — blackened steel, polished concrete, and restrained luxury.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section skills-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">Skills & Tools</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat reveal reveal-delay-1">
+        <h3>Design Software</h3>
+        <ul><li>AutoCAD</li><li>Revit</li><li>SketchUp</li><li>Rhino 3D</li><li>3ds Max</li><li>V-Ray</li></ul>
+      </div>
+      <div class="skill-cat reveal reveal-delay-2">
+        <h3>BIM & Documentation</h3>
+        <ul><li>Autodesk BIM 360</li><li>Navisworks</li><li>Bluebeam Revu</li><li>ArchiCAD</li></ul>
+      </div>
+      <div class="skill-cat reveal reveal-delay-3">
+        <h3>Visualization</h3>
+        <ul><li>Adobe Creative Suite</li><li>Lumion</li><li>Enscape</li><li>Twinmotion</li></ul>
+      </div>
+      <div class="skill-cat reveal reveal-delay-4">
+        <h3>Project Delivery</h3>
+        <ul><li>Sustainable Design</li><li>LEED Certification</li><li>Building Codes</li><li>Construction Admin</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section">
+  <div class="section-inner edu-grid">
+    <div class="reveal-left">
+      <p class="section-label">Background</p>
+      <h2 class="section-title">Education</h2>
+      <div style="margin-top:3rem;">
+        <div class="edu-item reveal reveal-delay-1">
+          <p class="edu-year">2013</p>
+          <h3 class="edu-degree">Master of Architecture</h3>
+          <p class="edu-inst">ETH Zürich</p>
+          <p class="edu-detail">Thesis: Tectonic Narratives in Contemporary Housing</p>
+        </div>
+        <div class="edu-item reveal reveal-delay-2">
+          <p class="edu-year">2011</p>
+          <h3 class="edu-degree">Bachelor of Architecture</h3>
+          <p class="edu-inst">University of Porto</p>
+          <p class="edu-detail">Graduated with Honours</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <p class="section-label">Credentials</p>
+      <h2 class="section-title">Certifications</h2>
+      <ul class="cert-list" style="margin-top:3rem;">
+        <li>Licensed Architect — RIBA (UK)</li>
+        <li>LEED Accredited Professional (AP BD+C)</li>
+        <li>Passive House Designer Certification</li>
+        <li>BIM Manager — buildingSMART International</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+  <div class="section-inner contact-grid">
+    <div class="reveal-left">
+      <p class="contact-label">Contact</p>
+      <h2 class="contact-title">Let's Build Something</h2>
+      <p class="contact-intro">Whether you're envisioning a private residence, a cultural space, or a commercial project — I'd love to hear about it.</p>
+    </div>
+    <div class="contact-details reveal-right">
+      <div class="contact-item">
+        <p class="contact-item-label">Email</p>
+        <a href="mailto:hello@danielharrington.com">hello@danielharrington.com</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Phone</p>
+        <a href="tel:+41445559090">+41 44 555 90 90</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Studio</p>
+        <p>Bahnhofstrasse 42<br>8001 Zürich, Switzerland</p>
+      </div>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer reveal">
+  <p>© 2024 Daniel Harrington — Architecture & Design</p>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">↑</button>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  observer.observe(el);
+});
+
+// Back to top button
+window.addEventListener('scroll', () => {
+  document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
+});
+</script>
+
+</body>
+</html>
