@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayesha Rahman — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg: #e9e2e6;
+  --bg-soft: #efe9ec;
+  --ink: #191919;
+  --ink-soft: #4a4550;
+  --paper: #f6f2ee;
+  --yellow: #f0e874;
+  --yellow-deep: #d8ce4c;
+  --blue: #a9c6ea;
+  --blue-deep: #8aa9d1;
+  --lav: #cabdea;
+  --lav-deep: #a998d4;
+  --mint: #b6e0b0;
+  --mint-deep: #93c48c;
+  --pink: #eab3cf;
+  --pink-deep: #d98cb3;
+  --green-hi: #aee06a;
+  --line: #191919;
+  --radius: 4px;
+  --shadow-hard: 6px 6px 0 rgba(25,25,25,0.9);
+  --shadow-hard-sm: 4px 4px 0 rgba(25,25,25,0.9);
+  --font-display: 'Caveat', cursive;
+  --font-title: 'Kalam', cursive;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  cursor:auto;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; border:none; background:none;}
+::selection{background:var(--green-hi); color:var(--ink);}
+
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+/* ============ CORNER BRACKETS (signature element) ============ */
+.bracketed{position:relative;}
+.bracketed::before, .bracketed::after,
+.bracketed .bk-tl, .bracketed .bk-tr, .bracketed .bk-bl, .bracketed .bk-br{content:'';}
+.bk{position:absolute; width:12px; height:12px; background:var(--ink); z-index:3;}
+.bk-tl{top:-6px; left:-6px;}
+.bk-tr{top:-6px; right:-6px;}
+.bk-bl{bottom:-6px; left:-6px;}
+.bk-br{bottom:-6px; right:-6px;}
+@media (max-width:640px){ .bk{width:9px; height:9px;} }
+
+.frame-tag{
+  position:absolute; top:-30px; left:-6px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.03em;
+  background:var(--ink); color:var(--paper); padding:3px 8px;
+  border-radius:2px; white-space:nowrap;
+  opacity:0; transform:translateY(4px);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.bracketed:hover .frame-tag{opacity:1; transform:translateY(0);}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ============ NAV ============ */
+.nav-outer{position:sticky; top:0; z-index:100; padding:18px 0 0;}
+.nav-outer .wrap{display:flex; justify-content:center;}
+.nav-pill{
+  display:flex; align-items:center; gap:4px;
+  background:var(--bg-soft);
+  border:2.5px solid var(--ink);
+  border-radius:999px;
+  padding:6px;
+  box-shadow:var(--shadow-hard-sm);
+  flex-wrap:wrap;
+}
+.nav-pill a{
+  font-family:var(--font-mono);
+  font-size:13px;
+  padding:9px 18px;
+  border-radius:999px;
+  color:var(--ink-soft);
+  transition:background .2s ease, color .2s ease;
+  white-space:nowrap;
+}
+.nav-pill a:hover{color:var(--ink);}
+.nav-pill a.active{background:var(--blue); color:var(--ink); font-weight:700; box-shadow:2px 2px 0 rgba(25,25,25,.9);}
+.nav-brand{font-family:var(--font-display); font-weight:700; font-size:22px; margin-right:6px; padding-left:10px; display:none;}
+
+/* ============ SECTION LABEL (figma frame name) ============ */
+.eyebrow{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-soft); display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;
+}
+.eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--green-hi); border:1.5px solid var(--ink); display:inline-block;}
+
+.section-title{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(38px,5vw,58px);
+  line-height:1; display:inline-block; position:relative; margin-bottom:8px;
+}
+.section-title .hi{
+  position:relative; z-index:1;
+}
+.section-title .hi::after{
+  content:''; position:absolute; left:-4px; right:-4px; bottom:2px; height:14px;
+  background:var(--green-hi); z-index:-1; transform:rotate(-1deg);
+}
+.section-head{margin-bottom:46px;}
+.section-sub{font-family:var(--font-body); color:var(--ink-soft); max-width:560px; margin-top:10px; font-size:15.5px;}
+
+section{padding:96px 0;}
+section:first-of-type{padding-top:60px;}
+
+/* ============ HERO ============ */
+.hero{padding-top:70px; padding-bottom:80px;}
+.hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
+.hero-eyebrow{font-family:var(--font-mono); font-size:13px; background:var(--paper); border:2px solid var(--ink); display:inline-block; padding:6px 14px; border-radius:999px; margin-bottom:22px;}
+.hero-name{font-family:var(--font-display); font-weight:700; font-size:clamp(52px,7.2vw,92px); line-height:.98;}
+.hero-headline{font-family:var(--font-title); font-style:italic; font-size:clamp(20px,2.4vw,27px); margin-top:14px; color:var(--ink-soft);}
+.hero-summary{margin-top:22px; font-size:16px; max-width:520px; color:var(--ink-soft);}
+.hero-cta{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+
+.btn{
+  font-family:var(--font-mono); font-size:13px; font-weight:700;
+  padding:13px 24px; border:2.5px solid var(--ink); border-radius:6px;
+  box-shadow:var(--shadow-hard-sm); display:inline-flex; align-items:center; gap:8px;
+  transition:transform .15s ease, box-shadow .15s ease; background:var(--paper);
+}
+.btn:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 rgba(25,25,25,.9);}
+.btn:active{transform:translate(0,0); box-shadow:2px 2px 0 rgba(25,25,25,.9);}
+.btn.primary{background:var(--yellow);}
+.btn.blue{background:var(--blue);}
+.btn.ghost{background:var(--paper);}
+.btn.sm{padding:9px 16px; font-size:12px;}
+
+.hero-links{display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;}
+.chip{
+  font-family:var(--font-mono); font-size:12px; border:2px solid var(--ink); border-radius:999px;
+  padding:7px 14px; background:var(--bg-soft);
+}
+
+.hero-photo-wrap{position:relative;}
+.hero-photo{
+  width:100%; aspect-ratio:4/5; object-fit:cover; border:3px solid var(--ink);
+  border-radius:var(--radius); box-shadow:var(--shadow-hard); background:var(--lav);
+}
+.upload-btn{
+  position:absolute; bottom:14px; right:14px; z-index:4;
+  background:var(--ink); color:var(--paper); font-family:var(--font-mono); font-size:11px;
+  padding:9px 14px; border-radius:999px; display:flex; align-items:center; gap:6px;
+  border:2px solid var(--ink); box-shadow:3px 3px 0 rgba(0,0,0,.3);
+}
+.upload-btn:hover{background:var(--ink-soft);}
+.upload-btn input{display:none;}
+
+/* ============ CARDS (sticky note style, matches ref image) ============ */
+.card-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:44px 40px;}
+.card{
+  border:3px solid var(--ink); border-radius:6px; padding:34px 30px; box-shadow:var(--shadow-hard);
+  position:relative; transition:transform .2s ease;
+}
+.card:hover{transform:translateY(-4px);}
+.card.yellow{background:var(--yellow);}
+.card.blue{background:var(--blue);}
+.card.lav{background:var(--lav);}
+.card.mint{background:var(--mint);}
+.card.pink{background:var(--pink);}
+.card .icon{font-size:34px; margin-bottom:18px; display:block;}
+.card h3{font-family:var(--font-title); font-style:italic; font-weight:700; font-size:23px; margin-bottom:10px;}
+.card p{font-size:14.5px; color:#252017;}
+
+/* ============ ABOUT ============ */
+.about-extra{margin-top:64px; display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+.fact-strip{display:flex; gap:16px; flex-wrap:wrap; margin-top:40px;}
+.fact{
+  font-family:var(--font-mono); font-size:12.5px; border:2px solid var(--ink); border-radius:8px;
+  padding:14px 18px; background:var(--paper); min-width:130px;
+}
+.fact b{display:block; font-family:var(--font-display); font-size:28px; margin-bottom:2px;}
+
+/* ============ SKILLS ============ */
+.skills-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:30px;}
+.skill-panel{border:3px solid var(--ink); border-radius:6px; background:var(--paper); box-shadow:var(--shadow-hard); overflow:hidden;}
+.skill-panel .head{padding:18px 22px; border-bottom:3px solid var(--ink); font-family:var(--font-title); font-style:italic; font-weight:700; font-size:19px;}
+.skill-panel.ui .head{background:var(--yellow);}
+.skill-panel.ux .head{background:var(--blue);}
+.skill-panel.tools .head{background:var(--lav);}
+.skill-list{padding:20px 22px; display:flex; flex-wrap:wrap; gap:9px;}
+.tag{
+  font-family:var(--font-mono); font-size:12px; padding:7px 12px; border:2px solid var(--ink);
+  border-radius:999px; background:#fff;
+}
+.tool-row{display:flex; justify-content:space-between; align-items:center; padding:12px 22px; border-top:1.5px dashed #b8b0bc; font-size:13.5px;}
+.tool-row:first-child{border-top:none;}
+.tool-row .dots{display:flex; gap:4px;}
+.tool-row .dots span{width:8px; height:8px; border-radius:50%; border:1.5px solid var(--ink); background:var(--bg-soft);}
+.tool-row .dots span.on{background:var(--ink);}
+
+/* ============ PROJECTS ============ */
+.project{
+  border:3px solid var(--ink); border-radius:8px; background:var(--paper); box-shadow:var(--shadow-hard);
+  margin-bottom:56px; overflow:hidden;
+}
+.project-media{position:relative; border-bottom:3px solid var(--ink);}
+.project-media img{width:100%; height:340px; object-fit:cover;}
+.project-media .tagrow{position:absolute; top:16px; left:16px; display:flex; gap:8px;}
+.project-body{padding:34px;}
+.project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:18px;}
+.project-title{font-family:var(--font-display); font-weight:700; font-size:36px;}
+.project-meta{font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-top:6px;}
+.project-links{display:flex; gap:10px; flex-wrap:wrap;}
+.project-cols{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:22px;}
+.pblock h4{font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:8px; display:flex; align-items:center; gap:6px;}
+.pblock h4::before{content:''; width:6px; height:6px; background:var(--green-hi); border:1.5px solid var(--ink); border-radius:2px;}
+.pblock p, .pblock ul{font-size:14px; color:#2a2530;}
+.pblock ul{padding-left:18px; margin-top:4px;}
+.pblock ul li{margin-bottom:3px;}
+.tech-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px;}
+.gallery-strip{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:22px;}
+.gallery-strip img{height:130px; width:100%; object-fit:cover; border:2px solid var(--ink); border-radius:4px;}
+.gallery-strip .g-slot{height:130px; border:2px dashed var(--ink); border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); background:var(--bg-soft);}
+
+/* ============ PROCESS ============ */
+.process-track{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+.process-step{border:3px solid var(--ink); border-radius:8px; padding:26px 22px; background:var(--paper); box-shadow:var(--shadow-hard-sm); position:relative;}
+.process-step .num{font-family:var(--font-mono); font-size:11px; position:absolute; top:16px; right:18px; color:var(--ink-soft);}
+.process-step h4{font-family:var(--font-title); font-style:italic; font-size:19px; margin:6px 0 10px;}
+.process-step p{font-size:13px; color:var(--ink-soft);}
+.process-step ul{padding-left:16px; margin-top:8px; font-size:12.5px;}
+
+/* ============ DESIGN SYSTEMS ============ */
+.dsys-card{border:3px solid var(--ink); border-radius:8px; background:var(--paper); box-shadow:var(--shadow-hard); padding:30px; display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-bottom:34px;}
+.palette-row{display:flex; gap:8px; margin-top:10px;}
+.swatch{width:34px; height:34px; border-radius:6px; border:2px solid var(--ink);}
+
+/* ============ TOOLS ============ */
+.tools-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+.tool-card{border:2.5px solid var(--ink); border-radius:8px; background:var(--paper); padding:20px; text-align:center; box-shadow:var(--shadow-hard-sm);}
+.tool-card .glyph{font-size:28px; margin-bottom:8px;}
+.tool-card h5{font-family:var(--font-title); font-style:italic; font-size:16px;}
+.tool-card .yrs{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); margin-top:4px;}
+
+/* ============ EXPERIENCE / TIMELINE ============ */
+.timeline{position:relative; padding-left:34px;}
+.timeline::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:3px; background:var(--ink);}
+.t-item{position:relative; margin-bottom:52px;}
+.t-item::before{content:''; position:absolute; left:-34px; top:6px; width:16px; height:16px; background:var(--yellow); border:3px solid var(--ink); border-radius:50%;}
+.t-item.current::before{background:var(--green-hi);}
+.t-card{border:3px solid var(--ink); border-radius:8px; background:var(--paper); box-shadow:var(--shadow-hard-sm); padding:28px;}
+.t-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:flex-start;}
+.t-title{font-family:var(--font-display); font-weight:700; font-size:28px;}
+.t-company{font-family:var(--font-title); font-style:italic; font-size:16px; color:var(--ink-soft);}
+.t-dur{font-family:var(--font-mono); font-size:11.5px; border:2px solid var(--ink); border-radius:999px; padding:5px 12px; background:var(--blue); white-space:nowrap;}
+.t-cols{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:18px;}
+.t-cols h5{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;}
+.t-cols ul{padding-left:16px; font-size:13.5px;}
+.t-imgs{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+.t-imgs img{width:90px; height:70px; object-fit:cover; border:2px solid var(--ink); border-radius:4px;}
+
+/* ============ EDU / CERT / ACHIEVEMENTS ============ */
+.three-col{display:grid; grid-template-columns:1fr 1fr 1fr; gap:36px; margin-top:20px;}
+.col-title{font-family:var(--font-title); font-style:italic; font-weight:700; font-size:22px; margin-bottom:18px; padding-bottom:10px; border-bottom:3px solid var(--ink);}
+.mini-card{border:2.5px solid var(--ink); border-radius:8px; padding:16px 18px; background:var(--paper); margin-bottom:14px; box-shadow:var(--shadow-hard-sm);}
+.mini-card h5{font-family:var(--font-body); font-weight:700; font-size:14.5px;}
+.mini-card .sub{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+.mini-card .yr{font-family:var(--font-mono); font-size:11px; margin-top:8px; display:inline-block; background:var(--mint); border:1.5px solid var(--ink); padding:3px 9px; border-radius:999px;}
+
+/* ============ CUSTOM SECTION ============ */
+.custom-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+.custom-card{border:3px solid var(--ink); border-radius:8px; overflow:hidden; background:var(--paper); box-shadow:var(--shadow-hard-sm);}
+.custom-card img{width:100%; height:150px; object-fit:cover; border-bottom:3px solid var(--ink);}
+.custom-card .cc-body{padding:18px 20px;}
+.custom-card h5{font-family:var(--font-title); font-style:italic; font-size:17px;}
+.custom-card .sub{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); margin:6px 0 10px;}
+
+/* ============ CONTACT (no form) ============ */
+.contact-wrap{border:3px solid var(--ink); border-radius:12px; background:var(--yellow); box-shadow:var(--shadow-hard); padding:60px; position:relative; overflow:hidden;}
+.contact-wrap::after{content:'✷'; position:absolute; right:36px; top:26px; font-size:60px; opacity:.25; font-family:var(--font-display);}
+.contact-title{font-family:var(--font-display); font-weight:700; font-size:clamp(40px,5vw,64px); line-height:1;}
+.contact-sub{max-width:480px; margin-top:14px; color:#2a2510;}
+.contact-actions{display:flex; gap:16px; flex-wrap:wrap; margin-top:34px;}
+.contact-detail-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;}
+.detail-card{background:var(--paper); border:2.5px solid var(--ink); border-radius:8px; padding:16px 18px;}
+.detail-card .lbl{font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:.05em;}
+.detail-card .val{font-weight:700; margin-top:4px; font-size:14.5px; word-break:break-word;}
+.social-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px;}
+.social-btn{
+  font-family:var(--font-mono); font-size:12px; border:2px solid var(--ink); border-radius:999px;
+  padding:9px 16px; background:#fff; display:inline-flex; align-items:center; gap:7px;
+}
+.social-btn:hover{background:var(--ink); color:#fff;}
+
+footer{padding:34px 0 50px; text-align:center; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);}
+
+/* editable affordance */
+[contenteditable="true"]{outline:none; border-radius:3px; transition:background .15s ease;}
+[contenteditable="true"]:hover{background:rgba(255,255,255,.35); box-shadow:0 0 0 2px rgba(25,25,25,.15);}
+[contenteditable="true"]:focus{background:#fff; box-shadow:0 0 0 2px var(--ink);}
+
+.save-toast{
+  position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+  font-family:var(--font-mono); font-size:12px; background:var(--ink); color:#fff;
+  padding:11px 20px; border-radius:999px; opacity:0; transition:all .3s ease; z-index:999; pointer-events:none;
+}
+.save-toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+.mobile-toggle{display:none;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-photo-wrap{order:-1; max-width:320px;}
+  .card-grid{grid-template-columns:1fr;}
+  .about-extra{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+  .process-track{grid-template-columns:1fr 1fr;}
+  .dsys-card{grid-template-columns:1fr;}
+  .tools-grid{grid-template-columns:1fr 1fr;}
+  .three-col{grid-template-columns:1fr;}
+  .custom-grid{grid-template-columns:1fr;}
+  .contact-detail-grid{grid-template-columns:1fr;}
+  .project-cols{grid-template-columns:1fr;}
+  .gallery-strip{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .nav-pill{overflow-x:auto; max-width:92vw;}
+  section{padding:64px 0;}
+  .contact-wrap{padding:34px 22px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<div class="nav-outer">
+  <div class="wrap">
+    <nav class="nav-pill" id="navPill">
+      <a href="#home" data-sec="home" class="active">Home</a>
+      <a href="#about" data-sec="about">About me</a>
+      <a href="#work" data-sec="work">My work</a>
+      <a href="#what-i-do" data-sec="what-i-do">What I do</a>
+      <a href="#experience" data-sec="experience">Experience</a>
+      <a href="#contact" data-sec="contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ HERO / HOME ============ -->
+<section id="home" class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="reveal in">
+        <span class="hero-eyebrow">✦ Available for select engagements</span>
+        <h1 class="hero-name" contenteditable="true" data-key="p-name">Ayesha Rahman</h1>
+        <p class="hero-headline" contenteditable="true" data-key="p-headline">Senior Product Designer — crafting calm, usable interfaces for complex products</p>
+        <p class="hero-summary" contenteditable="true" data-key="p-summary">I'm a Dubai-based UI/UX designer with 8 years of experience turning ambiguous problems into interfaces people enjoy using. I care about the small, unglamorous decisions — spacing, copy, empty states — that decide whether a product feels considered or careless.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn primary">View my work ↗</a>
+          <a href="#contact" class="btn ghost">Let's talk</a>
+        </div>
+        <div class="hero-links">
+          <span class="chip" contenteditable="true" data-key="p-location">📍 Dubai, UAE</span>
+          <span class="chip" contenteditable="true" data-key="p-linkedin">in/ayesharahman</span>
+          <span class="chip" contenteditable="true" data-key="p-dribbble">dribbble.com/ayesha</span>
+          <span class="chip" contenteditable="true" data-key="p-figma">figma.com/@ayesha</span>
+        </div>
+      </div>
+      <div class="hero-photo-wrap bracketed">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <span class="frame-tag">Profile Photo · 960×1200</span>
+        <img class="hero-photo" id="profilePhoto" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1600&q=80" alt="Profile photo">
+        <label class="upload-btn">⤴ Upload photo
+          <input type="file" accept="image/*" data-target="profilePhoto" data-storekey="img-profile">
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Frame / About-Me</div>
+      <h2 class="section-title"><span class="hi">About me</span></h2>
+      <p class="section-sub" contenteditable="true" data-key="about-sub">A short orbit around who I am, how I think, and what pulls me into a project.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card yellow bracketed reveal">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <span class="icon">🪐</span>
+        <h3 contenteditable="true" data-key="about-1-title">My story</h3>
+        <p contenteditable="true" data-key="about-1-body">I started as a front-end developer, got frustrated fixing designs that didn't account for real constraints, and crossed over to design so I could own the problem earlier. Eight years later I still write a little code — it keeps my design decisions honest.</p>
+      </div>
+      <div class="card blue bracketed reveal">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <span class="icon">🧭</span>
+        <h3 contenteditable="true" data-key="about-2-title">How I work</h3>
+        <p contenteditable="true" data-key="about-2-body">Research before wireframes, wireframes before pixels, pixels before prototypes. I default to the smallest testable version of an idea, and I'd rather ship something plain that works than something clever that doesn't.</p>
+      </div>
+      <div class="card lav bracketed reveal">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <span class="icon">🎯</span>
+        <h3 contenteditable="true" data-key="about-3-title">What I care about</h3>
+        <p contenteditable="true" data-key="about-3-body">Accessibility isn't a checklist item at the end — it shapes the layout from the first sketch. I also believe good design systems are a form of kindness to the next designer who touches the file.</p>
+      </div>
+      <div class="card mint bracketed reveal">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <span class="icon">☕</span>
+        <h3 contenteditable="true" data-key="about-4-title">Off the clock</h3>
+        <p contenteditable="true" data-key="about-4-body">Long walks along the Marina, terrible amateur pottery, and reading interface-critique threads I have no business being this invested in.</p>
+      </div>
+    </div>
+
+    <div class="fact-strip reveal">
+      <div class="fact"><b contenteditable="true" data-key="fact-1-num">8+</b>years designing</div>
+      <div class="fact"><b contenteditable="true" data-key="fact-2-num">40+</b>products shipped</div>
+      <div class="fact"><b contenteditable="true" data-key="fact-3-num">12</b>industries</div>
+      <div class="fact"><b contenteditable="true" data-key="fact-4-num">3</b>design systems built</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MY WORK — PROJECTS ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Frame / Featured-Projects</div>
+      <h2 class="section-title"><span class="hi">My work</span></h2>
+      <p class="section-sub" contenteditable="true" data-key="work-sub">A handful of projects, picked for how different their problems were, not how good they'd look in a grid.</p>
+    </div>
+
+    <div id="projectsMount"></div>
+  </div>
+</section>
+
+<!-- ============ WHAT I DO — SKILLS / PROCESS / SYSTEMS / TOOLS ============ -->
+<section id="what-i-do">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Frame / What-I-Do</div>
+      <h2 class="section-title"><span class="hi">What I do</span></h2>
+      <p class="section-sub" contenteditable="true" data-key="wid-sub">Skills, process, and the systems I build to make both repeatable.</p>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-panel ui">
+        <div class="head">UI Design</div>
+        <div class="skill-list" id="uiSkills"></div>
+      </div>
+      <div class="skill-panel ux">
+        <div class="head">UX Design</div>
+        <div class="skill-list" id="uxSkills"></div>
+      </div>
+      <div class="skill-panel tools">
+        <div class="head">Design Tools</div>
+        <div id="toolRows"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:80px;" class="reveal">
+      <div class="eyebrow" style="margin-bottom:22px;"><span class="dot"></span>My design process</div>
+      <div class="process-track" id="processMount"></div>
+    </div>
+
+    <div style="margin-top:80px;" class="reveal">
+      <div class="eyebrow" style="margin-bottom:22px;"><span class="dot"></span>Design systems I've built</div>
+      <div id="dsysMount"></div>
+    </div>
+
+    <div style="margin-top:80px;" class="reveal">
+      <div class="eyebrow" style="margin-bottom:22px;"><span class="dot"></span>Tools of the trade</div>
+      <div class="tools-grid" id="toolsGridMount"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Frame / Experience</div>
+      <h2 class="section-title"><span class="hi">Experience</span></h2>
+      <p class="section-sub" contenteditable="true" data-key="exp-sub">Where I've worked, what I owned, and what shipped because of it.</p>
+    </div>
+
+    <div class="timeline reveal" id="timelineMount"></div>
+
+    <div class="three-col" style="margin-top:90px;">
+      <div class="reveal">
+        <div class="col-title">Education</div>
+        <div id="eduMount"></div>
+      </div>
+      <div class="reveal">
+        <div class="col-title">Certifications</div>
+        <div id="certMount"></div>
+      </div>
+      <div class="reveal">
+        <div class="col-title">Achievements</div>
+        <div id="achMount"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CUSTOM SECTION ============ -->
+<section id="extras">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Frame / Custom</div>
+      <h2 class="section-title"><span class="hi" contenteditable="true" data-key="custom-title">Side quests</span></h2>
+      <p class="section-sub" contenteditable="true" data-key="custom-sub">Writing, talks, and small experiments that don't fit neatly under "projects."</p>
+    </div>
+    <div class="custom-grid reveal" id="customMount"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT — no form ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-wrap reveal">
+      <h2 class="contact-title" contenteditable="true" data-key="contact-title">Let's design something worth using.</h2>
+      <p class="contact-sub" contenteditable="true" data-key="contact-sub">Best way to reach me is email — I read everything, I just batch my replies. Say hello, or tell me what you're stuck on.</p>
+      <div class="contact-actions">
+        <a class="btn primary" id="mailBtn" href="mailto:hello@ayesharahman.design">✉ Email me</a>
+        <button class="btn ghost" id="copyEmailBtn">⧉ Copy email</button>
+        <a class="btn ghost" id="callBtn" href="tel:+971500000000">☎ Call</a>
+      </div>
+      <div class="contact-detail-grid">
+        <div class="detail-card"><div class="lbl">Email</div><div class="val" contenteditable="true" data-key="c-email">hello@ayesharahman.design</div></div>
+        <div class="detail-card"><div class="lbl">Phone</div><div class="val" contenteditable="true" data-key="c-phone">+971 50 000 0000</div></div>
+        <div class="detail-card"><div class="lbl">Location</div><div class="val" contenteditable="true" data-key="c-loc">Dubai, UAE — GMT+4</div></div>
+      </div>
+      <div class="social-row">
+        <a class="social-btn" href="#">LinkedIn ↗</a>
+        <a class="social-btn" href="#">Portfolio ↗</a>
+        <a class="social-btn" href="#">Behance ↗</a>
+        <a class="social-btn" href="#">Dribbble ↗</a>
+        <a class="social-btn" href="#">GitHub ↗</a>
+        <a class="social-btn" href="#">Medium ↗</a>
+        <a class="social-btn" href="#">Figma Community ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" contenteditable="true" data-key="footer-text">© 2026 Ayesha Rahman · Built frame by frame, saved in your browser.</div>
+</footer>
+
+<div class="save-toast" id="saveToast">Saved ✓</div>
+
+<script>
+/* ================================================================
+   DATA — everything below is editable in-place (text) or via the
+   upload buttons (images). All edits persist to localStorage.
+================================================================= */
+const LS_KEY = 'ayesha-portfolio-data-v1';
+
+const defaultData = {
+  ui: ['Visual Design','Typography','Color Theory','Layout Design','Design Systems','Responsive Design'],
+  ux: ['User Research','User Personas','Journey Mapping','Information Architecture','Wireframing','Prototyping','Interaction Design','Usability Testing','Accessibility'],
+  tools: [
+    {name:'Figma', level:5}, {name:'Adobe XD', level:4}, {name:'Sketch', level:3},
+    {name:'Photoshop', level:4}, {name:'Illustrator', level:3}, {name:'Miro', level:5},
+    {name:'Framer', level:4}, {name:'Webflow', level:3}, {name:'Principle', level:3},
+    {name:'ProtoPie', level:3}, {name:'After Effects', level:2}
+  ],
+  toolCards: [
+    {glyph:'🎨', name:'Figma', category:'UI Design', years:'7 yrs'},
+    {glyph:'🧩', name:'Adobe XD', category:'UI Design', years:'5 yrs'},
+    {glyph:'🖊️', name:'Sketch', category:'UI Design', years:'4 yrs'},
+    {glyph:'🧠', name:'Miro', category:'UX Research', years:'5 yrs'},
+    {glyph:'🎞️', name:'Framer', category:'Prototyping', years:'3 yrs'},
+    {glyph:'🌐', name:'Webflow', category:'Handoff', years:'2 yrs'},
+    {glyph:'⚙️', name:'Principle', category:'Motion', years:'3 yrs'},
+    {glyph:'✨', name:'ProtoPie', category:'Prototyping', years:'2 yrs'}
+  ],
+  projects: [
+    {
+      name:'Waypoint', client:'Waypoint Logistics', type:'SaaS Dashboard', industry:'Logistics',
+      duration:'Apr 2024 – Sep 2024',
+      overview:'A fleet-management dashboard used by dispatchers to route and monitor 300+ vehicles in real time.',
+      problem:'Dispatchers were toggling between 4 disconnected tools to make one routing decision, costing an average of 6 minutes per shipment.',
+      goals:['Cut decision time per shipment below 90 seconds','Unify live tracking, routing, and driver comms in one view','Design for 10+ hour dispatcher shifts without fatigue'],
+      research:'12 dispatcher shadow sessions across 3 depots, plus a diary study over 2 weeks.',
+      personas:'Primary: "Fatima, the veteran dispatcher" — high tool literacy, low patience for clicks.',
+      userFlow:'Mapped as a single always-visible map + collapsible task queue, replacing 4 separate tabs.',
+      wireframes:'Low-fidelity flows tested with 6 dispatchers before any visual design began.',
+      hifi:'Built a dark-mode-first UI for long shifts, with a high-contrast alert system for delays.',
+      prototype:'Interactive Figma prototype covering the full dispatch-to-delivery flow.',
+      designSystem:'Extended the in-house "Waypoint UI" system with new data-density components.',
+      challenges:'Balancing information density against the 10-hour-shift fatigue goal — early drafts tested as overwhelming.',
+      solution:'Introduced a priority-tiered task queue and collapsed secondary data behind progressive disclosure.',
+      outcome:'Average decision time dropped from 6 minutes to 74 seconds; dispatcher-reported fatigue fell 31% in a follow-up survey.',
+      tech:['Figma','Miro','Webflow (marketing)','Design tokens / Style Dictionary'],
+      live:'#', figma:'#',
+      cover:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2400&q=80',
+      gallery:[
+        'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80'
+      ]
+    },
+    {
+      name:'Solace', client:'Solace Health', type:'Mobile App', industry:'Healthcare',
+      duration:'Jan 2023 – Aug 2023',
+      overview:'A therapy-booking and mood-tracking app connecting patients in the UAE with licensed therapists.',
+      problem:'First-time users abandoned onboarding at a 61% rate, most citing anxiety about the intake questionnaire.',
+      goals:['Raise onboarding completion above 85%','Make the first therapist match feel personal, not clinical','Design a mood tracker people would actually keep using'],
+      research:'Interviewed 18 prospective users, 5 of whom had never sought therapy before — their hesitations shaped the tone of the whole flow.',
+      personas:'Primary: "Omar, the first-timer" — curious but easily talked out of continuing by friction or cold language.',
+      userFlow:'Split the intake into 5 short, conversational steps instead of one long form.',
+      wireframes:'Paper-tested the conversational flow with 8 users before touching Figma.',
+      hifi:'Warm, low-saturation palette and a friendly illustration set to soften a clinical topic.',
+      prototype:'Clickable prototype for the full onboarding-to-first-session flow.',
+      designSystem:'Established Solace\'s first component library, now used across 3 product surfaces.',
+      challenges:'Legal required specific disclosure language that read as cold and alarming in early drafts.',
+      solution:'Worked with legal to rewrite disclosures in plain language, delivered progressively rather than in one wall of text.',
+      outcome:'Onboarding completion rose to 88%; average time-to-first-booking dropped by 40%.',
+      tech:['Figma','Principle','ProtoPie','Illustrator'],
+      live:'#', figma:'#',
+      cover:'https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=2400&q=80',
+      gallery:[
+        'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80'
+      ]
+    },
+    {
+      name:'Ledger One', client:'Internal Product', type:'Web Platform', industry:'Fintech',
+      duration:'Oct 2022 – Dec 2022',
+      overview:'A reporting suite for SME owners to understand cash flow without an accounting background.',
+      problem:'Users with no finance training were misreading standard accounting charts and making decisions off bad interpretations.',
+      goals:['Design financial visualizations a non-accountant could read correctly on first look','Reduce support tickets tagged "confused about report"'],
+      research:'Card-sorted financial terminology with 10 SME owners to find the language they actually used.',
+      personas:'Primary: "Huda, the boutique owner" — confident running her business, intimidated by financial jargon.',
+      userFlow:'Replaced dense tables with a single "cash flow story" view that narrates the numbers in plain language.',
+      wireframes:'Explored 3 chart-literacy approaches, tested each against comprehension, not preference.',
+      hifi:'Restrained, high-legibility system built around one accent color per report type.',
+      prototype:'Data-bound prototype using anonymized real transaction sets.',
+      designSystem:'Defined a reusable chart-annotation pattern now used across all reporting features.',
+      challenges:'Stakeholders wanted more charts on screen; testing showed each addition hurt comprehension.',
+      solution:'Held the line on one primary visualization per screen, backed by comprehension-test data.',
+      outcome:'"Confused about report" tickets dropped 54% in the quarter after launch.',
+      tech:['Figma','Framer','D3 handoff specs'],
+      live:'#', figma:'#',
+      cover:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2400&q=80',
+      gallery:[
+        'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80'
+      ]
+    }
+  ],
+  process: [
+    {name:'Discover', desc:'Frame the real problem before touching a tool.', points:['Stakeholder interviews','Competitive teardown','Success metrics defined']},
+    {name:'Define', desc:'Turn research into a brief everyone agrees on.', points:['Personas','Journey maps','Problem statement']},
+    {name:'Design', desc:'From rough sketches to tested high-fidelity screens.', points:['Wireframes','Prototypes','Usability testing']},
+    {name:'Deliver', desc:'Ship, measure, and iterate on real usage data.', points:['Dev handoff','QA passes','Post-launch metrics review']}
+  ],
+  designSystems: [
+    {
+      name:'Waypoint UI', desc:'A data-dense system built for 10-hour dispatcher shifts — dark-first, high contrast, low fatigue.',
+      components:'86 components across 14 categories', typography:'Space Grotesk + IBM Plex Mono',
+      palette:['#1a1f26','#2e7dd1','#e8a33d','#3fb27f','#e0e4ea'],
+      grid:'12-col, 8px baseline', icons:'Custom 24px stroke set (240 icons)'
+    },
+    {
+      name:'Solace Kit', desc:'A warm, low-saturation system designed to soften a clinical healthcare product.',
+      components:'54 components across 9 categories', typography:'Fraunces + Inter',
+      palette:['#fbf3ea','#e8a798','#7fa88f','#3c3532','#f2d9c9'],
+      grid:'8-col mobile-first, 4px baseline', icons:'Rounded 20px icon set (120 icons)'
+    }
+  ],
+  experience: [
+    {
+      company:'Waypoint Logistics', title:'Senior Product Designer', location:'Dubai, UAE',
+      duration:'Feb 2023 — Present', current:true,
+      summary:'Own end-to-end design for the dispatcher-facing web platform, from research through delivery.',
+      responsibilities:['Lead design on the dispatch and routing product line','Run weekly usability sessions with depot staff','Mentor 2 mid-level designers'],
+      contributions:['Rebuilt the routing UI, cutting decision time by 87%','Introduced the team\'s first formal design-critique ritual'],
+      products:['Dispatcher Dashboard','Driver Mobile App','Ops Reporting Suite'],
+      platforms:['Web','Mobile','Dashboard'],
+      teamSize:'6 designers, 24 engineers',
+      toolsUsed:['Figma','Miro','Webflow'],
+      images:['https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80']
+    },
+    {
+      company:'Solace Health', title:'Product Designer', location:'Dubai, UAE',
+      duration:'Jun 2020 — Jan 2023', current:false,
+      summary:'First design hire; built the product\'s design foundations from a 3-person founding team.',
+      responsibilities:['Owned onboarding, booking, and mood-tracking flows','Built the first component library','Ran all user research independently'],
+      contributions:['Raised onboarding completion from 39% to 88%','Shipped the mood-tracking feature now used by 70% of active users'],
+      products:['Patient App','Therapist Portal'],
+      platforms:['Mobile','Web'],
+      teamSize:'3-person founding team, grew to 14',
+      toolsUsed:['Figma','Principle','Illustrator'],
+      images:['https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80']
+    },
+    {
+      company:'Studio Nine', title:'UI Designer', location:'Abu Dhabi, UAE',
+      duration:'Aug 2018 — May 2020', current:false,
+      summary:'Agency work across fintech, retail, and hospitality clients.',
+      responsibilities:['Delivered UI for 9 client projects','Built reusable UI kits for faster client turnaround'],
+      contributions:['Designed the visual identity refresh for 3 hospitality clients'],
+      products:['Client web & mobile products'],
+      platforms:['Web','Mobile'],
+      teamSize:'Agency team of 10',
+      toolsUsed:['Sketch','Photoshop','Illustrator'],
+      images:[]
+    }
+  ],
+  education: [
+    {degree:'M.A. Interaction Design', spec:'Human-Computer Interaction', inst:'American University of Sharjah', loc:'Sharjah, UAE', dur:'2016 — 2018', grade:'3.9 GPA'},
+    {degree:'B.Sc. Computer Science', spec:'Software Engineering', inst:'University of Sharjah', loc:'Sharjah, UAE', dur:'2012 — 2016', grade:'3.7 GPA'}
+  ],
+  certifications: [
+    {name:'Google UX Design Certificate', issuer:'Google', year:'2021', link:'#'},
+    {name:'Nielsen Norman Group UX Certification', issuer:'NN/g', year:'2022', link:'#'},
+    {name:'Accessibility for Designers', issuer:'Deque University', year:'2023', link:'#'}
+  ],
+  achievements: [
+    {title:'Speaker, Dubai Design Week', desc:'Talk on designing for high-fatigue enterprise users.', year:'2024', link:'#'},
+    {title:'Awwwards Honorable Mention', desc:'Solace Health onboarding flow.', year:'2023', link:'#'},
+    {title:'Figma Community Top Contributor', desc:'Waypoint UI kit — 12k+ duplicates.', year:'2024', link:'#'}
+  ],
+  custom: [
+    {title:'Writing on design systems', sub:'Medium · 6 articles', img:'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80'},
+    {title:'Design critique meetups', sub:'Community organizer, Dubai', img:'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80'},
+    {title:'Mentoring junior designers', sub:'ADPList · 40+ sessions', img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80'}
+  ]
+};
+
+let data = JSON.parse(JSON.stringify(defaultData));
+try{
+  const saved = localStorage.getItem(LS_KEY);
+  if(saved) data = Object.assign(data, JSON.parse(saved));
+}catch(e){ console.warn('No saved data yet', e); }
+
+function persist(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(data)); showToast(); }
+  catch(e){ console.warn('Could not save (storage full?)', e); }
+}
+
+let toastTimer;
+function showToast(){
+  const t = document.getElementById('saveToast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 1400);
+}
+
+/* ---------- render helpers ---------- */
+function el(html){
+  const d = document.createElement('div');
+  d.innerHTML = html.trim();
+  return d.firstElementChild;
+}
+
+function renderTags(container, items){
+  container.innerHTML = items.map(t=>`<span class="tag">${t}</span>`).join('');
+}
+
+function renderToolRows(container, items){
+  container.innerHTML = items.map(t=>`
+    <div class="tool-row">
+      <span>${t.name}</span>
+      <span class="dots">${[1,2,3,4,5].map(i=>`<span class="${i<=t.level?'on':''}"></span>`).join('')}</span>
+    </div>`).join('');
+}
+
+function renderToolCards(container, items){
+  container.innerHTML = items.map(t=>`
+    <div class="tool-card">
+      <div class="glyph">${t.glyph}</div>
+      <h5>${t.name}</h5>
+      <div class="yrs">${t.category} · ${t.years}</div>
+    </div>`).join('');
+}
+
+const cardColors = ['yellow','blue','lav','mint','pink'];
+
+function renderProjects(container, items){
+  container.innerHTML = items.map((p,i)=>`
+    <div class="project reveal in">
+      <div class="project-media bracketed">
+        <span class="bk bk-tl"></span><span class="bk bk-tr"></span><span class="bk bk-bl"></span><span class="bk bk-br"></span>
+        <div class="tagrow">
+          <span class="chip" style="background:#fff;">${p.type}</span>
+          <span class="chip" style="background:#fff;">${p.industry}</span>
+        </div>
+        <img src="${p.cover}" alt="${p.name} cover" data-img-idx="${i}" class="proj-cover">
+        <label class="upload-btn" style="bottom:16px; right:16px;">⤴ Replace cover
+          <input type="file" accept="image/*" data-proj-cover="${i}">
+        </label>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <div>
+            <div class="project-title">${p.name}</div>
+            <div class="project-meta">${p.client} · ${p.duration}</div>
+          </div>
+          <div class="project-links">
+            <a class="btn sm blue" href="${p.live}">Live demo ↗</a>
+            <a class="btn sm ghost" href="${p.figma}">Figma prototype ↗</a>
+          </div>
+        </div>
+        <p style="font-size:14.5px; color:#2a2530;">${p.overview}</p>
+        <div class="project-cols">
+          <div class="pblock"><h4>Problem</h4><p>${p.problem}</p></div>
+          <div class="pblock"><h4>Goals</h4><ul>${p.goals.map(g=>`<li>${g}</li>`).join('')}</ul></div>
+          <div class="pblock"><h4>Research</h4><p>${p.research}</p></div>
+          <div class="pblock"><h4>User personas</h4><p>${p.personas}</p></div>
+          <div class="pblock"><h4>User flow</h4><p>${p.userFlow}</p></div>
+          <div class="pblock"><h4>Wireframes</h4><p>${p.wireframes}</p></div>
+          <div class="pblock"><h4>High-fidelity design</h4><p>${p.hifi}</p></div>
+          <div class="pblock"><h4>Interactive prototype</h4><p>${p.prototype}</p></div>
+          <div class="pblock"><h4>Design system used</h4><p>${p.designSystem}</p></div>
+          <div class="pblock"><h4>Challenges</h4><p>${p.challenges}</p></div>
+          <div class="pblock"><h4>Solution</h4><p>${p.solution}</p></div>
+          <div class="pblock"><h4>Final outcome</h4><p>${p.outcome}</p></div>
+        </div>
+        <div class="tech-row">${p.tech.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="gallery-strip">
+          ${p.gallery.map((g,gi)=>`<img src="${g}" data-proj-gallery="${i}:${gi}">`).join('')}
+          <label class="g-slot" style="cursor:pointer;">⤴ Add image
+            <input type="file" accept="image/*" style="display:none;" data-proj-add="${i}">
+          </label>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProcess(container, items){
+  container.innerHTML = items.map((s,i)=>`
+    <div class="process-step">
+      <span class="num">0${i+1}</span>
+      <h4>${s.name}</h4>
+      <p>${s.desc}</p>
+      <ul>${s.points.map(pt=>`<li>${pt}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+function renderDsys(container, items){
+  container.innerHTML = items.map(d=>`
+    <div class="dsys-card">
+      <div>
+        <h3 style="font-family:var(--font-title); font-style:italic; font-size:22px;">${d.name}</h3>
+        <p style="font-size:14px; color:var(--ink-soft); margin-top:8px;">${d.desc}</p>
+        <div class="palette-row">${d.palette.map(c=>`<span class="swatch" style="background:${c};"></span>`).join('')}</div>
+      </div>
+      <div style="font-size:13.5px;">
+        <p><b>Components:</b> ${d.components}</p>
+        <p style="margin-top:8px;"><b>Typography:</b> ${d.typography}</p>
+        <p style="margin-top:8px;"><b>Grid:</b> ${d.grid}</p>
+        <p style="margin-top:8px;"><b>Icons:</b> ${d.icons}</p>
+      </div>
+    </div>`).join('');
+}
+
+function renderTimeline(container, items){
+  container.innerHTML = items.map(e=>`
+    <div class="t-item ${e.current?'current':''}">
+      <div class="t-card">
+        <div class="t-top">
+          <div>
+            <div class="t-title">${e.title}</div>
+            <div class="t-company">${e.company} · ${e.location}</div>
+          </div>
+          <span class="t-dur">${e.duration}${e.current?' · current':''}</span>
+        </div>
+        <p style="margin-top:12px; font-size:14px;">${e.summary}</p>
+        <div class="t-cols">
+          <div><h5>Key responsibilities</h5><ul>${e.responsibilities.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+          <div><h5>Major contributions</h5><ul>${e.contributions.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+        </div>
+        <div class="tech-row">
+          ${e.products.map(p=>`<span class="tag">${p}</span>`).join('')}
+          ${e.platforms.map(p=>`<span class="tag" style="background:var(--blue);">${p}</span>`).join('')}
+          <span class="tag" style="background:var(--mint);">Team: ${e.teamSize}</span>
+        </div>
+        <div class="tech-row">${e.toolsUsed.map(t=>`<span class="tag" style="background:var(--lav);">${t}</span>`).join('')}</div>
+        ${e.images.length ? `<div class="t-imgs">${e.images.map(im=>`<img src="${im}">`).join('')}</div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function renderEdu(container, items){
+  container.innerHTML = items.map(e=>`
+    <div class="mini-card">
+      <h5>${e.degree}</h5>
+      <div class="sub">${e.spec}</div>
+      <div class="sub">${e.inst} · ${e.loc}</div>
+      <div class="sub">${e.dur} · ${e.grade}</div>
+    </div>`).join('');
+}
+function renderCert(container, items){
+  container.innerHTML = items.map(c=>`
+    <div class="mini-card">
+      <h5>${c.name}</h5>
+      <div class="sub">${c.issuer}</div>
+      <span class="yr">${c.year}</span>
+    </div>`).join('');
+}
+function renderAch(container, items){
+  container.innerHTML = items.map(a=>`
+    <div class="mini-card">
+      <h5>${a.title}</h5>
+      <div class="sub">${a.desc}</div>
+      <span class="yr">${a.year}</span>
+    </div>`).join('');
+}
+function renderCustom(container, items){
+  container.innerHTML = items.map((c,i)=>`
+    <div class="custom-card">
+      <img src="${c.img}" data-custom-img="${i}">
+      <div class="cc-body">
+        <h5>${c.title}</h5>
+        <div class="sub">${c.sub}</div>
+        <label class="btn sm ghost" style="cursor:pointer;">⤴ Change image
+          <input type="file" accept="image/*" style="display:none;" data-custom-add="${i}">
+        </label>
+      </div>
+    </div>`).join('');
+}
+function renderToolsGrid(container, items){
+  renderToolCards(container, items);
+}
+
+/* ---------- initial paint ---------- */
+renderTags(document.getElementById('uiSkills'), data.ui);
+renderTags(document.getElementById('uxSkills'), data.ux);
+renderToolRows(document.getElementById('toolRows'), data.tools);
+renderProjects(document.getElementById('projectsMount'), data.projects);
+renderProcess(document.getElementById('processMount'), data.process);
+renderDsys(document.getElementById('dsysMount'), data.designSystems);
+renderToolsGrid(document.getElementById('toolsGridMount'), data.toolCards);
+renderTimeline(document.getElementById('timelineMount'), data.experience);
+renderEdu(document.getElementById('eduMount'), data.education);
+renderCert(document.getElementById('certMount'), data.certifications);
+renderAch(document.getElementById('achMount'), data.achievements);
+renderCustom(document.getElementById('customMount'), data.custom);
+
+/* ================================================================
+   CONTENTEDITABLE TEXT PERSISTENCE
+================================================================= */
+const textStore = (() => {
+  try{ return JSON.parse(localStorage.getItem('portfolio-text-v1')) || {}; }
+  catch(e){ return {}; }
+})();
+
+document.querySelectorAll('[contenteditable="true"][data-key]').forEach(node=>{
+  const key = node.dataset.key;
+  if(textStore[key] !== undefined){ node.innerHTML = textStore[key]; }
+  node.addEventListener('blur', ()=>{
+    textStore[key] = node.innerHTML;
+    try{ localStorage.setItem('portfolio-text-v1', JSON.stringify(textStore)); showToast(); }
+    catch(e){}
+  });
+});
+
+/* footer text without data-key wrapper edge case already covered above */
+
+/* ================================================================
+   IMAGE UPLOADS (FileReader → dataURL → localStorage)
+================================================================= */
+function readAsDataURL(file, cb){
+  const reader = new FileReader();
+  reader.onload = () => cb(reader.result);
+  reader.readAsDataURL(file);
+}
+
+// Profile photo
+document.addEventListener('change', (ev)=>{
+  const input = ev.target;
+  if(input.dataset && input.dataset.target === 'profilePhoto'){
+    const file = input.files[0]; if(!file) return;
+    readAsDataURL(file, (url)=>{
+      document.getElementById('profilePhoto').src = url;
+      try{ localStorage.setItem('img-profile', url); showToast(); }catch(e){}
+    });
+  }
+});
+
+// restore profile photo
+try{
+  const savedProfile = localStorage.getItem('img-profile');
+  if(savedProfile) document.getElementById('profilePhoto').src = savedProfile;
+}catch(e){}
+
+// Project cover replace
+document.addEventListener('change', (ev)=>{
+  const input = ev.target;
+  if(input.dataset && input.dataset.projCover !== undefined){
+    const idx = parseInt(input.dataset.projCover, 10);
+    const file = input.files[0]; if(!file) return;
+    readAsDataURL(file, (url)=>{
+      data.projects[idx].cover = url;
+      persist();
+      renderProjects(document.getElementById('projectsMount'), data.projects);
+    });
+  }
+});
+
+// Project gallery add
+document.addEventListener('change', (ev)=>{
+  const input = ev.target;
+  if(input.dataset && input.dataset.projAdd !== undefined){
+    const idx = parseInt(input.dataset.projAdd, 10);
+    const file = input.files[0]; if(!file) return;
+    readAsDataURL(file, (url)=>{
+      data.projects[idx].gallery.push(url);
+      persist();
+      renderProjects(document.getElementById('projectsMount'), data.projects);
+    });
+  }
+});
+
+// Custom section image
+document.addEventListener('change', (ev)=>{
+  const input = ev.target;
+  if(input.dataset && input.dataset.customAdd !== undefined){
+    const idx = parseInt(input.dataset.customAdd, 10);
+    const file = input.files[0]; if(!file) return;
+    readAsDataURL(file, (url)=>{
+      data.custom[idx].img = url;
+      persist();
+      renderCustom(document.getElementById('customMount'), data.custom);
+    });
+  }
+});
+
+/* ================================================================
+   NAV — scrollspy + smooth active pill
+================================================================= */
+const navLinks = Array.from(document.querySelectorAll('.nav-pill a'));
+const sections = navLinks.map(l => document.getElementById(l.dataset.sec)).filter(Boolean);
+
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navLinks.forEach(l => l.classList.toggle('active', l.dataset.sec === id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+sections.forEach(s => spy.observe(s));
+
+/* ================================================================
+   SCROLL REVEAL
+================================================================= */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(node => revealObserver.observe(node));
+
+/* ================================================================
+   CONTACT — copy email, no form anywhere in this section
+================================================================= */
+document.getElementById('copyEmailBtn').addEventListener('click', async ()=>{
+  const email = document.querySelector('[data-key="c-email"]').textContent.trim();
+  try{
+    await navigator.clipboard.writeText(email);
+    const btn = document.getElementById('copyEmailBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    setTimeout(()=> btn.textContent = original, 1500);
+  }catch(e){ /* clipboard unavailable, silently ignore */ }
+});
+</script>
+</body>
+</html>

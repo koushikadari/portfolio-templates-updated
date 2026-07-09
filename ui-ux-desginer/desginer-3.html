@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lena Hart — UI/UX Designer Portfolio</title>
+<meta name="description" content="Lena Hart - Product designer specializing in UI/UX design, design systems, and end-to-end digital product experiences." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #0b0b0b; color: #ece8e1; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.01em; }
+
+  /* Ambient grain + vignette */
+  body::before {
+    content:""; position: fixed; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(212,175,109,0.08), transparent 60%),
+      radial-gradient(120% 80% at 50% 100%, rgba(0,0,0,0.6), transparent 60%);
+  }
+  body::after {
+    content:""; position: fixed; inset:0; pointer-events:none; z-index:2; opacity:.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+
+  .wrap { position: relative; z-index: 3; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav.top { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 1.4rem 2rem;
+    display:flex; justify-content:space-between; align-items:center;
+    backdrop-filter: blur(14px); background: rgba(11,11,11,0.55);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav.top .logo { font-family:'Cormorant Garamond', serif; font-size:1.5rem; letter-spacing:.18em; text-transform:uppercase; }
+  nav.top ul { display:flex; gap:2rem; list-style:none; }
+  nav.top ul a { font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; color:#cfc9be; transition:color .3s; position:relative; }
+  nav.top ul a::after { content:""; position:absolute; left:0; bottom:-6px; height:1px; width:0; background:#d4af6d; transition:width .35s ease; }
+  nav.top ul a:hover { color:#fff; } nav.top ul a:hover::after { width:100%; }
+  @media (max-width: 720px) { nav.top ul { display:none; } }
+
+  /* HERO */
+  .hero { min-height: 100vh; display:grid; grid-template-columns: 1.1fr .9fr; align-items:center; gap:3rem; padding: 8rem 0 4rem; }
+  .hero-left h1 { font-family:'Cormorant Garamond', serif; font-weight: 500;
+    font-size: clamp(3.5rem, 9vw, 8rem); line-height: .95; letter-spacing:-.02em;
+    background: linear-gradient(180deg, #f5efe3 0%, #d4af6d 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: rise 1.2s ease both;
+  }
+  .hero-left .kicker { display:inline-block; font-size:.75rem; letter-spacing:.3em; text-transform:uppercase; color:#d4af6d; margin-bottom:1.5rem; }
+  .hero-left p.tag { margin-top:1.5rem; max-width:480px; color:#b8b1a5; font-size:1.05rem; line-height:1.7; }
+  .hero-cta { margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:.6rem; padding: 1rem 2rem; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; border-radius:999px; transition: all .4s cubic-bezier(.2,.7,.2,1); cursor:pointer; border:1px solid transparent; }
+  .btn-primary { background: linear-gradient(135deg,#d4af6d,#8a6a3d); color:#0b0b0b; box-shadow: 0 12px 40px -10px rgba(212,175,109,.5); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 50px -10px rgba(212,175,109,.7); }
+  .btn-ghost { border-color: rgba(255,255,255,.2); color:#ece8e1; }
+  .btn-ghost:hover { border-color:#d4af6d; color:#d4af6d; }
+
+  .hero-right { position:relative; aspect-ratio: 4/5; overflow:hidden; border-radius: 4px;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,.8);
+    animation: fadeIn 1.4s ease both;
+  }
+  .hero-right img { width:100%; height:100%; object-fit:cover; filter: grayscale(.15) contrast(1.05); transition: transform 8s ease; }
+  .hero-right:hover img { transform: scale(1.08); }
+  .hero-right::before { content:"FEATURED"; position:absolute; top:1.5rem; left:1.5rem; z-index:2; font-size:.65rem; letter-spacing:.4em; color:#fff; background:rgba(0,0,0,.4); padding:.5rem .8rem; backdrop-filter:blur(8px); }
+  .hero-right::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.5)); }
+
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 7rem; } .hero-right { max-width: 420px; margin: 0 auto; } }
+
+  /* SECTION */
+  section { padding: 7rem 0; position: relative; }
+  .sec-label { font-size:.7rem; letter-spacing:.4em; text-transform:uppercase; color:#d4af6d; margin-bottom:1rem; display:block; }
+  .sec-title { font-family:'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; margin-bottom: 2rem; font-weight: 500; }
+  .sec-title em { font-style: italic; color:#d4af6d; }
+
+  /* ABOUT */
+  .about { display:grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items:center; }
+  .about-img { position:relative; aspect-ratio: 3/4; overflow:hidden; border-radius:4px; }
+  .about-img img { width:100%; height:100%; object-fit:cover; filter: grayscale(.3); transition: filter .8s, transform 1.2s; }
+  .about-img:hover img { filter:none; transform:scale(1.05); }
+  .about-img::before { content:""; position:absolute; inset:-15px; border:1px solid #d4af6d; border-radius:4px; z-index:-1; }
+  .about p { color:#b8b1a5; line-height:1.9; font-size:1.05rem; margin-bottom:1.2rem; }
+  .stats { display:grid; grid-template-columns: repeat(3, 1fr); gap:2rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.08); }
+  .stat .n { font-family:'Cormorant Garamond', serif; font-size: 2.8rem; color:#d4af6d; line-height:1; }
+  .stat .l { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:#8a8378; margin-top:.6rem; }
+  @media (max-width:900px) { .about { grid-template-columns: 1fr; gap:3rem; } }
+
+  /* PORTFOLIO */
+  .filters { display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom: 3rem; }
+  .chip { padding:.6rem 1.2rem; font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; border:1px solid rgba(255,255,255,.15); border-radius:999px; color:#cfc9be; }
+  .chip.active, .chip:hover { background:#d4af6d; color:#0b0b0b; border-color:#d4af6d; }
+  .gallery { display:grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 180px; gap: 1rem; }
+  .tile { position:relative; overflow:hidden; border-radius:4px; cursor:pointer; }
+  .tile img { width:100%; height:100%; object-fit:cover; transition: transform 1.5s ease, filter .6s; filter: brightness(.85); }
+  .tile:hover img { transform: scale(1.1); filter: brightness(1); }
+  .tile .meta { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:1.5rem; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.85)); opacity:0; transition:opacity .5s; }
+  .tile:hover .meta { opacity:1; }
+  .tile .meta .cat { font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:#d4af6d; }
+  .tile .meta h4 { font-family:'Cormorant Garamond', serif; font-size: 1.6rem; margin-top:.4rem; }
+  .t1 { grid-column: span 6; grid-row: span 2; }
+  .t2 { grid-column: span 6; grid-row: span 1; }
+  .t3 { grid-column: span 3; grid-row: span 1; }
+  .t4 { grid-column: span 3; grid-row: span 1; }
+  .t5 { grid-column: span 4; grid-row: span 2; }
+  .t6 { grid-column: span 4; grid-row: span 1; }
+  .t7 { grid-column: span 4; grid-row: span 1; }
+  .t8 { grid-column: span 6; grid-row: span 1; }
+  .t9 { grid-column: span 6; grid-row: span 1; }
+  @media (max-width: 768px) { .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; } .tile { grid-column: span 1 !important; grid-row: span 1 !important; } .t1, .t5 { grid-column: span 2 !important; } }
+
+  /* FEATURED PROJECTS */
+  .fp-intro { margin: 5rem 0 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.08); }
+  .featured-projects { display:flex; flex-direction:column; gap: 6rem; }
+  .fp-card { border:1px solid rgba(255,255,255,.08); border-radius:8px; padding: 3rem; background: linear-gradient(180deg, rgba(255,255,255,.025), transparent); }
+  .fp-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .fp-title h3 { font-family:'Cormorant Garamond', serif; font-size: 2.6rem; font-weight:500; }
+  .fp-title .fp-client { color:#d4af6d; font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; margin-top:.6rem; }
+  .fp-meta { display:grid; grid-template-columns: repeat(3, auto); gap: 1.8rem 2.5rem; }
+  .fp-meta-item .lbl { font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:#8a8378; margin-bottom:.4rem; }
+  .fp-meta-item .val { font-size:.92rem; color:#ece8e1; }
+  .fp-cover { width:100%; aspect-ratio: 16/8; border-radius:6px; overflow:hidden; margin-bottom: 2.8rem; }
+  .fp-cover img { width:100%; height:100%; object-fit:cover; filter: brightness(.92); transition: transform 1.2s ease; }
+  .fp-cover:hover img { transform: scale(1.04); }
+  .fp-body { display:grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 3rem; margin-bottom: 2.8rem; }
+  .fp-block.full { grid-column: 1 / -1; }
+  .fp-block h4 { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:#d4af6d; margin-bottom:.8rem; }
+  .fp-block p { color:#b8b1a5; line-height:1.85; font-size:.98rem; }
+  @media (max-width:768px) { .fp-body { grid-template-columns: 1fr; } }
+
+  .fp-personas { display:grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .persona-card { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 1.4rem; background: rgba(255,255,255,.02); }
+  .persona-card .p-name { font-family:'Cormorant Garamond', serif; font-size:1.3rem; margin-bottom:.3rem; }
+  .persona-card .p-role { font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#8a8378; margin-bottom:.7rem; }
+  .persona-card .p-desc { color:#b8b1a5; font-size:.88rem; line-height:1.7; }
+  @media (max-width:600px) { .fp-personas { grid-template-columns: 1fr; } }
+
+  .fp-journey { display:flex; gap: 1rem; flex-wrap:wrap; }
+  .journey-step { flex:1; min-width: 140px; position:relative; padding: 1.2rem 1rem; border:1px dashed rgba(255,255,255,.15); border-radius:6px; text-align:center; }
+  .journey-step .j-num { font-family:'Cormorant Garamond', serif; color:#d4af6d; font-size:1.6rem; }
+  .journey-step .j-label { font-size:.78rem; color:#cfc9be; margin-top:.4rem; }
+
+  .fp-shots { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .fp-shot { position:relative; aspect-ratio: 4/3; border-radius:6px; overflow:hidden; }
+  .fp-shot img { width:100%; height:100%; object-fit:cover; }
+  .fp-shot .cap { position:absolute; left:0; right:0; bottom:0; padding:.6rem .9rem; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
+  @media (max-width:768px) { .fp-shots { grid-template-columns: 1fr 1fr; } }
+
+  .fp-outcome-stats { display:grid; grid-template-columns: repeat(3, 1fr); gap:2rem; margin-top: .5rem; }
+  .fp-outcome-stats .stat .n { font-size: 2.2rem; }
+
+  .fp-links { display:flex; gap: 1rem; flex-wrap:wrap; margin-top: 1rem; }
+  .fp-links a { display:inline-flex; align-items:center; gap:.5rem; padding: .85rem 1.6rem; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; border-radius:999px; border:1px solid rgba(255,255,255,.18); color:#ece8e1; transition: all .35s; }
+  .fp-links a:hover { border-color:#d4af6d; color:#d4af6d; }
+  .fp-links a.primary { background: linear-gradient(135deg,#d4af6d,#8a6a3d); color:#0b0b0b; border-color:transparent; }
+  .fp-links a.primary:hover { color:#0b0b0b; transform: translateY(-2px); }
+
+  /* TIMELINE (Education & Experience) */
+  .timeline { position:relative; max-width: 820px; padding-left: 2.5rem; border-left: 1px solid rgba(255,255,255,.1); }
+  .tl-item { position:relative; padding-bottom: 3rem; }
+  .tl-item:last-child { padding-bottom:0; }
+  .tl-dot { position:absolute; left:-2.56rem; top:.3rem; width:12px; height:12px; border-radius:50%; background:#0b0b0b; border:2px solid #d4af6d; box-shadow:0 0 0 4px rgba(212,175,109,.12); }
+  .tl-year { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:#d4af6d; margin-bottom:.6rem; }
+  .tl-item h3 { font-family:'Cormorant Garamond', serif; font-size:1.7rem; font-weight:500; margin-bottom:.4rem; }
+  .tl-place { font-size:.85rem; color:#8a8378; letter-spacing:.08em; margin-bottom:.8rem; }
+  .tl-item p { color:#b8b1a5; line-height:1.8; font-size:.98rem; max-width: 620px; }
+
+  /* SKILLS */
+  .skills-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; }
+  .skill-bar .skill-top { display:flex; justify-content:space-between; font-size:.85rem; letter-spacing:.05em; color:#cfc9be; margin-bottom:.6rem; }
+  .skill-bar .skill-top span:last-child { color:#d4af6d; }
+  .skill-bar .bar { width:100%; height:6px; border-radius:999px; background: rgba(255,255,255,.06); overflow:hidden; }
+  .skill-bar .fill { height:100%; border-radius:999px; background: linear-gradient(90deg,#8a6a3d,#d4af6d); }
+  @media (max-width:768px) { .skills-grid { grid-template-columns: 1fr; } }
+
+  /* CONTACT */
+  .contact-wrap { display:grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items:start; }
+  .contact-wrap.contact-solo { grid-template-columns: 1fr; max-width: 620px; }
+  .contact-info p { color:#b8b1a5; line-height:1.8; margin-bottom: 2.5rem; }
+  .info-item { display:flex; align-items:flex-start; gap:1rem; padding: 1.2rem 0; border-top: 1px solid rgba(255,255,255,.08); }
+  .info-item:last-of-type { border-bottom:1px solid rgba(255,255,255,.08); }
+  .info-item .ic { width:40px; height:40px; border-radius:50%; background: rgba(212,175,109,.1); display:flex; align-items:center; justify-content:center; color:#d4af6d; flex-shrink:0; }
+  .info-item .lbl { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:#8a8378; }
+  .info-item .val { margin-top:.3rem; font-size:1rem; }
+  .socials { display:flex; gap:.8rem; margin-top: 2rem; }
+  .socials a { width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:.75rem; letter-spacing:.1em; transition: all .4s; }
+  .socials a:hover { background:#d4af6d; color:#0b0b0b; border-color:#d4af6d; transform: translateY(-3px); }
+
+  @media (max-width:900px) { .contact-wrap { grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  footer { padding: 3rem 0; border-top: 1px solid rgba(255,255,255,.06); text-align:center; color:#8a8378; font-size:.8rem; letter-spacing:.15em; }
+
+  /* PROFILE LINKS */
+  .profile-links { display:flex; gap:1.2rem; flex-wrap:wrap; margin-top: 2rem; }
+  .profile-links a { font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:#8a8378; padding-bottom:2px; border-bottom:1px solid transparent; transition: all .3s; }
+  .profile-links a:hover { color:#d4af6d; border-color:#d4af6d; }
+
+  /* SKILLS CATEGORIES */
+  .skills-cats { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skills-cat { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 2rem; background: rgba(255,255,255,.02); }
+  .skills-cat h3 { font-family:'Cormorant Garamond', serif; font-size:1.5rem; margin-bottom: 1.4rem; color:#d4af6d; font-weight:500; }
+  .tag-cloud { display:flex; flex-wrap:wrap; gap:.6rem; }
+  .tag-chip { padding:.5rem 1rem; font-size:.78rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:#cfc9be; }
+  @media (max-width:900px) { .skills-cats { grid-template-columns: 1fr; } }
+
+  /* TOOLS PROFICIENCY */
+  .tools-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .tool-card { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 1.6rem; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent); }
+  .tool-card .t-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.3rem; }
+  .tool-card .t-name { font-family:'Cormorant Garamond', serif; font-size:1.3rem; }
+  .tool-card .t-cat { font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; color:#8a8378; margin-bottom:.8rem; }
+  .tool-card .bar { width:100%; height:5px; border-radius:999px; background: rgba(255,255,255,.06); overflow:hidden; margin-bottom:.6rem; }
+  .tool-card .fill { height:100%; border-radius:999px; background: linear-gradient(90deg,#8a6a3d,#d4af6d); }
+  .tool-card .t-years { font-size:.75rem; color:#8a8378; }
+  .tool-card .t-projects { margin-top:.8rem; display:flex; flex-wrap:wrap; gap:.4rem; }
+  .tool-card .t-projects span { font-size:.65rem; padding:.25rem .6rem; border:1px solid rgba(255,255,255,.1); border-radius:999px; color:#8a8378; }
+  @media (max-width:900px) { .tools-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width:600px) { .tools-grid { grid-template-columns: 1fr; } }
+
+  /* EXPERIENCE CARDS */
+  .exp-list { display:flex; flex-direction:column; gap: 2.5rem; }
+  .exp-card { border:1px solid rgba(255,255,255,.08); border-radius:8px; padding: 2.5rem; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent); }
+  .exp-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1.5rem; margin-bottom:1.8rem; padding-bottom:1.8rem; border-bottom:1px solid rgba(255,255,255,.08); }
+  .exp-top h3 { font-family:'Cormorant Garamond', serif; font-size:2rem; font-weight:500; }
+  .exp-top .exp-company { color:#d4af6d; font-size:.8rem; letter-spacing:.15em; text-transform:uppercase; margin-top:.5rem; }
+  .exp-badge { display:inline-block; font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; padding:.35rem .8rem; border-radius:999px; background: rgba(212,175,109,.15); color:#d4af6d; margin-left:.6rem; vertical-align:middle; }
+  .exp-meta { display:grid; grid-template-columns: repeat(2, auto); gap: 1rem 2.2rem; }
+  .exp-meta-item .lbl { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:#8a8378; margin-bottom:.3rem; }
+  .exp-meta-item .val { font-size:.85rem; }
+  .exp-body p.summary { color:#b8b1a5; line-height:1.85; margin-bottom:1.6rem; }
+  .exp-cols { display:grid; grid-template-columns: 1fr 1fr; gap: 2rem 3rem; margin-bottom:1.6rem; }
+  .exp-cols h4 { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:#d4af6d; margin-bottom:.7rem; }
+  .exp-cols ul { list-style:none; }
+  .exp-cols li { padding:.4rem 0; font-size:.88rem; color:#cfc9be; }
+  .exp-cols li::before { content:"—"; color:#d4af6d; margin-right:.5rem; }
+  .exp-tags-row { display:flex; flex-wrap:wrap; gap:1.6rem; margin-top: 1rem; }
+  .exp-tags-group .lbl { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:#8a8378; margin-bottom:.5rem; display:block; }
+  .exp-tags-group .tag-cloud { gap:.4rem; }
+  .exp-images { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; margin-top:1.8rem; }
+  .exp-images img { aspect-ratio:4/3; object-fit:cover; border-radius:6px; }
+  @media (max-width:768px) { .exp-cols { grid-template-columns: 1fr; } .exp-images { grid-template-columns: 1fr 1fr; } }
+
+  /* DESIGN PROCESS */
+  .process-flow { display:grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .process-step { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 1.8rem; background: rgba(255,255,255,.02); position:relative; }
+  .process-step .p-num { font-family:'Cormorant Garamond', serif; font-size:2.2rem; color:#d4af6d; opacity:.6; }
+  .process-step h4 { font-family:'Cormorant Garamond', serif; font-size:1.3rem; margin: .8rem 0 .6rem; font-weight:500; }
+  .process-step p { color:#b8b1a5; font-size:.85rem; line-height:1.7; }
+  @media (max-width:900px) { .process-flow { grid-template-columns: 1fr 1fr; } }
+  @media (max-width:600px) { .process-flow { grid-template-columns: 1fr; } }
+
+  /* ACHIEVEMENTS */
+  .achievements-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .achievement-card { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 1.8rem; background: rgba(255,255,255,.02); }
+  .achievement-card .a-year { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:#d4af6d; margin-bottom:.6rem; }
+  .achievement-card h4 { font-family:'Cormorant Garamond', serif; font-size:1.35rem; margin-bottom:.6rem; font-weight:500; }
+  .achievement-card p { color:#b8b1a5; font-size:.88rem; line-height:1.7; margin-bottom:.8rem; }
+  .achievement-card a { font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:#d4af6d; border-bottom:1px solid rgba(212,175,109,.4); }
+  @media (max-width:900px) { .achievements-grid { grid-template-columns: 1fr; } }
+
+  /* CERTIFICATIONS */
+  .cert-list { display:flex; flex-direction:column; gap:1rem; }
+  .cert-item { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding: 1.4rem 1.8rem; border:1px solid rgba(255,255,255,.08); border-radius:6px; background: rgba(255,255,255,.02); }
+  .cert-item .c-name { font-family:'Cormorant Garamond', serif; font-size:1.25rem; }
+  .cert-item .c-org { font-size:.75rem; color:#8a8378; letter-spacing:.08em; margin-top:.3rem; }
+  .cert-item .c-year { font-size:.75rem; color:#d4af6d; letter-spacing:.15em; text-transform:uppercase; }
+  .cert-item a { font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:#ece8e1; border:1px solid rgba(255,255,255,.18); padding:.5rem 1rem; border-radius:999px; transition: all .3s; }
+  .cert-item a:hover { border-color:#d4af6d; color:#d4af6d; }
+
+  /* DESIGN SYSTEMS */
+  .ds-card { border:1px solid rgba(255,255,255,.08); border-radius:8px; padding: 2.5rem; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent); }
+  .ds-card h3 { font-family:'Cormorant Garamond', serif; font-size:2rem; font-weight:500; margin-bottom:.8rem; }
+  .ds-card > p { color:#b8b1a5; line-height:1.85; margin-bottom: 2rem; max-width:720px; }
+  .ds-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom:2rem; }
+  .ds-block h4 { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:#d4af6d; margin-bottom:.8rem; }
+  .ds-swatches { display:flex; gap:.6rem; flex-wrap:wrap; }
+  .ds-swatch { width:44px; height:44px; border-radius:6px; border:1px solid rgba(255,255,255,.1); }
+  .ds-type-sample { font-family:'Cormorant Garamond', serif; }
+  .ds-type-sample .lg { font-size:2rem; }
+  .ds-type-sample .md { font-size:1.2rem; margin-top:.5rem; }
+  .ds-type-sample .sm { font-size:.85rem; font-family:'Inter', sans-serif; color:#8a8378; margin-top:.5rem; }
+  .ds-card .fp-shots { margin-top: .5rem; }
+  @media (max-width:768px) { .ds-grid { grid-template-columns: 1fr; } }
+
+  /* CUSTOM SECTION */
+  .custom-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .custom-card { border:1px solid rgba(255,255,255,.08); border-radius:6px; padding: 2rem; background: rgba(255,255,255,.02); }
+  .custom-card .cu-sub { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:#d4af6d; margin-bottom:.6rem; }
+  .custom-card h4 { font-family:'Cormorant Garamond', serif; font-size:1.5rem; margin-bottom:.6rem; font-weight:500; }
+  .custom-card p { color:#b8b1a5; font-size:.9rem; line-height:1.75; margin-bottom:1rem; }
+  .custom-card .tag-cloud { margin-bottom:1rem; }
+  .custom-card a { font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:#d4af6d; border-bottom:1px solid rgba(212,175,109,.4); }
+  @media (max-width:900px) { .custom-grid { grid-template-columns: 1fr; } }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes rise { from { opacity:0; transform: translateY(40px); } to { opacity:1; transform:none; } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+  .reveal { animation: rise 1s ease both; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="logo">Lena · Hart</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="wrap hero">
+  <div class="hero-left">
+    <span class="kicker">— UI/UX Designer · Est. 2014</span>
+    <h1 class="serif">Lena<br/><em style="font-style:italic;">Hart</em></h1>
+    <p class="tag">Designing clear, considered digital experiences with quiet intention — product design, design systems, and end-to-end UX across web and mobile.</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn btn-primary">View Portfolio →</a>
+      <a href="#contact" class="btn btn-ghost">Start a Project</a>
+    </div>
+    <div class="profile-links">
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Portfolio</a>
+      <a href="#" target="_blank">Behance</a>
+      <a href="#" target="_blank">Dribbble</a>
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">Medium</a>
+      <a href="#" target="_blank">Figma Community</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&q=80" alt="Featured UI design work" loading="lazy"/>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="wrap">
+  <div class="about">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&q=80" alt="Lena at work"/>
+    </div>
+    <div>
+      <span class="sec-label">About Me</span>
+      <h2 class="sec-title">A designer with <em>an eye for clarity</em>.</h2>
+      <p>I'm Lena — a UI/UX designer based in Lisbon with a soft spot for clean systems, honest interactions, and the small details others miss. For over a decade I've been shaping digital products through research, wireframes, and pixel-level craft.</p>
+      <p>My approach blends user-centered research with editorial-level visual polish. I work slowly and quietly, letting the user's needs guide the design rather than trends. Every screen is an invitation to feel understood.</p>
+      <div class="stats">
+        <div class="stat"><div class="n">12+</div><div class="l">Years Experience</div></div>
+        <div class="stat"><div class="n">80+</div><div class="l">Products Shipped</div></div>
+        <div class="stat"><div class="n">30</div><div class="l">Happy Clients</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="wrap">
+  <span class="sec-label">Portfolio</span>
+  <h2 class="sec-title">Selected <em>work</em>.</h2>
+  <div class="filters">
+    <span class="chip active">All</span>
+    <span class="chip">Web App</span>
+    <span class="chip">Mobile</span>
+    <span class="chip">Dashboard</span>
+    <span class="chip">Design System</span>
+    <span class="chip">Branding</span>
+  </div>
+  <div class="gallery">
+    <div class="tile t1"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=900&q=80" alt=""/><div class="meta"><span class="cat">Web App</span><h4>Finflow Banking</h4></div></div>
+    <div class="tile t2"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt=""/><div class="meta"><span class="cat">Mobile</span><h4>Nomad Travel App</h4></div></div>
+    <div class="tile t3"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=600&q=80" alt=""/><div class="meta"><span class="cat">Branding</span><h4>Lumen Identity</h4></div></div>
+    <div class="tile t4"><img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?w=600&q=80" alt=""/><div class="meta"><span class="cat">Dashboard</span><h4>Pulse Analytics</h4></div></div>
+    <div class="tile t5"><img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&q=80" alt=""/><div class="meta"><span class="cat">Design System</span><h4>Atlas UI Kit</h4></div></div>
+    <div class="tile t6"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80" alt=""/><div class="meta"><span class="cat">Web App</span><h4>Orbit SaaS</h4></div></div>
+    <div class="tile t7"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&q=80" alt=""/><div class="meta"><span class="cat">Mobile</span><h4>Habitly Tracker</h4></div></div>
+    <div class="tile t8"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80" alt=""/><div class="meta"><span class="cat">Dashboard</span><h4>Northwind CRM</h4></div></div>
+    <div class="tile t9"><img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=900&q=80" alt=""/><div class="meta"><span class="cat">Branding</span><h4>Verve Studio</h4></div></div>
+  </div>
+
+  <!-- FEATURED PROJECTS -->
+  <div class="fp-intro">
+    <span class="sec-label">Featured Projects</span>
+    <h2 class="sec-title">In-depth <em>case studies</em>.</h2>
+  </div>
+
+  <div class="featured-projects">
+
+    <!-- PROJECT 1 -->
+    <article class="fp-card">
+      <div class="fp-top">
+        <div class="fp-title">
+          <h3>Finflow Banking</h3>
+          <div class="fp-client">Client — Finflow Inc.</div>
+        </div>
+        <div class="fp-meta">
+          <div class="fp-meta-item"><div class="lbl">Category</div><div class="val">Web App · Fintech</div></div>
+          <div class="fp-meta-item"><div class="lbl">Industry</div><div class="val">Banking & Finance</div></div>
+          <div class="fp-meta-item"><div class="lbl">Duration</div><div class="val">14 weeks</div></div>
+          <div class="fp-meta-item"><div class="lbl">Team Size</div><div class="val">5 (2 design, 2 eng, 1 PM)</div></div>
+        </div>
+      </div>
+
+      <div class="fp-cover">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80" alt="Finflow Banking cover"/>
+      </div>
+
+      <div class="fp-body">
+        <div class="fp-block full">
+          <h4>Project Overview</h4>
+          <p>Finflow needed a redesign of their core web banking platform to replace a decade-old interface that was losing customers to more modern challenger banks. The goal was a fast, trustworthy, and accessible experience that made everyday banking feel effortless.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Goals</h4>
+          <p>Reduce time-to-complete for core banking actions, raise accessibility to WCAG AA, and improve trust signals throughout the transfer and statements flows.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Problem Statement</h4>
+          <p>Users struggled to find key actions like transfers and statements, support tickets around navigation had tripled year over year, and the interface failed basic accessibility standards, excluding a meaningful share of older customers.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Research</h4>
+          <p>Conducted 18 user interviews, a competitive audit of 6 challenger banks, and a heuristic evaluation of the existing product. Analytics review revealed a 42% drop-off on the transfer flow specifically.</p>
+        </div>
+        <div class="fp-block full">
+          <h4>User Personas</h4>
+          <div class="fp-personas">
+            <div class="persona-card">
+              <div class="p-name">Marta, 34</div>
+              <div class="p-role">Busy Professional</div>
+              <div class="p-desc">Manages finances on mobile between meetings. Wants quick transfers and clear balances without digging through menus.</div>
+            </div>
+            <div class="persona-card">
+              <div class="p-name">Carlos, 61</div>
+              <div class="p-role">Retiree</div>
+              <div class="p-desc">Prefers desktop banking, values large legible text and predictable navigation over flashy visuals.</div>
+            </div>
+          </div>
+        </div>
+        <div class="fp-block full">
+          <h4>User Journey</h4>
+          <div class="fp-journey">
+            <div class="journey-step"><div class="j-num">01</div><div class="j-label">Log In</div></div>
+            <div class="journey-step"><div class="j-num">02</div><div class="j-label">View Dashboard</div></div>
+            <div class="journey-step"><div class="j-num">03</div><div class="j-label">Select Account</div></div>
+            <div class="journey-step"><div class="j-num">04</div><div class="j-label">Initiate Transfer</div></div>
+            <div class="journey-step"><div class="j-num">05</div><div class="j-label">Confirm & Done</div></div>
+          </div>
+        </div>
+        <div class="fp-block">
+          <h4>Challenges</h4>
+          <p>Legacy backend constraints limited how much the information architecture could change without a full API rebuild, and stakeholders were wary of altering a flow tied to compliance requirements.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Solution</h4>
+          <p>Introduced a simplified three-tab structure, a persistent quick-transfer widget, and a WCAG AA-compliant type and color system, validated through three rounds of usability testing.</p>
+        </div>
+        <div class="fp-block full">
+          <h4>Final Outcome</h4>
+          <p>Shipped in phases over one quarter with no disruption to compliance workflows. Customer support tickets related to navigation dropped substantially, and the transfer flow saw a marked lift in completion rate within the first month post-launch.</p>
+          <div class="fp-outcome-stats">
+            <div class="stat"><div class="n serif">-48%</div><div class="l">Support Tickets</div></div>
+            <div class="stat"><div class="n serif">+36%</div><div class="l">Transfer Completion</div></div>
+            <div class="stat"><div class="n serif">4.7/5</div><div class="l">Post-Launch CSAT</div></div>
+          </div>
+        </div>
+        <div class="fp-block full">
+          <h4>Technologies Used</h4>
+          <div class="tag-cloud">
+            <span class="tag-chip">Figma</span>
+            <span class="tag-chip">Miro</span>
+            <span class="tag-chip">React</span>
+            <span class="tag-chip">Storybook</span>
+            <span class="tag-chip">Zeplin</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-shots">
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?w=700&q=80" alt="Wireframes"/><div class="cap">Wireframes</div></div>
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80" alt="High-Fidelity UI"/><div class="cap">High-Fidelity UI</div></div>
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&q=80" alt="Design System"/><div class="cap">Design System</div></div>
+      </div>
+
+      <div class="fp-links">
+        <a href="#" class="primary">Live Link ↗</a>
+        <a href="#">Prototype ↗</a>
+        <a href="#">Figma Link ↗</a>
+        <a href="#">Full Case Study ↗</a>
+      </div>
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="fp-card">
+      <div class="fp-top">
+        <div class="fp-title">
+          <h3>Orbit SaaS Dashboard</h3>
+          <div class="fp-client">Client — Orbit Analytics</div>
+        </div>
+        <div class="fp-meta">
+          <div class="fp-meta-item"><div class="lbl">Category</div><div class="val">Dashboard · B2B SaaS</div></div>
+          <div class="fp-meta-item"><div class="lbl">Industry</div><div class="val">Marketing Technology</div></div>
+          <div class="fp-meta-item"><div class="lbl">Duration</div><div class="val">10 weeks</div></div>
+          <div class="fp-meta-item"><div class="lbl">Team Size</div><div class="val">4 (1 design, 2 eng, 1 PM)</div></div>
+        </div>
+      </div>
+
+      <div class="fp-cover">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80" alt="Orbit SaaS Dashboard cover"/>
+      </div>
+
+      <div class="fp-body">
+        <div class="fp-block full">
+          <h4>Project Overview</h4>
+          <p>Orbit Analytics needed a self-serve dashboard that let non-technical marketing teams explore campaign data without waiting on their data team, replacing a static reporting tool exported weekly as spreadsheets.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Goals</h4>
+          <p>Cut reporting turnaround from days to minutes, raise self-serve adoption among non-technical users, and rebuild trust in the underlying data.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Problem Statement</h4>
+          <p>Marketing teams had no way to explore their own data in real time, leading to reporting delays of up to five days and low trust in the numbers by the time they reached decision-makers.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Research</h4>
+          <p>Ran contextual inquiries with 9 marketing managers, mapped existing reporting workflows, and benchmarked against tools like Looker and Mixpanel to identify a genuinely self-serve mental model.</p>
+        </div>
+        <div class="fp-block full">
+          <h4>User Personas</h4>
+          <div class="fp-personas">
+            <div class="persona-card">
+              <div class="p-name">Priya, 29</div>
+              <div class="p-role">Marketing Manager</div>
+              <div class="p-desc">Needs weekly campaign snapshots she can build herself and share with leadership without engineering support.</div>
+            </div>
+            <div class="persona-card">
+              <div class="p-name">Tom, 41</div>
+              <div class="p-role">Head of Growth</div>
+              <div class="p-desc">Wants a high-level view across campaigns and the ability to drill into anomalies without a data request.</div>
+            </div>
+          </div>
+        </div>
+        <div class="fp-block full">
+          <h4>User Journey</h4>
+          <div class="fp-journey">
+            <div class="journey-step"><div class="j-num">01</div><div class="j-label">Connect Data</div></div>
+            <div class="journey-step"><div class="j-num">02</div><div class="j-label">Choose Template</div></div>
+            <div class="journey-step"><div class="j-num">03</div><div class="j-label">Build Widgets</div></div>
+            <div class="journey-step"><div class="j-num">04</div><div class="j-label">Explore & Filter</div></div>
+            <div class="journey-step"><div class="j-num">05</div><div class="j-label">Share Report</div></div>
+          </div>
+        </div>
+        <div class="fp-block">
+          <h4>Challenges</h4>
+          <p>Balancing flexibility with simplicity was difficult — early prototypes tested as powerful but intimidating for non-technical users, requiring several rounds of simplification.</p>
+        </div>
+        <div class="fp-block">
+          <h4>Solution</h4>
+          <p>Designed a modular widget system with guided templates for common reports, progressive disclosure for advanced filters, and inline explanations of each metric to build trust in the data.</p>
+        </div>
+        <div class="fp-block full">
+          <h4>Final Outcome</h4>
+          <p>Launched to all marketing teams with a phased rollout and in-app onboarding. Reporting turnaround dropped from days to minutes, and the dashboard became the team's primary source of truth for campaign performance within the first two months.</p>
+          <div class="fp-outcome-stats">
+            <div class="stat"><div class="n serif">5d → 3m</div><div class="l">Reporting Time</div></div>
+            <div class="stat"><div class="n serif">+58%</div><div class="l">Weekly Active Use</div></div>
+            <div class="stat"><div class="n serif">4.6/5</div><div class="l">Internal NPS</div></div>
+          </div>
+        </div>
+        <div class="fp-block full">
+          <h4>Technologies Used</h4>
+          <div class="tag-cloud">
+            <span class="tag-chip">Figma</span>
+            <span class="tag-chip">Framer</span>
+            <span class="tag-chip">Vue.js</span>
+            <span class="tag-chip">D3.js</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-shots">
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=700&q=80" alt="Wireframes"/><div class="cap">Wireframes</div></div>
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80" alt="High-Fidelity UI"/><div class="cap">High-Fidelity UI</div></div>
+        <div class="fp-shot"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=80" alt="Design System"/><div class="cap">Design System</div></div>
+      </div>
+
+      <div class="fp-links">
+        <a href="#" class="primary">Live Link ↗</a>
+        <a href="#">Prototype ↗</a>
+        <a href="#">Figma Link ↗</a>
+        <a href="#">Full Case Study ↗</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- DESIGN PROCESS -->
+<section id="process" class="wrap">
+  <span class="sec-label">Design Process</span>
+  <h2 class="sec-title">How I <em>work</em>.</h2>
+  <p style="color:#b8b1a5; line-height:1.85; max-width:720px; margin-bottom:3rem;">My core process — Discover, Design, Validate — used across every product engagement, from a two-week sprint to a multi-quarter platform redesign.</p>
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="p-num">01</div>
+      <h4>Research Methods</h4>
+      <p>Stakeholder interviews, user interviews, contextual inquiry, competitive audits and analytics review to ground every decision in evidence.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">02</div>
+      <h4>User Insights</h4>
+      <p>Synthesizing research into personas, journey maps and jobs-to-be-done to align the team around real user needs before any pixels are drawn.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">03</div>
+      <h4>Wireframes</h4>
+      <p>Low-fidelity structure and information architecture, tested early and cheaply before investing in visual design.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">04</div>
+      <h4>Prototyping</h4>
+      <p>Interactive, high-fidelity prototypes in Figma or Framer that feel close enough to real to get honest feedback.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">05</div>
+      <h4>User Testing</h4>
+      <p>Moderated usability sessions and unmoderated tests to validate flows before they reach engineering.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">06</div>
+      <h4>Design Iterations</h4>
+      <p>Rapid revision cycles informed directly by testing data, not opinion — usually 2–3 rounds before final sign-off.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">07</div>
+      <h4>Final Solution</h4>
+      <p>A polished, developer-ready design backed by a documented rationale, delivered with specs, assets and a component library.</p>
+    </div>
+    <div class="process-step">
+      <div class="p-num">08</div>
+      <h4>Post-Launch</h4>
+      <p>Monitoring adoption metrics and qualitative feedback after release to guide the next iteration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEMS -->
+<section id="systems" class="wrap">
+  <span class="sec-label">Design Systems</span>
+  <h2 class="sec-title">Built for <em>scale</em>.</h2>
+  <div class="ds-card">
+    <h3>Atlas UI Kit</h3>
+    <p>A comprehensive design system built for fast-growing SaaS products — component library, typography scale, color tokens and grid rules, designed to keep design and engineering in lockstep as the product scales.</p>
+    <div class="ds-grid">
+      <div class="ds-block">
+        <h4>Components</h4>
+        <div class="tag-cloud">
+          <span class="tag-chip">Buttons</span>
+          <span class="tag-chip">Forms</span>
+          <span class="tag-chip">Cards</span>
+          <span class="tag-chip">Modals</span>
+          <span class="tag-chip">Navigation</span>
+          <span class="tag-chip">Tables</span>
+          <span class="tag-chip">Charts</span>
+        </div>
+      </div>
+      <div class="ds-block">
+        <h4>Icons & Grid System</h4>
+        <p style="color:#b8b1a5; font-size:.9rem; line-height:1.7;">240+ custom icon set at 24px base grid. Layout built on a 12-column responsive grid with an 8pt spacing scale.</p>
+      </div>
+      <div class="ds-block">
+        <h4>Typography</h4>
+        <div class="ds-type-sample">
+          <div class="lg">Aa Bb Cc</div>
+          <div class="md">Cormorant Garamond / Inter</div>
+          <div class="sm">Type scale from 12px to 64px across 8 steps</div>
+        </div>
+      </div>
+      <div class="ds-block">
+        <h4>Color Palette</h4>
+        <div class="ds-swatches">
+          <div class="ds-swatch" style="background:#0b0b0b;"></div>
+          <div class="ds-swatch" style="background:#d4af6d;"></div>
+          <div class="ds-swatch" style="background:#8a6a3d;"></div>
+          <div class="ds-swatch" style="background:#ece8e1;"></div>
+          <div class="ds-swatch" style="background:#8a8378;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fp-shots">
+      <div class="fp-shot"><img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&q=80" alt="Component previews"/><div class="cap">Components</div></div>
+      <div class="fp-shot"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80" alt="UI kit preview"/><div class="cap">UI Kit</div></div>
+      <div class="fp-shot"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=700&q=80" alt="Grid preview"/><div class="cap">Grid System</div></div>
+    </div>
+    <div class="fp-links" style="margin-top:1.8rem;">
+      <a href="#" class="primary">View on Figma Community ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="wrap">
+  <span class="sec-label">Achievements</span>
+  <h2 class="sec-title">Recognition & <em>milestones</em>.</h2>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="a-year">2023</div>
+      <h4>Awwwards — Site of the Day</h4>
+      <p>Recognized for the Orbit SaaS Dashboard interface design and interaction detailing.</p>
+      <a href="#" target="_blank">View ↗</a>
+    </div>
+    <div class="achievement-card">
+      <div class="a-year">2022</div>
+      <h4>Speaker, Config (Figma Conference)</h4>
+      <p>Gave a talk on building design systems that survive rapid product scaling.</p>
+      <a href="#" target="_blank">Watch Talk ↗</a>
+    </div>
+    <div class="achievement-card">
+      <div class="a-year">2021</div>
+      <h4>Featured on Muzli Design</h4>
+      <p>Finflow Banking case study featured as a top fintech UX redesign of the year.</p>
+      <a href="#" target="_blank">Read ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM SECTION: SPEAKING & WRITING -->
+<section id="writing" class="wrap">
+  <span class="sec-label">Speaking & Writing</span>
+  <h2 class="sec-title">Beyond the <em>screen</em>.</h2>
+  <div class="custom-grid">
+    <div class="custom-card">
+      <div class="cu-sub">Article · Medium</div>
+      <h4>Design Systems That Survive Scale</h4>
+      <p>On building a component library flexible enough to grow with a product without collapsing under its own rules.</p>
+      <div class="tag-cloud"><span class="tag-chip">Design Systems</span><span class="tag-chip">Process</span></div>
+      <a href="#" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="custom-card">
+      <div class="cu-sub">Talk · Config 2022</div>
+      <h4>Research-First Product Design</h4>
+      <p>A talk on embedding lightweight research rituals into fast-moving startup design teams.</p>
+      <div class="tag-cloud"><span class="tag-chip">UX Research</span><span class="tag-chip">Team Process</span></div>
+      <a href="#" target="_blank">Watch Talk ↗</a>
+    </div>
+    <div class="custom-card">
+      <div class="cu-sub">Side Project</div>
+      <h4>Habitly — Personal Habit Tracker</h4>
+      <p>A self-initiated mobile app exploring gentle, non-punitive habit formation patterns, designed and prototyped end to end.</p>
+      <div class="tag-cloud"><span class="tag-chip">Mobile</span><span class="tag-chip">Side Project</span></div>
+      <a href="#" target="_blank">View Case Study ↗</a>
+    </div>
+    <div class="custom-card">
+      <div class="cu-sub">Community</div>
+      <h4>Figma Community Contributor</h4>
+      <p>Publishing free UI kits and templates used by over 12,000 designers worldwide.</p>
+      <div class="tag-cloud"><span class="tag-chip">Figma</span><span class="tag-chip">Open Source</span></div>
+      <a href="#" target="_blank">Visit Profile ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="wrap">
+  <span class="sec-label">Education</span>
+  <h2 class="sec-title">Where it <em>began</em>.</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2012 — 2014</div>
+      <h3>MA in Interaction Design</h3>
+      <div class="tl-place">Lisbon School of Design · Lisbon, Portugal</div>
+      <p>Specialization: Human-Centered Product Design. Thesis on trust patterns in fintech interfaces. Graduated with Distinction (18/20).</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2009 — 2012</div>
+      <h3>BA in Graphic & Digital Design</h3>
+      <div class="tl-place">University of Porto · Porto, Portugal</div>
+      <p>Specialization: Typography & Visual Systems. Studied composition, color theory and design history. Graduated with First Class Honours (17/20).</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2016</div>
+      <h3>Certificate in UX Research Methods</h3>
+      <div class="tl-place">Nielsen Norman Group · Remote</div>
+      <p>Specialization: Usability Testing & Research Synthesis. Intensive program on user interviews and research synthesis for product teams. Pass with Merit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="wrap">
+  <span class="sec-label">Certifications</span>
+  <h2 class="sec-title">Verified <em>learning</em>.</h2>
+  <div class="cert-list">
+    <div class="cert-item">
+      <div><div class="c-name">Google UX Design Professional Certificate</div><div class="c-org">Google, via Coursera</div></div>
+      <div class="c-year">2021</div>
+      <a href="#" target="_blank">Verify ↗</a>
+    </div>
+    <div class="cert-item">
+      <div><div class="c-name">UX Research Certification</div><div class="c-org">Interaction Design Foundation</div></div>
+      <div class="c-year">2019</div>
+      <a href="#" target="_blank">Verify ↗</a>
+    </div>
+    <div class="cert-item">
+      <div><div class="c-name">Advanced Usability Testing</div><div class="c-org">Nielsen Norman Group (NN/g)</div></div>
+      <div class="c-year">2016</div>
+      <a href="#" target="_blank">Verify ↗</a>
+    </div>
+    <div class="cert-item">
+      <div><div class="c-name">Design Systems Certification</div><div class="c-org">Figma Academy</div></div>
+      <div class="c-year">2022</div>
+      <a href="#" target="_blank">Verify ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="wrap">
+  <span class="sec-label">Skills</span>
+  <h2 class="sec-title">Craft & <em>capabilities</em>.</h2>
+  <div class="skills-cats">
+    <div class="skills-cat">
+      <h3>UI Design</h3>
+      <div class="tag-cloud">
+        <span class="tag-chip">Visual Design</span>
+        <span class="tag-chip">Typography</span>
+        <span class="tag-chip">Color Theory</span>
+        <span class="tag-chip">Layout Design</span>
+        <span class="tag-chip">Design Systems</span>
+        <span class="tag-chip">Responsive Design</span>
+      </div>
+    </div>
+    <div class="skills-cat">
+      <h3>UX Design</h3>
+      <div class="tag-cloud">
+        <span class="tag-chip">User Research</span>
+        <span class="tag-chip">User Personas</span>
+        <span class="tag-chip">Journey Mapping</span>
+        <span class="tag-chip">Information Architecture</span>
+        <span class="tag-chip">Wireframing</span>
+        <span class="tag-chip">Prototyping</span>
+        <span class="tag-chip">Interaction Design</span>
+        <span class="tag-chip">Usability Testing</span>
+        <span class="tag-chip">Accessibility</span>
+      </div>
+    </div>
+    <div class="skills-cat">
+      <h3>Design Tools</h3>
+      <div class="tag-cloud">
+        <span class="tag-chip">Figma</span>
+        <span class="tag-chip">Adobe XD</span>
+        <span class="tag-chip">Sketch</span>
+        <span class="tag-chip">Photoshop</span>
+        <span class="tag-chip">Illustrator</span>
+        <span class="tag-chip">Miro</span>
+        <span class="tag-chip">Framer</span>
+        <span class="tag-chip">Webflow</span>
+        <span class="tag-chip">Principle</span>
+        <span class="tag-chip">ProtoPie</span>
+        <span class="tag-chip">After Effects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN TOOLS PROFICIENCY -->
+<section id="tools" class="wrap">
+  <span class="sec-label">Tools & Proficiency</span>
+  <h2 class="sec-title">Hands-on <em>experience</em>.</h2>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Figma</span><span class="t-years">9 yrs</span></div>
+      <div class="t-cat">UI Design & Prototyping</div>
+      <div class="bar"><div class="fill" style="width:97%"></div></div>
+      <div class="t-projects"><span>Finflow Banking</span><span>Orbit SaaS</span><span>Atlas UI Kit</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Adobe XD</span><span class="t-years">7 yrs</span></div>
+      <div class="t-cat">UI Design & Prototyping</div>
+      <div class="bar"><div class="fill" style="width:80%"></div></div>
+      <div class="t-projects"><span>Nomad Travel App</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Sketch</span><span class="t-years">8 yrs</span></div>
+      <div class="t-cat">UI Design</div>
+      <div class="bar"><div class="fill" style="width:78%"></div></div>
+      <div class="t-projects"><span>Northwind CRM</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Miro</span><span class="t-years">6 yrs</span></div>
+      <div class="t-cat">Research & Journey Mapping</div>
+      <div class="bar"><div class="fill" style="width:88%"></div></div>
+      <div class="t-projects"><span>Finflow Banking</span><span>Habitly Tracker</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Framer</span><span class="t-years">4 yrs</span></div>
+      <div class="t-cat">Interactive Prototyping</div>
+      <div class="bar"><div class="fill" style="width:75%"></div></div>
+      <div class="t-projects"><span>Orbit SaaS</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Webflow</span><span class="t-years">5 yrs</span></div>
+      <div class="t-cat">No-Code Development</div>
+      <div class="bar"><div class="fill" style="width:70%"></div></div>
+      <div class="t-projects"><span>Verve Studio</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Photoshop</span><span class="t-years">10 yrs</span></div>
+      <div class="t-cat">Visual & Photo Editing</div>
+      <div class="bar"><div class="fill" style="width:90%"></div></div>
+      <div class="t-projects"><span>Lumen Identity</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Illustrator</span><span class="t-years">10 yrs</span></div>
+      <div class="t-cat">Iconography & Branding</div>
+      <div class="bar"><div class="fill" style="width:85%"></div></div>
+      <div class="t-projects"><span>Lumen Identity</span><span>Atlas UI Kit</span></div>
+    </div>
+    <div class="tool-card">
+      <div class="t-top"><span class="t-name">Principle / ProtoPie</span><span class="t-years">3 yrs</span></div>
+      <div class="t-cat">Micro-interactions</div>
+      <div class="bar"><div class="fill" style="width:65%"></div></div>
+      <div class="t-projects"><span>Habitly Tracker</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="wrap">
+  <span class="sec-label">Experience</span>
+  <h2 class="sec-title">The <em>journey</em>.</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <h3>Founder & Lead Product Designer <span class="exp-badge">Current</span></h3>
+          <div class="exp-company">Lena Hart Studio — Lisbon, Portugal</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-meta-item"><div class="lbl">Duration</div><div class="val">Jun 2019 — Present</div></div>
+          <div class="exp-meta-item"><div class="lbl">Team Size</div><div class="val">Led teams of 3–6</div></div>
+        </div>
+      </div>
+      <div class="exp-body">
+        <p class="summary">Running an independent design studio delivering end-to-end UI/UX, design systems, and product strategy for startups and scale-ups across Europe, from early discovery through post-launch iteration.</p>
+        <div class="exp-cols">
+          <div>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Lead discovery and research for new client engagements</li>
+              <li>Own UI/UX design across web and mobile products</li>
+              <li>Build and maintain scalable design systems</li>
+              <li>Direct junior designers and coordinate with engineering</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Major Contributions</h4>
+            <ul>
+              <li>Grew studio from solo practice to a 5-person team</li>
+              <li>Delivered 40+ shipped products since founding</li>
+              <li>Built a reusable design system now used across 6 clients</li>
+              <li>Established a research-first process adopted studio-wide</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-tags-row">
+          <div class="exp-tags-group"><span class="lbl">Products Designed</span><div class="tag-cloud"><span class="tag-chip">Banking App</span><span class="tag-chip">SaaS Dashboard</span><span class="tag-chip">Mobile Apps</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Platforms</span><div class="tag-cloud"><span class="tag-chip">Web</span><span class="tag-chip">Mobile</span><span class="tag-chip">SaaS</span><span class="tag-chip">Dashboard</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Tools Used</span><div class="tag-cloud"><span class="tag-chip">Figma</span><span class="tag-chip">Miro</span><span class="tag-chip">Framer</span></div></div>
+        </div>
+        <div class="exp-images">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&q=80" alt="Studio work"/>
+          <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&q=80" alt="Studio work"/>
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&q=80" alt="Studio work"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <h3>Senior Product Designer</h3>
+          <div class="exp-company">Maison Digital — Paris, France</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-meta-item"><div class="lbl">Duration</div><div class="val">Mar 2016 — May 2019</div></div>
+          <div class="exp-meta-item"><div class="lbl">Team Size</div><div class="val">Team of 8</div></div>
+        </div>
+      </div>
+      <div class="exp-body">
+        <p class="summary">Led UX for web and mobile products at a boutique product agency, collaborating closely with engineers and founders on early-stage SaaS and consumer apps.</p>
+        <div class="exp-cols">
+          <div>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Ran user research and usability testing for client products</li>
+              <li>Designed high-fidelity UI and interactive prototypes</li>
+              <li>Partnered with engineering on design handoff</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Major Contributions</h4>
+            <ul>
+              <li>Redesigned flagship SaaS product, lifting activation by 27%</li>
+              <li>Introduced the agency's first component library</li>
+              <li>Mentored 2 junior designers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-tags-row">
+          <div class="exp-tags-group"><span class="lbl">Products Designed</span><div class="tag-cloud"><span class="tag-chip">SaaS Platform</span><span class="tag-chip">Consumer App</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Platforms</span><div class="tag-cloud"><span class="tag-chip">Web</span><span class="tag-chip">Mobile</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Tools Used</span><div class="tag-cloud"><span class="tag-chip">Sketch</span><span class="tag-chip">InVision</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <h3>UI/UX Designer</h3>
+          <div class="exp-company">Studio Norte — Porto, Portugal</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-meta-item"><div class="lbl">Duration</div><div class="val">Jan 2014 — Feb 2016</div></div>
+          <div class="exp-meta-item"><div class="lbl">Team Size</div><div class="val">Team of 4</div></div>
+        </div>
+      </div>
+      <div class="exp-body">
+        <p class="summary">Designed interfaces and conducted user research for SaaS clients while developing a systems-first design style that would define my later work.</p>
+        <div class="exp-cols">
+          <div>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Produced wireframes and UI for client SaaS products</li>
+              <li>Assisted with early-stage user interviews</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Major Contributions</h4>
+            <ul>
+              <li>Shipped first end-to-end product redesign</li>
+              <li>Built initial pattern library for internal use</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-tags-row">
+          <div class="exp-tags-group"><span class="lbl">Products Designed</span><div class="tag-cloud"><span class="tag-chip">CRM Tool</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Platforms</span><div class="tag-cloud"><span class="tag-chip">Web</span><span class="tag-chip">Dashboard</span></div></div>
+          <div class="exp-tags-group"><span class="lbl">Tools Used</span><div class="tag-cloud"><span class="tag-chip">Photoshop</span><span class="tag-chip">Illustrator</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="wrap">
+  <span class="sec-label">Contact</span>
+  <h2 class="sec-title">Let's create <em>together</em>.</h2>
+  <div class="contact-wrap contact-solo">
+    <div class="contact-info">
+      <p>I'd love to hear about your product, startup, or design challenge. Reach out directly — I respond within 24 hours.</p>
+      <div class="info-item">
+        <div class="ic">✉</div>
+        <div><div class="lbl">Email</div><div class="val">hello@lenahart.design</div></div>
+      </div>
+      <div class="info-item">
+        <div class="ic">☎</div>
+        <div><div class="lbl">Phone</div><div class="val">+351 912 345 678</div></div>
+      </div>
+      <div class="info-item">
+        <div class="ic">⌖</div>
+        <div><div class="lbl">Studio</div><div class="val">Rua das Flores 22, Lisbon</div></div>
+      </div>
+      <div class="socials">
+        <a href="#" title="Dribbble">DR</a>
+        <a href="#" title="Behance">BE</a>
+        <a href="#" title="LinkedIn">IN</a>
+        <a href="#" title="Twitter">TW</a>
+        <a href="#" title="Instagram">IG</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 LENA HART DESIGN STUDIO · ALL RIGHTS RESERVED · CRAFTED WITH INTENTION</footer>
+
+</body>
+</html>
