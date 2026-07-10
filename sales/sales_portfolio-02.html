@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Reyes — Sales Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EFEBE1;
+    --card:#FBF9F3;
+    --card-soft:#F4F0E6;
+    --ink:#2A2619;
+    --ink-soft:#726B58;
+    --ink-faint:#A39C87;
+    --gold:#AD7A2C;
+    --gold-deep:#8A5F1E;
+    --charcoal:#252017;
+    --sage:#57624C;
+    --line:rgba(42,38,25,0.13);
+    --shadow: 0 40px 80px -40px rgba(42,38,25,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  h1,h2,h3,h4{margin:0;font-family:'Newsreader',serif;font-weight:500;}
+  p{margin:0;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--gold);color:var(--card);}
+  .mono{font-family:'Space Mono',monospace;}
+
+  [contenteditable="true"]{outline:none;}
+  [contenteditable="true"]:hover{background:rgba(173,122,44,0.08);border-radius:4px;}
+  [contenteditable="true"]:focus{background:rgba(173,122,44,0.14);border-radius:4px;box-shadow:0 0 0 1px rgba(173,122,44,0.45);}
+
+  /* ---------- OUTER FRAME ---------- */
+  .frame{
+    max-width:1320px;margin:28px auto;background:var(--card);
+    border-radius:26px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  @media(max-width:900px){.frame{margin:0;border-radius:0;}}
+
+  .wrap{max-width:1160px;margin:0 auto;padding:0 56px;}
+  @media(max-width:720px){.wrap{padding:0 24px;}}
+
+  /* ---------- NAV ---------- */
+  nav.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:34px 56px 0;
+  }
+  .brand{font-family:'Newsreader',serif;font-size:19px;letter-spacing:0.01em;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:14px;color:var(--ink-soft);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a.active{color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--gold);}
+  .nav-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+  @media(max-width:760px){
+    nav.top{padding:26px 24px 0;}
+    .nav-links{position:absolute;left:0;right:0;top:70px;background:var(--card);flex-direction:column;align-items:flex-start;gap:0;max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:50;border-bottom:1px solid var(--line);}
+    .nav-links.open{max-height:400px;padding:10px 0 20px;}
+    .nav-links a{padding:12px 24px;width:100%;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;padding:56px 56px 0;align-items:start;}
+  .hero-headline{font-size:clamp(38px,4.6vw,58px);line-height:1.08;letter-spacing:-0.01em;margin-top:36px;}
+  .hero-photo{
+    position:relative;border-radius:18px;overflow:hidden;height:440px;background:var(--card-soft);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .photo-upload-btn{
+    position:absolute;bottom:18px;right:18px;background:var(--charcoal);color:var(--card);
+    font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;padding:10px 16px;
+    border-radius:100px;border:none;cursor:pointer;opacity:0.92;transition:opacity .2s, transform .2s;
+  }
+  .photo-upload-btn:hover{opacity:1;transform:translateY(-2px);}
+  input[type=file]{display:none;}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:36px 24px 0;gap:30px;}
+    .hero-photo{height:320px;order:-1;}
+  }
+
+  .hero-bottom{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;padding:44px 56px 0;}
+  .wave-line{font-size:16px;color:var(--ink);margin-bottom:0;}
+  .hero-body p{font-size:14.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:14px;}
+  .cta-btn{
+    display:inline-block;background:var(--charcoal);color:var(--card);font-size:11.5px;
+    letter-spacing:0.08em;text-transform:uppercase;padding:15px 26px;border-radius:100px;
+    margin-top:6px;border:none;cursor:pointer;transition:transform .2s ease, background .2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-2px);background:var(--gold-deep);}
+  @media(max-width:900px){.hero-bottom{grid-template-columns:1fr;padding:28px 24px 0;gap:18px;}}
+
+  /* ---------- QUOTA GAUGE (signature) ---------- */
+  .kpi-row{display:grid;grid-template-columns:auto 1fr 1fr;gap:34px;align-items:center;padding:56px 56px;}
+  .gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .gauge-label{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .kpi-card{background:var(--card-soft);border-radius:16px;padding:24px 26px;}
+  .kpi-num{font-family:'Space Mono',monospace;font-size:32px;color:var(--gold-deep);font-weight:700;}
+  .kpi-tag{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+  @media(max-width:900px){
+    .kpi-row{grid-template-columns:1fr;padding:36px 24px;gap:24px;justify-items:center;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:64px 56px;border-top:1px solid var(--line);}
+  section.block.tint{background:var(--card-soft);}
+  section.block.dark{background:var(--charcoal);color:var(--card);border-top:none;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--gold-deep);margin-bottom:14px;
+  }
+  .block.dark .eyebrow{color:var(--gold);}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+  .section-title{font-size:clamp(26px,3vw,36px);}
+  .section-sub{font-size:14px;color:var(--ink-soft);max-width:440px;margin-top:8px;line-height:1.6;}
+  .block.dark .section-sub{color:rgba(251,249,243,0.62);}
+  @media(max-width:760px){section.block{padding:48px 24px;}}
+
+  /* ---------- BUTTONS ---------- */
+  .add-btn{
+    font-size:12.5px;letter-spacing:0.03em;color:var(--gold-deep);background:none;
+    border:1px solid var(--gold-deep);border-radius:100px;padding:10px 18px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;white-space:nowrap;
+  }
+  .add-btn:hover{background:var(--gold-deep);color:var(--card);}
+  .block.dark .add-btn{color:var(--gold);border-color:var(--gold);}
+  .block.dark .add-btn:hover{background:var(--gold);color:var(--charcoal);}
+  .del-btn{
+    position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;
+    background:rgba(42,38,25,0.06);border:none;color:var(--ink-faint);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s ease;z-index:4;
+  }
+  .del-btn:hover{background:#A6432B;color:#fff;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .skill-group{position:relative;}
+  .skill-group-title{font-size:13.5px;font-weight:600;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-size:12.5px;padding:7px 13px;border-radius:100px;background:var(--card-soft);border:1px solid var(--line);}
+  .tag.addtag{border-style:dashed;color:var(--ink-faint);cursor:pointer;background:none;}
+  @media(max-width:880px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin-bottom:22px;}
+  .exp-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:14px;}
+  .exp-role{font-family:'Newsreader',serif;font-size:21px;}
+  .exp-company{color:var(--gold-deep);font-weight:600;font-family:'Inter',sans-serif;font-size:15px;}
+  .exp-meta{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ink-faint);text-align:right;}
+  .exp-body{font-size:14px;line-height:1.7;color:var(--ink-soft);margin-bottom:16px;}
+  .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+  .meta-label{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px;}
+  .meta-value{font-size:13px;font-weight:500;}
+  .exp-list li{font-size:13.5px;line-height:1.7;color:var(--ink-soft);padding-left:16px;position:relative;}
+  .exp-list li::before{content:'•';position:absolute;left:0;color:var(--gold);}
+  .exp-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;}
+  .exp-stat{background:var(--card-soft);border-radius:10px;padding:12px 16px;min-width:130px;}
+  .exp-stat .lbl{font-family:'Space Mono',monospace;font-size:9.5px;text-transform:uppercase;color:var(--ink-faint);}
+  .exp-stat .val{font-family:'Space Mono',monospace;font-size:18px;color:var(--gold-deep);font-weight:700;margin-top:3px;}
+  .exp-thumb-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .exp-thumb{width:64px;height:64px;border-radius:8px;overflow:hidden;position:relative;background:var(--card-soft);}
+  .exp-thumb img{width:100%;height:100%;object-fit:cover;}
+  .exp-add-thumb{
+    width:64px;height:64px;border-radius:8px;border:1px dashed var(--line);display:flex;
+    align-items:center;justify-content:center;color:var(--ink-faint);cursor:pointer;font-size:20px;
+  }
+  @media(max-width:880px){.exp-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .project-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;}
+  .project-gallery{position:relative;height:190px;background:var(--card-soft);}
+  .project-gallery .main-img{width:100%;height:100%;object-fit:cover;}
+  .gallery-thumbs{position:absolute;bottom:10px;left:10px;right:10px;display:flex;gap:6px;flex-wrap:wrap;}
+  .gthumb{width:34px;height:34px;border-radius:6px;overflow:hidden;border:2px solid var(--card);cursor:pointer;}
+  .gthumb img{width:100%;height:100%;object-fit:cover;}
+  .gthumb.add{
+    display:flex;align-items:center;justify-content:center;background:rgba(37,32,23,0.75);
+    color:var(--card);font-size:16px;
+  }
+  .project-body{padding:22px 24px 26px;}
+  .project-name{font-family:'Newsreader',serif;font-size:19px;margin-bottom:4px;}
+  .project-type{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:12px;}
+  .project-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .project-meta .tag{font-size:10.5px;padding:5px 10px;}
+  .project-desc{font-size:13px;line-height:1.6;color:var(--ink-soft);margin-bottom:14px;}
+  .project-stats{display:flex;gap:10px;margin-bottom:8px;}
+  .project-stats .exp-stat{flex:1;min-width:auto;padding:10px 12px;}
+  .project-stats .val{font-size:15px;}
+  details.project-details{margin-top:10px;}
+  details.project-details summary{
+    cursor:pointer;font-size:12px;color:var(--gold-deep);font-weight:600;list-style:none;
+    display:flex;align-items:center;gap:6px;
+  }
+  details.project-details summary::-webkit-details-marker{display:none;}
+  details.project-details summary::after{content:'+';margin-left:auto;font-size:15px;}
+  details.project-details[open] summary::after{content:'–';}
+  .details-body{padding-top:12px;font-size:12.5px;line-height:1.7;color:var(--ink-soft);}
+  .details-body .drow{margin-bottom:8px;}
+  .details-body b{color:var(--ink);font-weight:600;}
+  @media(max-width:900px){.projects-grid{grid-template-columns:1fr;}}
+
+  /* ---------- PERFORMANCE ---------- */
+  .table-scroll{overflow-x:auto;}
+  .perf-table{width:100%;border-collapse:collapse;min-width:820px;}
+  .perf-table thead th{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:left;padding:0 12px 12px;border-bottom:1px solid var(--line);
+  }
+  .perf-table tbody td{padding:15px 12px;border-bottom:1px solid var(--line);font-size:13px;}
+  .perf-table tbody tr:hover{background:var(--card-soft);}
+  .perf-bar-track{width:90px;height:6px;background:var(--line);border-radius:100px;overflow:hidden;}
+  .perf-bar-fill{height:100%;background:var(--gold);border-radius:100px;}
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .ach-card{position:relative;border:1px solid rgba(251,249,243,0.15);border-radius:14px;padding:24px 22px;background:rgba(251,249,243,0.05);}
+  .ach-year{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);}
+  .ach-title{font-family:'Newsreader',serif;font-size:18px;margin:8px 0 8px;}
+  .ach-desc{font-size:13px;line-height:1.6;color:rgba(251,249,243,0.66);margin-bottom:10px;}
+  .ach-org{font-size:11.5px;color:rgba(251,249,243,0.48);}
+  @media(max-width:880px){.ach-grid{grid-template-columns:1fr;}}
+
+  /* ---------- EDU / CERT ---------- */
+  .split-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .edu-item,.cert-item{position:relative;border-bottom:1px solid var(--line);padding:18px 0;}
+  .edu-degree{font-family:'Newsreader',serif;font-size:17px;}
+  .edu-inst{color:var(--gold-deep);font-weight:600;font-size:13.5px;margin-top:4px;}
+  .edu-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:6px;}
+  .cert-item{display:flex;justify-content:space-between;gap:14px;}
+  .cert-name{font-family:'Newsreader',serif;font-size:16px;}
+  .cert-issuer{font-size:12.5px;color:var(--gold-deep);font-weight:600;margin-top:3px;}
+  .cert-meta{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--ink-faint);margin-top:5px;}
+  .cert-year{font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-faint);white-space:nowrap;}
+  @media(max-width:880px){.split-two{grid-template-columns:1fr;gap:16px;}}
+
+  /* ---------- CLIENTS ---------- */
+  .clients-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .client-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px;}
+  .client-top{display:flex;justify-content:space-between;margin-bottom:10px;}
+  .client-name{font-family:'Newsreader',serif;font-size:18px;}
+  .client-industry{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--gold-deep);}
+  .client-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-faint);margin-bottom:12px;}
+  .client-story{font-size:13px;line-height:1.65;color:var(--ink-soft);margin-bottom:12px;}
+  .client-quote{font-family:'Newsreader',serif;font-style:italic;font-size:14px;color:var(--gold-deep);border-left:2px solid var(--gold);padding-left:14px;}
+  @media(max-width:880px){.clients-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .tool-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .tool-name{font-weight:600;font-size:14px;margin-bottom:10px;}
+  .tool-dots{display:flex;gap:5px;margin-bottom:10px;}
+  .tool-dots span{width:8px;height:8px;border-radius:50%;background:var(--line);}
+  .tool-dots span.filled{background:var(--gold);}
+  .tool-years{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--ink-faint);}
+  @media(max-width:880px){.tools-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- LANGUAGES ---------- */
+  .lang-table{width:100%;border-collapse:collapse;max-width:680px;}
+  .lang-table th{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:0 10px 10px;}
+  .lang-table td{padding:13px 10px;border-top:1px solid var(--line);font-size:13px;}
+
+  /* ---------- CUSTOM SECTIONS ---------- */
+  .custom-section{position:relative;border:1px dashed var(--line);border-radius:16px;padding:32px;margin-bottom:26px;}
+  .custom-section-title{font-family:'Newsreader',serif;font-size:22px;margin-bottom:16px;}
+  .custom-items{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .custom-item{position:relative;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--card-soft);}
+  .custom-item-title{font-weight:600;font-size:14px;margin-bottom:6px;}
+  .custom-item-sub{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--gold-deep);margin-bottom:8px;}
+  .custom-item-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;}
+  @media(max-width:880px){.custom-items{grid-template-columns:1fr;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--charcoal);color:rgba(251,249,243,0.6);padding:60px 56px 30px;}
+  .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px;margin-bottom:44px;}
+  .footer-name{font-family:'Newsreader',serif;font-size:30px;color:var(--card);}
+  .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .footer-links a{font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:rgba(251,249,243,0.6);}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-bottom{border-top:1px solid rgba(251,249,243,0.12);padding-top:20px;font-size:11px;font-family:'Space Mono',monospace;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  @media(max-width:760px){footer{padding:44px 24px 26px;}}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="top">
+    <div class="brand" contenteditable="true" data-key="brand">Maya Reyes</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#top" class="active">Home</a>
+      <a href="#clients">Clients</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Get in touch</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <div class="hero" id="top">
+    <div>
+      <h1 class="hero-headline" contenteditable="true" data-key="headline">Close bigger deals with a sharper pipeline</h1>
+    </div>
+    <div class="hero-photo">
+      <img id="profilePhoto" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop" alt="Profile photo">
+      <button class="photo-upload-btn" id="profileUploadBtn">Upload photo</button>
+      <input type="file" id="profileUploadInput" accept="image/*">
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div>
+      <p class="wave-line" contenteditable="true" data-key="waveline">👋 Hi there — Maya here</p>
+    </div>
+    <div class="hero-body">
+      <p contenteditable="true" data-key="summary1">I'm a B2B sales manager specialized in enterprise SaaS and complex, multi-stakeholder deals. I run a disciplined pipeline but never lose the relationship along the way.</p>
+      <p contenteditable="true" data-key="summary2">With a decade in full-cycle sales, I've built repeatable playbooks for prospecting, negotiation, and account expansion across fintech, logistics, and healthtech.</p>
+      <p contenteditable="true" data-key="summary3">I approach every account with a genuine curiosity about the business behind it — tailoring the pitch, the proof, and the terms to what actually moves that buyer.</p>
+      <button class="cta-btn" contenteditable="true" data-key="ctatext">LET'S TALK</button>
+    </div>
+  </div>
+
+  <!-- ===================== KPI / GAUGE ROW (signature) ===================== -->
+  <div class="kpi-row">
+    <div class="gauge-wrap">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="58" fill="none" stroke="var(--line)" stroke-width="12"/>
+        <circle id="gaugeArc" cx="70" cy="70" r="58" fill="none" stroke="var(--gold)" stroke-width="12"
+          stroke-linecap="round" stroke-dasharray="364" stroke-dashoffset="55" transform="rotate(-90 70 70)"/>
+        <text x="70" y="66" text-anchor="middle" font-family="Space Mono, monospace" font-size="24" font-weight="700" fill="#2A2619" id="gaugeText">121%</text>
+        <text x="70" y="86" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#726B58">of quota</text>
+      </svg>
+      <div class="gauge-label" contenteditable="true" data-key="gaugelabel">Quota Attainment · YTD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num" contenteditable="true" data-key="kpi1">$5.4M</div>
+      <div class="kpi-tag" contenteditable="true" data-key="kpi1label">Revenue closed this year</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num" contenteditable="true" data-key="kpi2">96%</div>
+      <div class="kpi-tag" contenteditable="true" data-key="kpi2label">Customer retention rate</div>
+    </div>
+  </div>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section class="block tint" id="skills">
+    <div class="eyebrow">Core Skills</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">How I sell</h2>
+        <p class="section-sub">Methodology, pipeline discipline, and the tools I run it on.</p>
+      </div>
+      <button class="add-btn" onclick="addSkillGroup()">+ Add category</button>
+    </div>
+    <div class="skills-grid" id="skillsGrid">
+      <div class="skill-group">
+        <div class="skill-group-title" contenteditable="true">Sales Methodology</div>
+        <div class="tag-row">
+          <span class="tag" contenteditable="true">Enterprise Sales</span>
+          <span class="tag" contenteditable="true">SaaS Sales</span>
+          <span class="tag" contenteditable="true">Solution Selling</span>
+          <span class="tag" contenteditable="true">Consultative Selling</span>
+          <span class="tag" contenteditable="true">Negotiation</span>
+          <span class="tag addtag" onclick="addTag(this)">+ Add</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title" contenteditable="true">Pipeline &amp; Growth</div>
+        <div class="tag-row">
+          <span class="tag" contenteditable="true">Prospecting</span>
+          <span class="tag" contenteditable="true">Lead Generation</span>
+          <span class="tag" contenteditable="true">Account Management</span>
+          <span class="tag" contenteditable="true">Upselling &amp; Cross-selling</span>
+          <span class="tag" contenteditable="true">Revenue Growth</span>
+          <span class="tag addtag" onclick="addTag(this)">+ Add</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title" contenteditable="true">Tools &amp; Reporting</div>
+        <div class="tag-row">
+          <span class="tag" contenteditable="true">Salesforce</span>
+          <span class="tag" contenteditable="true">HubSpot CRM</span>
+          <span class="tag" contenteditable="true">Sales Forecasting</span>
+          <span class="tag" contenteditable="true">Pipeline Management</span>
+          <span class="tag" contenteditable="true">Microsoft Excel</span>
+          <span class="tag addtag" onclick="addTag(this)">+ Add</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="block" id="experience">
+    <div class="eyebrow">Professional Experience</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Where I've carried a number</h2>
+        <p class="section-sub">Role, market, and what the quarter actually said.</p>
+      </div>
+      <button class="add-btn" onclick="addExperience()">+ Add role</button>
+    </div>
+    <div id="experienceList">
+      <div class="exp-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="exp-top">
+          <div><div class="exp-role" contenteditable="true">Senior Sales Manager</div><div class="exp-company" contenteditable="true">Cortex Health Systems</div></div>
+          <div class="exp-meta"><div contenteditable="true">Dubai, UAE</div><div contenteditable="true">Apr 2022 — Present</div></div>
+        </div>
+        <p class="exp-body" contenteditable="true">Lead a five-person enterprise sales team selling clinical software into hospital networks across the Gulf.</p>
+        <div class="exp-grid">
+          <div><div class="meta-label">Target Market</div><div class="meta-value" contenteditable="true">Hospital networks</div></div>
+          <div><div class="meta-label">Territory</div><div class="meta-value" contenteditable="true">GCC</div></div>
+          <div><div class="meta-label">Team Managed</div><div class="meta-value" contenteditable="true">5 reps</div></div>
+          <div><div class="meta-label">CRM / Tools</div><div class="meta-value" contenteditable="true">Salesforce, Gong</div></div>
+        </div>
+        <ul class="exp-list">
+          <li contenteditable="true">Rebuilt the qualification framework, cutting sales cycle by 22%</li>
+          <li contenteditable="true">Closed the company's first eight-figure multi-year contract</li>
+        </ul>
+        <div class="exp-stats">
+          <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$5.4M</div></div>
+          <div class="exp-stat"><div class="lbl">Quota</div><div class="val" contenteditable="true">121%</div></div>
+          <div class="exp-stat"><div class="lbl">Key Accounts</div><div class="val" contenteditable="true">9</div></div>
+        </div>
+        <div class="exp-thumb-row">
+          <div class="exp-add-thumb" onclick="addExpThumb(this)">+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="block tint" id="projects">
+    <div class="eyebrow">Sales Projects</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Sneak peek of recent deals</h2>
+        <p class="section-sub">Campaigns and engagements — upload photos of decks, sites, or teams for each one.</p>
+      </div>
+      <button class="add-btn" onclick="addProject()">+ Add project</button>
+    </div>
+    <div class="projects-grid" id="projectsList">
+      <div class="project-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="project-gallery">
+          <img class="main-img" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop" alt="Project image">
+          <div class="gallery-thumbs">
+            <div class="gthumb" onclick="setMainImage(this)"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop"></div>
+            <div class="gthumb add" onclick="addGalleryImage(this)">+</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name" contenteditable="true">Hospital Network Rollout</div>
+          <div class="project-type" contenteditable="true">Enterprise Deal</div>
+          <div class="project-meta">
+            <span class="tag" contenteditable="true">Client: Al Noor Health</span>
+            <span class="tag" contenteditable="true">Healthtech</span>
+            <span class="tag" contenteditable="true">7 months</span>
+          </div>
+          <p class="project-desc" contenteditable="true">Phased rollout across 6 hospital sites, moving from pilot to enterprise-wide license.</p>
+          <div class="project-stats">
+            <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$1.2M</div></div>
+            <div class="exp-stat"><div class="lbl">Conversion</div><div class="val" contenteditable="true">31%</div></div>
+          </div>
+          <details class="project-details">
+            <summary>Details</summary>
+            <div class="details-body">
+              <div class="drow"><b>Sales Strategy:</b> <span contenteditable="true">Champion-led pilot expanding to committee sign-off</span></div>
+              <div class="drow"><b>Channels Used:</b> <span contenteditable="true">Direct outbound, referral, trade events</span></div>
+              <div class="drow"><b>Team Involved:</b> <span contenteditable="true">2 AEs, 1 solutions engineer</span></div>
+              <div class="drow"><b>Key Results:</b> <span contenteditable="true">Expanded from 1 to 6 sites within contract year</span></div>
+              <div class="drow"><b>Business Impact:</b> <span contenteditable="true">Became the reference account for regional healthtech expansion</span></div>
+              <div class="drow"><b>Reference:</b> <a href="#" contenteditable="true">View case study →</a></div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="project-gallery">
+          <img class="main-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Project image">
+          <div class="gallery-thumbs">
+            <div class="gthumb" onclick="setMainImage(this)"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400&auto=format&fit=crop"></div>
+            <div class="gthumb add" onclick="addGalleryImage(this)">+</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name" contenteditable="true">Fintech Channel Launch</div>
+          <div class="project-type" contenteditable="true">Channel Sales</div>
+          <div class="project-meta">
+            <span class="tag" contenteditable="true">Client: Vantra Bank</span>
+            <span class="tag" contenteditable="true">Fintech</span>
+            <span class="tag" contenteditable="true">5 months</span>
+          </div>
+          <p class="project-desc" contenteditable="true">Stood up a reseller channel with two regional integrators to reach mid-market banks faster.</p>
+          <div class="project-stats">
+            <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$610K</div></div>
+            <div class="exp-stat"><div class="lbl">Conversion</div><div class="val" contenteditable="true">27%</div></div>
+          </div>
+          <details class="project-details">
+            <summary>Details</summary>
+            <div class="details-body">
+              <div class="drow"><b>Sales Strategy:</b> <span contenteditable="true">Partner enablement + co-sell motion</span></div>
+              <div class="drow"><b>Channels Used:</b> <span contenteditable="true">Partner network, webinars</span></div>
+              <div class="drow"><b>Team Involved:</b> <span contenteditable="true">1 AE, 1 partner manager</span></div>
+              <div class="drow"><b>Key Results:</b> <span contenteditable="true">Sourced 14 new opportunities in first quarter</span></div>
+              <div class="drow"><b>Business Impact:</b> <span contenteditable="true">Opened a repeatable channel now 18% of regional pipeline</span></div>
+              <div class="drow"><b>Reference:</b> <a href="#" contenteditable="true">View case study →</a></div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="project-gallery">
+          <img class="main-img" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1200&auto=format&fit=crop" alt="Project image">
+          <div class="gallery-thumbs">
+            <div class="gthumb" onclick="setMainImage(this)"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=400&auto=format&fit=crop"></div>
+            <div class="gthumb add" onclick="addGalleryImage(this)">+</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name" contenteditable="true">Logistics Platform Expansion</div>
+          <div class="project-type" contenteditable="true">Account Growth</div>
+          <div class="project-meta">
+            <span class="tag" contenteditable="true">Client: Meridian Freight</span>
+            <span class="tag" contenteditable="true">Logistics</span>
+            <span class="tag" contenteditable="true">9 months</span>
+          </div>
+          <p class="project-desc" contenteditable="true">Grew an existing account from a single-site license to a company-wide platform deployment.</p>
+          <div class="project-stats">
+            <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$890K</div></div>
+            <div class="exp-stat"><div class="lbl">Conversion</div><div class="val" contenteditable="true">34%</div></div>
+          </div>
+          <details class="project-details">
+            <summary>Details</summary>
+            <div class="details-body">
+              <div class="drow"><b>Sales Strategy:</b> <span contenteditable="true">Land-and-expand with quarterly business reviews</span></div>
+              <div class="drow"><b>Channels Used:</b> <span contenteditable="true">Account management, executive sponsorship</span></div>
+              <div class="drow"><b>Team Involved:</b> <span contenteditable="true">1 AE, 1 CSM</span></div>
+              <div class="drow"><b>Key Results:</b> <span contenteditable="true">Expanded to 14 hubs, 3x initial contract value</span></div>
+              <div class="drow"><b>Business Impact:</b> <span contenteditable="true">Became largest logistics account in the region</span></div>
+              <div class="drow"><b>Reference:</b> <a href="#" contenteditable="true">View case study →</a></div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PERFORMANCE ===================== -->
+  <section class="block" id="performance">
+    <div class="eyebrow">Sales Performance</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">The numbers, by period</h2>
+        <p class="section-sub">Target versus what actually landed, quarter over quarter.</p>
+      </div>
+      <button class="add-btn" onclick="addPerformanceRow()">+ Add period</button>
+    </div>
+    <div class="table-scroll">
+      <table class="perf-table">
+        <thead><tr><th>Period</th><th>Target</th><th>Achieved</th><th>Revenue</th><th>Quota %</th><th>New Clients</th><th>Retention</th><th>Avg Deal</th><th></th></tr></thead>
+        <tbody id="performanceList">
+          <tr>
+            <td contenteditable="true">Q1 2026</td>
+            <td class="mono" contenteditable="true">$1.0M</td>
+            <td class="mono" contenteditable="true">$1.3M</td>
+            <td class="mono" contenteditable="true">$1.3M</td>
+            <td><div style="display:flex;align-items:center;gap:10px;"><div class="perf-bar-track"><div class="perf-bar-fill" style="width:100%"></div></div><span class="mono" contenteditable="true">130%</span></div></td>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true">96%</td>
+            <td class="mono" contenteditable="true">$92K</td>
+            <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Q4 2025</td>
+            <td class="mono" contenteditable="true">$950K</td>
+            <td class="mono" contenteditable="true">$1.05M</td>
+            <td class="mono" contenteditable="true">$1.05M</td>
+            <td><div style="display:flex;align-items:center;gap:10px;"><div class="perf-bar-track"><div class="perf-bar-fill" style="width:100%"></div></div><span class="mono" contenteditable="true">110%</span></div></td>
+            <td contenteditable="true">5</td>
+            <td contenteditable="true">94%</td>
+            <td class="mono" contenteditable="true">$88K</td>
+            <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== ACHIEVEMENTS (dark) ===================== -->
+  <section class="block dark" id="achievements">
+    <div class="eyebrow">Achievements</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title" style="color:var(--card);">Recognition along the way</h2>
+        <p class="section-sub">Not every quarter makes the highlight reel — these did.</p>
+      </div>
+      <button class="add-btn" onclick="addAchievement()">+ Add achievement</button>
+    </div>
+    <div class="ach-grid" id="achievementsList">
+      <div class="ach-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="ach-year mono" contenteditable="true">2025</div>
+        <div class="ach-title" contenteditable="true">President's Club</div>
+        <p class="ach-desc" contenteditable="true">Top 3% of global sales organization by revenue and quota attainment.</p>
+        <div class="ach-org" contenteditable="true">Cortex Health Systems</div>
+      </div>
+      <div class="ach-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="ach-year mono" contenteditable="true">2023</div>
+        <div class="ach-title" contenteditable="true">Deal of the Year</div>
+        <p class="ach-desc" contenteditable="true">Largest single enterprise contract signed in company history.</p>
+        <div class="ach-org" contenteditable="true">Cortex Health Systems</div>
+      </div>
+      <div class="ach-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="ach-year mono" contenteditable="true">2021</div>
+        <div class="ach-title" contenteditable="true">Rookie of the Year</div>
+        <p class="ach-desc" contenteditable="true">Fastest ramp to full quota across the entire sales org.</p>
+        <div class="ach-org" contenteditable="true">Fintra Systems</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION + CERTIFICATIONS ===================== -->
+  <section class="block">
+    <div class="split-two">
+      <div>
+        <div class="eyebrow">Education</div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2 class="section-title" style="font-size:28px;">Foundations</h2>
+          <button class="add-btn" onclick="addEducation()">+ Add</button>
+        </div>
+        <div id="educationList">
+          <div class="edu-item">
+            <button class="del-btn" onclick="removeCard(this)">✕</button>
+            <div class="edu-degree" contenteditable="true">B.A. Business Administration</div>
+            <div class="edu-inst" contenteditable="true">American University of Sharjah</div>
+            <div class="edu-meta" contenteditable="true">Sharjah, UAE · 2011 — 2015 · GPA 3.7</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Certifications</div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2 class="section-title" style="font-size:28px;">Credentials</h2>
+          <button class="add-btn" onclick="addCertification()">+ Add</button>
+        </div>
+        <div id="certList">
+          <div class="cert-item">
+            <button class="del-btn" onclick="removeCard(this)">✕</button>
+            <div>
+              <div class="cert-name" contenteditable="true">Challenger Sales Certification</div>
+              <div class="cert-issuer" contenteditable="true">Challenger Inc.</div>
+              <div class="cert-meta" contenteditable="true">ID: CHL-2291 · Verify →</div>
+            </div>
+            <div class="cert-year mono" contenteditable="true">2024</div>
+          </div>
+          <div class="cert-item">
+            <button class="del-btn" onclick="removeCard(this)">✕</button>
+            <div>
+              <div class="cert-name" contenteditable="true">Salesforce Sales Cloud Certification</div>
+              <div class="cert-issuer" contenteditable="true">Salesforce</div>
+              <div class="cert-meta" contenteditable="true">ID: SFC-88213 · Verify →</div>
+            </div>
+            <div class="cert-year mono" contenteditable="true">2022</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLIENTS ===================== -->
+  <section class="block tint" id="clients">
+    <div class="eyebrow">Key Clients &amp; Accounts</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Accounts I've carried</h2>
+        <p class="section-sub">Relationships that outlasted a single deal cycle.</p>
+      </div>
+      <button class="add-btn" onclick="addClient()">+ Add client</button>
+    </div>
+    <div class="clients-grid" id="clientsList">
+      <div class="client-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="client-top"><div class="client-name" contenteditable="true">Al Noor Health</div><div class="client-industry mono" contenteditable="true">Healthtech</div></div>
+        <div class="client-meta">
+          <span contenteditable="true">Account size: Enterprise</span>
+          <span contenteditable="true">Relationship: 3 years</span>
+          <span contenteditable="true">Revenue: $1.2M</span>
+        </div>
+        <p class="client-story" contenteditable="true">Started as a single-hospital pilot, now deployed across the full network.</p>
+        <p class="client-quote" contenteditable="true">"Maya made the rollout feel effortless for our clinical teams."</p>
+      </div>
+      <div class="client-card">
+        <button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="client-top"><div class="client-name" contenteditable="true">Meridian Freight</div><div class="client-industry mono" contenteditable="true">Logistics</div></div>
+        <div class="client-meta">
+          <span contenteditable="true">Account size: Mid-market</span>
+          <span contenteditable="true">Relationship: 2 years</span>
+          <span contenteditable="true">Revenue: $890K</span>
+        </div>
+        <p class="client-story" contenteditable="true">Grew from one site to fourteen hubs over two renewal cycles.</p>
+        <p class="client-quote" contenteditable="true">"She understood our operations better than most of our own team."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TOOLS ===================== -->
+  <section class="block">
+    <div class="eyebrow">Tools &amp; Technologies</div>
+    <div class="section-head">
+      <div><h2 class="section-title">Stack I run the desk on</h2></div>
+      <button class="add-btn" onclick="addTool()">+ Add tool</button>
+    </div>
+    <div class="tools-grid" id="toolsList">
+      <div class="tool-card"><button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="tool-name" contenteditable="true">Salesforce CRM</div>
+        <div class="tool-dots"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span></div>
+        <div class="tool-years" contenteditable="true">7 years</div>
+      </div>
+      <div class="tool-card"><button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="tool-name" contenteditable="true">HubSpot CRM</div>
+        <div class="tool-dots"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
+        <div class="tool-years" contenteditable="true">4 years</div>
+      </div>
+      <div class="tool-card"><button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="tool-name" contenteditable="true">LinkedIn Sales Navigator</div>
+        <div class="tool-dots"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span></div>
+        <div class="tool-years" contenteditable="true">6 years</div>
+      </div>
+      <div class="tool-card"><button class="del-btn" onclick="removeCard(this)">✕</button>
+        <div class="tool-name" contenteditable="true">Tableau</div>
+        <div class="tool-dots"><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+        <div class="tool-years" contenteditable="true">2 years</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LANGUAGES ===================== -->
+  <section class="block tint">
+    <div class="eyebrow">Languages</div>
+    <div class="section-head"><div><h2 class="section-title">Languages</h2></div><button class="add-btn" onclick="addLanguage()">+ Add language</button></div>
+    <table class="lang-table" id="languagesList">
+      <thead><tr><th>Language</th><th>Reading</th><th>Writing</th><th>Speaking</th><th>Level</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">English</td><td contenteditable="true">Fluent</td><td contenteditable="true">Fluent</td><td contenteditable="true">Fluent</td><td contenteditable="true">Native</td>
+          <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">Spanish</td><td contenteditable="true">Fluent</td><td contenteditable="true">Conversational</td><td contenteditable="true">Fluent</td><td contenteditable="true">Professional</td>
+          <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== CUSTOM SECTIONS ===================== -->
+  <section class="block">
+    <div class="eyebrow">Custom Sections</div>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">More, on your terms</h2>
+        <p class="section-sub">Add anything the template above doesn't cover.</p>
+      </div>
+      <button class="add-btn" onclick="addCustomSection()">+ Add section</button>
+    </div>
+    <div id="customSectionsList"></div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contact">
+    <div class="footer-top">
+      <div class="footer-name" contenteditable="true" data-key="footername">Let's talk pipeline.</div>
+      <div class="footer-links">
+        <a href="#" contenteditable="true">Email</a>
+        <a href="#" contenteditable="true">LinkedIn</a>
+        <a href="#" contenteditable="true">Portfolio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span contenteditable="true">© 2026 Maya Reyes. All rights reserved.</span>
+      <span>Sales Portfolio Template</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ================= NAV TOGGLE ================= */
+document.getElementById('navToggle').addEventListener('click', function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ================= PROFILE PHOTO UPLOAD ================= */
+document.getElementById('profileUploadBtn').addEventListener('click', function(){
+  document.getElementById('profileUploadInput').click();
+});
+document.getElementById('profileUploadInput').addEventListener('change', function(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){ document.getElementById('profilePhoto').src = ev.target.result; saveAll(); };
+  reader.readAsDataURL(file);
+});
+
+/* ================= PROJECT GALLERY ================= */
+function setMainImage(thumbEl){
+  const src = thumbEl.querySelector('img').src;
+  thumbEl.closest('.project-gallery').querySelector('.main-img').src = src;
+  saveAll();
+}
+function addGalleryImage(addEl){
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e){
+    const file = e.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev){
+      const thumb = document.createElement('div');
+      thumb.className = 'gthumb';
+      thumb.onclick = function(){ setMainImage(thumb); };
+      thumb.innerHTML = '<img src="'+ev.target.result+'">';
+      addEl.parentElement.insertBefore(thumb, addEl);
+      addEl.closest('.project-gallery').querySelector('.main-img').src = ev.target.result;
+      saveAll();
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+/* ================= EXPERIENCE THUMBNAILS ================= */
+function addExpThumb(addEl){
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e){
+    const file = e.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev){
+      const thumb = document.createElement('div');
+      thumb.className = 'exp-thumb';
+      thumb.innerHTML = '<img src="'+ev.target.result+'">';
+      addEl.parentElement.insertBefore(thumb, addEl);
+      saveAll();
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+/* ================= GENERIC CARD/ROW ACTIONS ================= */
+function removeCard(btn){
+  const card = btn.closest('.exp-card,.project-card,.ach-card,.edu-item,.cert-item,.client-card,.tool-card,.skill-group,.custom-item,.custom-section');
+  if(card){ card.remove(); saveAll(); }
+}
+function removeRow(btn){ const row = btn.closest('tr'); if(row){ row.remove(); saveAll(); } }
+function addTag(el){
+  const tag = document.createElement('span');
+  tag.className = 'tag'; tag.contentEditable = 'true'; tag.textContent = 'New Skill';
+  el.parentElement.insertBefore(tag, el); saveAll();
+}
+
+/* ================= ADD: SKILL GROUP ================= */
+function addSkillGroup(){
+  const div = document.createElement('div');
+  div.className = 'skill-group';
+  div.innerHTML = `<button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="skill-group-title" contenteditable="true">New Category</div>
+    <div class="tag-row"><span class="tag" contenteditable="true">Skill</span><span class="tag addtag" onclick="addTag(this)">+ Add</span></div>`;
+  document.getElementById('skillsGrid').appendChild(div); saveAll();
+}
+
+/* ================= ADD: EXPERIENCE ================= */
+function addExperience(){
+  const div = document.createElement('div');
+  div.className = 'exp-card';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="exp-top">
+      <div><div class="exp-role" contenteditable="true">Job Title</div><div class="exp-company" contenteditable="true">Company Name</div></div>
+      <div class="exp-meta"><div contenteditable="true">Location</div><div contenteditable="true">Start — End</div></div>
+    </div>
+    <p class="exp-body" contenteditable="true">Role summary — what you owned and who you sold to.</p>
+    <div class="exp-grid">
+      <div><div class="meta-label">Target Market</div><div class="meta-value" contenteditable="true">—</div></div>
+      <div><div class="meta-label">Territory</div><div class="meta-value" contenteditable="true">—</div></div>
+      <div><div class="meta-label">Team Managed</div><div class="meta-value" contenteditable="true">—</div></div>
+      <div><div class="meta-label">CRM / Tools</div><div class="meta-value" contenteditable="true">—</div></div>
+    </div>
+    <ul class="exp-list"><li contenteditable="true">Key responsibility or contribution</li></ul>
+    <div class="exp-stats">
+      <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$0</div></div>
+      <div class="exp-stat"><div class="lbl">Quota</div><div class="val" contenteditable="true">0%</div></div>
+      <div class="exp-stat"><div class="lbl">Key Accounts</div><div class="val" contenteditable="true">0</div></div>
+    </div>
+    <div class="exp-thumb-row"><div class="exp-add-thumb" onclick="addExpThumb(this)">+</div></div>`;
+  document.getElementById('experienceList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: PROJECT ================= */
+function addProject(){
+  const div = document.createElement('div');
+  div.className = 'project-card';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="project-gallery">
+      <img class="main-img" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop" alt="Project image">
+      <div class="gallery-thumbs"><div class="gthumb add" onclick="addGalleryImage(this)">+</div></div>
+    </div>
+    <div class="project-body">
+      <div class="project-name" contenteditable="true">Project Name</div>
+      <div class="project-type" contenteditable="true">Project Type</div>
+      <div class="project-meta">
+        <span class="tag" contenteditable="true">Client</span>
+        <span class="tag" contenteditable="true">Industry</span>
+        <span class="tag" contenteditable="true">Duration</span>
+      </div>
+      <p class="project-desc" contenteditable="true">Sales objective and what was sold.</p>
+      <div class="project-stats">
+        <div class="exp-stat"><div class="lbl">Revenue</div><div class="val" contenteditable="true">$0</div></div>
+        <div class="exp-stat"><div class="lbl">Conversion</div><div class="val" contenteditable="true">0%</div></div>
+      </div>
+      <details class="project-details">
+        <summary>Details</summary>
+        <div class="details-body">
+          <div class="drow"><b>Sales Strategy:</b> <span contenteditable="true">—</span></div>
+          <div class="drow"><b>Channels Used:</b> <span contenteditable="true">—</span></div>
+          <div class="drow"><b>Team Involved:</b> <span contenteditable="true">—</span></div>
+          <div class="drow"><b>Key Results:</b> <span contenteditable="true">—</span></div>
+          <div class="drow"><b>Business Impact:</b> <span contenteditable="true">—</span></div>
+          <div class="drow"><b>Reference:</b> <a href="#" contenteditable="true">Add link →</a></div>
+        </div>
+      </details>
+    </div>`;
+  document.getElementById('projectsList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: PERFORMANCE ROW ================= */
+function addPerformanceRow(){
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td contenteditable="true">New Period</td>
+    <td class="mono" contenteditable="true">$0</td>
+    <td class="mono" contenteditable="true">$0</td>
+    <td class="mono" contenteditable="true">$0</td>
+    <td><div style="display:flex;align-items:center;gap:10px;"><div class="perf-bar-track"><div class="perf-bar-fill" style="width:0%"></div></div><span class="mono" contenteditable="true">0%</span></div></td>
+    <td contenteditable="true">0</td><td contenteditable="true">0%</td>
+    <td class="mono" contenteditable="true">$0</td>
+    <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>`;
+  document.getElementById('performanceList').appendChild(tr); saveAll();
+}
+
+/* ================= ADD: ACHIEVEMENT ================= */
+function addAchievement(){
+  const div = document.createElement('div');
+  div.className = 'ach-card';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="ach-year mono" contenteditable="true">2026</div>
+    <div class="ach-title" contenteditable="true">Achievement Title</div>
+    <p class="ach-desc" contenteditable="true">Description and sales impact.</p>
+    <div class="ach-org" contenteditable="true">Organization</div>`;
+  document.getElementById('achievementsList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: EDUCATION ================= */
+function addEducation(){
+  const div = document.createElement('div');
+  div.className = 'edu-item';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="edu-degree" contenteditable="true">Degree</div>
+    <div class="edu-inst" contenteditable="true">Institution</div>
+    <div class="edu-meta" contenteditable="true">Location · Duration · Grade</div>`;
+  document.getElementById('educationList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: CERTIFICATION ================= */
+function addCertification(){
+  const div = document.createElement('div');
+  div.className = 'cert-item';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div><div class="cert-name" contenteditable="true">Certification Name</div>
+    <div class="cert-issuer" contenteditable="true">Issuing Organization</div>
+    <div class="cert-meta" contenteditable="true">ID: — · Verify →</div></div>
+    <div class="cert-year mono" contenteditable="true">2026</div>`;
+  document.getElementById('certList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: CLIENT ================= */
+function addClient(){
+  const div = document.createElement('div');
+  div.className = 'client-card';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="client-top"><div class="client-name" contenteditable="true">Client Name</div><div class="client-industry mono" contenteditable="true">Industry</div></div>
+    <div class="client-meta">
+      <span contenteditable="true">Account size: —</span><span contenteditable="true">Relationship: —</span><span contenteditable="true">Revenue: —</span>
+    </div>
+    <p class="client-story" contenteditable="true">Success story with this account.</p>
+    <p class="client-quote" contenteditable="true">"Client testimonial goes here."</p>`;
+  document.getElementById('clientsList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: TOOL ================= */
+function addTool(){
+  const div = document.createElement('div');
+  div.className = 'tool-card';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="tool-name" contenteditable="true">Tool Name</div>
+    <div class="tool-dots"><span class="filled"></span><span></span><span></span><span></span><span></span></div>
+    <div class="tool-years" contenteditable="true">1 year</div>`;
+  document.getElementById('toolsList').appendChild(div); saveAll();
+}
+
+/* ================= ADD: LANGUAGE ================= */
+function addLanguage(){
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td contenteditable="true">Language</td><td contenteditable="true">—</td><td contenteditable="true">—</td><td contenteditable="true">—</td><td contenteditable="true">—</td>
+    <td><button class="del-btn" style="position:static;" onclick="removeRow(this)">✕</button></td>`;
+  document.getElementById('languagesList').querySelector('tbody').appendChild(tr); saveAll();
+}
+
+/* ================= ADD: CUSTOM SECTION ================= */
+let customCounter = 0;
+function addCustomSection(){
+  customCounter++;
+  const id = 'customItems' + customCounter;
+  const div = document.createElement('div');
+  div.className = 'custom-section';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="custom-section-title" contenteditable="true">New Section Title</div>
+    <div class="custom-items" id="${id}"></div>
+    <button class="add-btn" style="margin-top:16px;" onclick="addCustomItem('${id}')">+ Add item</button>`;
+  document.getElementById('customSectionsList').appendChild(div);
+  addCustomItem(id); saveAll();
+}
+function addCustomItem(listId){
+  const div = document.createElement('div');
+  div.className = 'custom-item';
+  div.innerHTML = `
+    <button class="del-btn" onclick="removeCard(this)">✕</button>
+    <div class="custom-item-title" contenteditable="true">Item Title</div>
+    <div class="custom-item-sub" contenteditable="true">Subtitle / Tag</div>
+    <div class="custom-item-desc" contenteditable="true">Description, details, or reference link.</div>`;
+  document.getElementById(listId).appendChild(div); saveAll();
+}
+
+/* ================= PERSISTENCE ================= */
+const LISTS = ['skillsGrid','experienceList','projectsList','performanceList','achievementsList',
+  'educationList','certList','clientsList','toolsList','customSectionsList'];
+
+let saveTimer;
+function saveAll(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function(){
+    try{
+      const data = {};
+      document.querySelectorAll('[data-key]').forEach(function(el){ data[el.getAttribute('data-key')] = el.innerHTML; });
+      localStorage.setItem('salesPortfolio2_fields', JSON.stringify(data));
+      LISTS.forEach(function(id){
+        const el = document.getElementById(id);
+        if(el) localStorage.setItem('salesPortfolio2_' + id, el.innerHTML);
+      });
+      const langBody = document.querySelector('#languagesList tbody');
+      if(langBody) localStorage.setItem('salesPortfolio2_languagesList', langBody.innerHTML);
+      const photo = document.getElementById('profilePhoto');
+      if(photo) localStorage.setItem('salesPortfolio2_photo', photo.src);
+    }catch(e){ console.warn('Save skipped:', e); }
+  }, 400);
+}
+function loadAll(){
+  try{
+    const raw = localStorage.getItem('salesPortfolio2_fields');
+    if(raw){
+      const data = JSON.parse(raw);
+      Object.keys(data).forEach(function(key){
+        const el = document.querySelector('[data-key="'+key+'"]');
+        if(el) el.innerHTML = data[key];
+      });
+    }
+    LISTS.forEach(function(id){
+      const saved = localStorage.getItem('salesPortfolio2_' + id);
+      const el = document.getElementById(id);
+      if(saved !== null && el) el.innerHTML = saved;
+    });
+    const savedLang = localStorage.getItem('salesPortfolio2_languagesList');
+    const langBody = document.querySelector('#languagesList tbody');
+    if(savedLang !== null && langBody) langBody.innerHTML = savedLang;
+    const photo = localStorage.getItem('salesPortfolio2_photo');
+    if(photo) document.getElementById('profilePhoto').src = photo;
+  }catch(e){ console.warn('Load skipped:', e); }
+}
+document.addEventListener('input', saveAll);
+document.addEventListener('DOMContentLoaded', loadAll);
+loadAll();
+</script>
+</body>
+</html>
