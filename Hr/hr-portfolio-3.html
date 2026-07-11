@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kunal Rao Yadla — HR Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0c1f3f;
+    --navy-mid: #162d55;
+    --gold: #c8a96e;
+    --gold-light: #e2c99a;
+    --cream: #f7f3ec;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --light: #f1ede6;
+    --text: #1a1a2e;
+    --border: rgba(200,169,110,0.25);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(12,31,63,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,110,0.12);
+    animation: fadeDown 0.8s ease both;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy) !important;
+    background: var(--gold);
+    padding: 10px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 75% 50%, rgba(200,169,110,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(22,45,85,0.6) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px 80px;
+    position: relative; z-index: 2;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .hero-name em { font-style: italic; color: var(--gold-light); }
+  .hero-title {
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 36px;
+  }
+  .hero-desc {
+    font-size: 15px; font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    max-width: 440px;
+    margin-bottom: 48px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 14px 30px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 14px 30px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 40px;
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(200,169,110,0.15);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    padding: 120px 80px 80px 40px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .hero-photo-frame {
+    position: relative;
+    width: 360px; height: 440px;
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -16px; right: -16px;
+    width: 100%; height: 100%;
+    border: 1.5px solid var(--gold);
+    border-radius: 3px;
+    opacity: 0.4;
+    z-index: 0;
+  }
+  .hero-photo-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -16px; left: -16px;
+    width: 100%; height: 100%;
+    border: 1.5px solid var(--gold);
+    border-radius: 3px;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  .hero-photo-inner {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%;
+    background: linear-gradient(145deg, var(--navy-mid) 0%, #0a1829 100%);
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 96px; font-weight: 300;
+    color: rgba(200,169,110,0.25);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 28px; left: -32px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 20px;
+    border-radius: 2px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .location-tag {
+    position: absolute;
+    top: 32px; right: -20px;
+    background: rgba(12,31,63,0.95);
+    border: 1px solid var(--border);
+    color: rgba(255,255,255,0.7);
+    padding: 10px 16px;
+    border-radius: 2px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 8px;
+    z-index: 2;
+  }
+  .location-tag span { color: var(--gold); }
+
+  /* SECTION COMMONS */
+  section { padding: 100px 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .section-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 56px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 16px; font-weight: 300;
+    line-height: 1.9;
+    color: #4a5568;
+  }
+  .about-text p + p { margin-top: 20px; }
+  .about-highlights {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; margin-top: 40px;
+  }
+  .highlight-card {
+    padding: 24px;
+    border: 1px solid rgba(12,31,63,0.08);
+    border-radius: 3px;
+    background: var(--cream);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .highlight-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .hc-icon {
+    width: 36px; height: 36px;
+    background: var(--navy);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+  .hc-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hc-value {
+    font-size: 14px; font-weight: 500;
+    color: var(--navy);
+  }
+  .about-side { }
+  .contact-info {
+    background: var(--navy);
+    padding: 40px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 28px;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .ci-icon {
+    width: 32px; height: 32px;
+    background: rgba(200,169,110,0.12);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .ci-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2px;
+  }
+  .ci-value {
+    font-size: 13px; color: rgba(255,255,255,0.8);
+  }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.3);
+    color: #34d399;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 8px 16px; border-radius: 20px;
+    margin-top: 24px;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #34d399;
+    animation: pulse 2s infinite;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(200,169,110,0.1));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1; transform: translateX(0);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+  .ti-header {
+    display: flex; flex-wrap: wrap;
+    align-items: flex-start; justify-content: space-between;
+    gap: 12px; margin-bottom: 6px;
+  }
+  .ti-role {
+    font-size: 18px; font-weight: 600;
+    color: var(--navy);
+  }
+  .ti-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold);
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 2px;
+    white-space: nowrap;
+  }
+  .ti-company {
+    font-size: 13px; font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .ti-location {
+    font-size: 12px; color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .ti-bullets { list-style: none; }
+  .ti-bullets li {
+    font-size: 14px; font-weight: 300; line-height: 1.75;
+    color: #4a5568;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .ti-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--gold); font-size: 12px;
+  }
+  .ti-tag-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 18px;
+  }
+  .ti-tag {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy);
+    background: rgba(12,31,63,0.06);
+    border: 1px solid rgba(12,31,63,0.1);
+    padding: 5px 12px; border-radius: 2px;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+  .skills-col-title {
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 1px solid rgba(12,31,63,0.1);
+    padding-bottom: 14px; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .skills-col-title span { color: var(--gold); }
+  .skill-item { margin-bottom: 22px; }
+  .skill-meta {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 8px;
+  }
+  .skill-name {
+    font-size: 13px; font-weight: 500; color: var(--navy);
+  }
+  .skill-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold);
+  }
+  .skill-bar {
+    height: 3px; background: rgba(12,31,63,0.08); border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--navy), var(--gold));
+    border-radius: 2px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .soft-skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .soft-skill-pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    border: 1px solid rgba(12,31,63,0.08);
+    border-radius: 3px;
+    font-size: 12px; font-weight: 500; color: var(--navy);
+    transition: all 0.25s;
+    background: var(--cream);
+  }
+  .soft-skill-pill:hover {
+    border-color: var(--gold);
+    background: rgba(200,169,110,0.04);
+  }
+  .soft-skill-pill::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .certs-section { margin-top: 60px; }
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 32px;
+  }
+  .cert-card {
+    padding: 24px;
+    background: var(--cream);
+    border: 1px solid rgba(12,31,63,0.08);
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .cert-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(12,31,63,0.08);
+  }
+  .cert-icon { font-size: 24px; margin-bottom: 12px; }
+  .cert-name {
+    font-size: 13px; font-weight: 500;
+    color: var(--navy); line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .cert-org {
+    font-size: 11px; color: var(--gold);
+    font-weight: 500; letter-spacing: 0.05em;
+  }
+
+  /* EDUCATION */
+  #education { background: var(--navy); }
+  #education .section-title { color: var(--white); }
+  #education .section-label { color: var(--gold); }
+  .edu-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .edu-card {
+    padding: 40px;
+    border: 1px solid rgba(200,169,110,0.15);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.03);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+  .edu-card:hover::before { height: 100%; }
+  .edu-card:hover {
+    border-color: rgba(200,169,110,0.4);
+    background: rgba(255,255,255,0.05);
+  }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .edu-field {
+    font-size: 13px; font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .edu-school {
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    margin-bottom: 4px;
+  }
+  .edu-meta {
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+  .edu-gpa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid rgba(200,169,110,0.25);
+    color: var(--gold-light);
+    font-size: 13px; font-weight: 500;
+    padding: 8px 16px; border-radius: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #060f1f;
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid rgba(200,169,110,0.1);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+  }
+  .footer-sub {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 36px;
+  }
+  .footer-contact {
+    display: flex; justify-content: center;
+    gap: 32px; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .footer-contact a {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.25s;
+  }
+  .footer-contact a:hover { color: var(--gold-light); }
+  .footer-copy {
+    font-size: 11px; color: rgba(255,255,255,0.2);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* TOC STRIP */
+  .toc-strip {
+    background: var(--white);
+    border-bottom: 1px solid rgba(12,31,63,0.08);
+    padding: 16px 0;
+    position: sticky; top: 0; z-index: 90;
+  }
+  .toc-scroll {
+    max-width: 1200px; margin: 0 auto; padding: 0 60px;
+    display: flex; gap: 10px; overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .toc-pill {
+    flex-shrink: 0;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream);
+    border: 1px solid rgba(12,31,63,0.08);
+    padding: 8px 16px; border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+  .toc-pill:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.06); }
+
+  /* PROFILE PHOTO UPLOAD */
+  .photo-upload-controls {
+    position: absolute; bottom: -18px; right: 50%;
+    transform: translateX(50%);
+    display: flex; gap: 8px; z-index: 3;
+    background: rgba(6,15,31,0.92);
+    padding: 8px; border-radius: 30px;
+    border: 1px solid var(--border);
+  }
+  .photo-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(200,169,110,0.12);
+    border: none; color: var(--gold-light);
+    cursor: pointer; font-size: 14px;
+    transition: background 0.2s;
+  }
+  .photo-btn:hover { background: var(--gold); color: var(--navy); }
+  .photo-zoom-row {
+    position: absolute; top: -46px; left: 50%; transform: translateX(-50%);
+    display: none; align-items: center; gap: 8px;
+    background: rgba(6,15,31,0.92);
+    padding: 8px 14px; border-radius: 20px;
+    border: 1px solid var(--border);
+    z-index: 3; white-space: nowrap;
+  }
+  .photo-zoom-row.active { display: flex; }
+  .photo-zoom-row input[type="range"] { width: 110px; accent-color: var(--gold); }
+  .photo-zoom-row span { font-size: 10px; color: var(--gold-light); letter-spacing: 0.08em; text-transform: uppercase; }
+  #heroPhotoImg {
+    width: 100%; height: 100%; object-fit: cover;
+    display: none; transform-origin: center;
+  }
+
+  /* GENERIC UPLOAD BLOCK */
+  .upload-block { margin-top: 18px; }
+  .upload-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy);
+    background: transparent;
+    border: 1px dashed rgba(12,31,63,0.3);
+    padding: 9px 16px; border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .upload-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.05); }
+  #education .upload-btn, .on-dark .upload-btn {
+    color: var(--gold-light); border-color: rgba(255,255,255,0.25);
+  }
+  .gallery-grid {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 14px;
+  }
+  .gallery-grid:empty { margin-top: 0; }
+  .gallery-item {
+    position: relative;
+    width: 250px; height: 250px;
+    border-radius: 4px; overflow: hidden;
+    border: 1px solid rgba(12,31,63,0.1);
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-remove {
+    position: absolute; top: 4px; right: 4px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(6,15,31,0.85); color: var(--gold-light);
+    border: none; font-size: 13px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-remove:hover { background: var(--gold); color: var(--navy); }
+
+  /* GENERIC DATA CARDS (new sections) */
+  .card-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .data-card {
+    padding: 32px;
+    background: var(--cream);
+    border: 1px solid rgba(12,31,63,0.08);
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .data-card:hover { border-color: var(--gold); box-shadow: 0 12px 32px rgba(12,31,63,0.06); }
+  .on-dark .data-card {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(200,169,110,0.15);
+  }
+  .dc-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 12px; margin-bottom: 6px;
+  }
+  .dc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: var(--navy);
+  }
+  .on-dark .dc-title { color: var(--gold-light); }
+  .dc-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--gold);
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 2px;
+    white-space: nowrap;
+  }
+  .dc-meta { font-size: 12px; color: var(--gray); margin-bottom: 16px; }
+  .on-dark .dc-meta { color: rgba(255,255,255,0.4); }
+  .dc-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 13px; padding: 8px 0;
+    border-bottom: 1px solid rgba(12,31,63,0.06);
+  }
+  .on-dark .dc-row { border-bottom-color: rgba(255,255,255,0.06); }
+  .dc-row:last-of-type { border-bottom: none; }
+  .dc-row-label { color: var(--gray); }
+  .on-dark .dc-row-label { color: rgba(255,255,255,0.4); }
+  .dc-row-value { color: var(--navy); font-weight: 500; text-align: right; }
+  .on-dark .dc-row-value { color: rgba(255,255,255,0.85); }
+  .dc-text { font-size: 13px; line-height: 1.75; color: #4a5568; margin: 6px 0 4px; }
+  .on-dark .dc-text { color: rgba(255,255,255,0.6); }
+  .dc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .dc-tag {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy);
+    background: rgba(12,31,63,0.06);
+    border: 1px solid rgba(12,31,63,0.1);
+    padding: 5px 12px; border-radius: 2px;
+  }
+  .on-dark .dc-tag { color: var(--gold-light); background: rgba(200,169,110,0.08); border-color: rgba(200,169,110,0.2); }
+
+  /* LANGUAGES */
+  .lang-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .lang-card {
+    padding: 24px; background: var(--white);
+    border: 1px solid rgba(12,31,63,0.08); border-radius: 4px;
+  }
+  .lang-name { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+  .lang-skill-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); padding: 3px 0; }
+  .lang-skill-row span:last-child { color: var(--gold); font-weight: 500; }
+  .lang-level {
+    display: inline-block; margin-top: 12px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy); background: rgba(200,169,110,0.12);
+    padding: 5px 12px; border-radius: 20px;
+  }
+
+  /* HR TOOLS */
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tool-pill-card {
+    padding: 20px; background: var(--cream);
+    border: 1px solid rgba(12,31,63,0.08); border-radius: 3px;
+  }
+  .tool-name { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+  .tool-bar { height: 3px; background: rgba(12,31,63,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .tool-bar-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--gold)); border-radius: 2px; }
+  .tool-meta { font-size: 11px; color: var(--gray); }
+
+  /* CUSTOM SECTIONS */
+  #customSections .data-card { position: relative; }
+  .custom-remove-section {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; color: var(--gray);
+    font-size: 16px; cursor: pointer; line-height: 1;
+  }
+  .custom-remove-section:hover { color: #c0392b; }
+  .add-section-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--navy); background: var(--gold);
+    border: none; padding: 14px 30px; border-radius: 2px;
+    cursor: pointer; transition: background 0.25s, transform 0.2s;
+    margin-top: 36px;
+  }
+  .add-section-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .custom-form {
+    display: none; margin-top: 24px;
+    background: var(--white); border: 1px solid rgba(12,31,63,0.1);
+    border-radius: 4px; padding: 28px;
+  }
+  .custom-form.active { display: block; }
+  .custom-form label {
+    display: block; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gray); margin: 14px 0 6px;
+  }
+  .custom-form label:first-child { margin-top: 0; }
+  .custom-form input[type="text"], .custom-form textarea {
+    width: 100%; padding: 11px 14px;
+    border: 1px solid rgba(12,31,63,0.15); border-radius: 3px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text);
+    background: var(--cream);
+  }
+  .custom-form textarea { resize: vertical; min-height: 70px; }
+  .custom-form-actions { display: flex; gap: 12px; margin-top: 20px; }
+  .custom-form-actions button {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 10px 22px; border-radius: 2px; cursor: pointer; border: none;
+  }
+  .custom-save-btn { background: var(--navy); color: var(--white); }
+  .custom-cancel-btn { background: transparent; border: 1px solid rgba(12,31,63,0.15) !important; color: var(--gray); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 28px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 120px 28px 80px; }
+    .container { padding: 0 28px; }
+    .about-grid, .skills-layout, .edu-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 24px; }
+    .card-grid, .lang-grid, .tools-grid { grid-template-columns: 1fr; }
+    .toc-scroll { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KRY</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#education">Education</a>
+    <a href="mailto:kunal050999@gmail.com" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- TABLE OF CONTENTS STRIP -->
+<div class="toc-strip">
+  <div class="toc-scroll">
+    <a class="toc-pill" href="#about">About</a>
+    <a class="toc-pill" href="#experience">Experience</a>
+    <a class="toc-pill" href="#recruitment">Recruitment Projects</a>
+    <a class="toc-pill" href="#initiatives">HR Initiatives</a>
+    <a class="toc-pill" href="#engagement">Employee Engagement</a>
+    <a class="toc-pill" href="#learning">Learning &amp; Development</a>
+    <a class="toc-pill" href="#performance">Performance Mgmt</a>
+    <a class="toc-pill" href="#policies">Policies &amp; Compliance</a>
+    <a class="toc-pill" href="#payroll">Payroll &amp; Benefits</a>
+    <a class="toc-pill" href="#analytics">HR Analytics</a>
+    <a class="toc-pill" href="#skills">Skills</a>
+    <a class="toc-pill" href="#tools">HR Tools</a>
+    <a class="toc-pill" href="#achievements">Achievements</a>
+    <a class="toc-pill" href="#awards">Awards</a>
+    <a class="toc-pill" href="#languages">Languages</a>
+    <a class="toc-pill" href="#education">Education</a>
+    <a class="toc-pill" href="#custom">More</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">HR Professional · Dubai, UAE</div>
+    <h1 class="hero-name">
+      Kunal <em>Rao</em><br>Yadla
+    </h1>
+    <p class="hero-title">HR Administrator &amp; Operations Specialist</p>
+    <p class="hero-desc">
+      MBA in Human Resources with 2+ years managing end-to-end HR operations for multinational teams — from attendance & records management to onboarding coordination and MIS reporting.
+    </p>
+    <div class="hero-ctas">
+      <a href="mailto:kunal050999@gmail.com" class="btn-primary">
+        <span>📬</span> Get In Touch
+      </a>
+      <a href="#experience" class="btn-outline">
+        <span>→</span> View Experience
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">250</div>
+        <div class="stat-label">Employees Managed</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <div class="hero-photo-inner">
+        <div class="hero-initials" id="heroInitials">KR</div>
+        <img id="heroPhotoImg" src="" alt="Profile photo" />
+      </div>
+
+      <div class="photo-zoom-row" id="photoZoomRow">
+        <span>Zoom</span>
+        <input type="range" id="photoZoomSlider" min="100" max="200" value="100" />
+      </div>
+      <div class="photo-upload-controls">
+        <input type="file" id="profilePhotoInput" accept="image/*" hidden />
+        <button type="button" class="photo-btn" id="photoUploadBtn" title="Upload photo">⬆</button>
+        <button type="button" class="photo-btn" id="photoAdjustBtn" title="Crop & adjust">⤢</button>
+        <button type="button" class="photo-btn" id="photoRemoveBtn" title="Remove photo">✕</button>
+      </div>
+
+      <div class="hero-badge">Available Immediately</div>
+      <div class="location-tag">📍 <span>Dubai, UAE</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Driving People <em>Operations</em><br>with Precision</h2>
+        <div class="about-text">
+          <p>I am an HR Administration & Operations professional with an MBA in Human Resources and hands-on experience managing the full employee lifecycle in a global multinational. My work spans across attendance management, records administration, onboarding & offboarding coordination, and MIS reporting.</p>
+          <p>With a B.Tech background in Computer Science, I bring a unique analytical edge to HR operations — leveraging Advanced Excel, data analysis, and process thinking to enhance accuracy, efficiency, and compliance.</p>
+          <p>Currently based in Dubai on a Visit Visa, I am immediately available and actively seeking an HR Administrator, HR Coordinator, or HR Executive (Operations) role in the UAE.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="hc-icon">🎓</div>
+            <div class="hc-label">Education</div>
+            <div class="hc-value">MBA in Human Resources</div>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">🌍</div>
+            <div class="hc-label">Nationality</div>
+            <div class="hc-value">Indian</div>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">💬</div>
+            <div class="hc-label">Languages</div>
+            <div class="hc-value">English · Hindi · Telugu</div>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">📊</div>
+            <div class="hc-label">Specialty</div>
+            <div class="hc-value">HR MIS & Analytics</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s">
+        <div class="contact-info">
+          <div class="contact-title">Contact Details</div>
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">+971 553 770 969</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">kunal050999@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Location</div>
+              <div class="ci-value">Dubai, United Arab Emirates</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🪪</div>
+            <div>
+              <div class="ci-label">Visa Status</div>
+              <div class="ci-value">Visit Visa</div>
+            </div>
+          </div>
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            Open to Opportunities
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Work History</div>
+      <h2 class="section-title">Professional <em>Experience</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="ti-header">
+          <div class="ti-role">HR Intern</div>
+          <div class="ti-period">05/2025 — 06/2025</div>
+        </div>
+        <div class="ti-company">Rashtriya Ispat Nigam Limited (RINL)</div>
+        <div class="ti-location">📍 Visakhapatnam, India · Public Sector Steel Enterprise</div>
+        <ul class="ti-bullets">
+          <li>Gained hands-on exposure to HR operations in a large public-sector organization with a focus on performance appraisal and feedback systems.</li>
+          <li>Conducted a PMS gap analysis covering 2,154 employees and proposed 17 actionable improvements, projecting a 12% efficiency enhancement.</li>
+          <li>Analyzed survey feedback from 380 employees across 4 departments, identifying 5 key improvement areas aligned with organizational objectives.</li>
+          <li>Assisted the HR team with documentation and data consolidation for performance management processes.</li>
+        </ul>
+        <div class="ti-tag-row">
+          <span class="ti-tag">PMS Analysis</span>
+          <span class="ti-tag">HR Documentation</span>
+          <span class="ti-tag">Data Analysis</span>
+          <span class="ti-tag">Performance Management</span>
+        </div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-exp1" accept="image/*" multiple hidden id="file-exp1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-exp1').click()">📷 Add Workplace / Certificate Photos</button>
+          <div class="gallery-grid" id="grid-exp1"></div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="ti-header">
+          <div class="ti-role">Senior Analyst — Internal HR &amp; Admin Support</div>
+          <div class="ti-period">11/2021 — 10/2023</div>
+        </div>
+        <div class="ti-company">Capgemini</div>
+        <div class="ti-location">📍 Bengaluru, India · Global IT & Consulting MNC</div>
+        <ul class="ti-bullets">
+          <li>Coordinated end-to-end HR operations for 200–250 employees, serving as the primary point of contact for HR administrative support, internal coordination, and employee queries.</li>
+          <li>Guided and coordinated an internal support team to manage employee records, HR documentation, attendance tracking, and leave management with accuracy and timeliness.</li>
+          <li>Managed employee lifecycle processes including onboarding, offboarding, attendance & leave records, documentation, and system access coordination in collaboration with HR, payroll, and IT teams.</li>
+          <li>Prepared and maintained HR MIS reports using Advanced Excel, covering employee data, attendance summaries, compliance tracking, and management reporting.</li>
+        </ul>
+        <div class="ti-tag-row">
+          <span class="ti-tag">Employee Lifecycle</span>
+          <span class="ti-tag">HR MIS</span>
+          <span class="ti-tag">Advanced Excel</span>
+          <span class="ti-tag">Onboarding</span>
+          <span class="ti-tag">Payroll Coordination</span>
+          <span class="ti-tag">Records Management</span>
+        </div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-exp2" accept="image/*" multiple hidden id="file-exp2" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-exp2').click()">📷 Add Workplace / Certificate Photos</button>
+          <div class="gallery-grid" id="grid-exp2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUITMENT PROJECTS -->
+<section id="recruitment">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Hiring Impact</div>
+      <h2 class="section-title">Recruitment <em>Projects</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">Campus Hiring Drive — Analyst Batch</div>
+          <div class="dc-type">Bulk Hiring</div>
+        </div>
+        <div class="dc-meta">Department: Delivery Operations · Timeline: 6 Weeks</div>
+        <div class="dc-row"><span class="dc-row-label">Positions Filled</span><span class="dc-row-value">18 / 20</span></div>
+        <div class="dc-row"><span class="dc-row-label">Sourcing Platforms</span><span class="dc-row-value">Naukri, LinkedIn, Campus Portal</span></div>
+        <div class="dc-row"><span class="dc-row-label">Interview Process</span><span class="dc-row-value">Aptitude → HR → Panel</span></div>
+        <div class="dc-row"><span class="dc-row-label">Time-to-Fill</span><span class="dc-row-value">32 Days Avg.</span></div>
+        <p class="dc-text">Coordinated end-to-end scheduling and documentation for a multi-round campus hiring cycle, improving offer-to-joining ratio through timely candidate follow-ups.</p>
+        <div class="dc-tags"><span class="dc-tag">Bulk Hiring</span><span class="dc-tag">Coordination</span><span class="dc-tag">Scheduling</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-rec1" accept="image/*" multiple hidden id="file-rec1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-rec1').click()">📷 Add Event / Campaign Images</button>
+          <div class="gallery-grid" id="grid-rec1"></div>
+        </div>
+      </div>
+      <div class="data-card reveal" style="transition-delay:0.1s">
+        <div class="dc-header">
+          <div class="dc-title">Lateral Hiring — Support Functions</div>
+          <div class="dc-type">Lateral Hiring</div>
+        </div>
+        <div class="dc-meta">Department: HR Operations · Timeline: Ongoing</div>
+        <div class="dc-row"><span class="dc-row-label">Positions Filled</span><span class="dc-row-value">6</span></div>
+        <div class="dc-row"><span class="dc-row-label">Sourcing Platforms</span><span class="dc-row-value">Referrals, Naukri</span></div>
+        <div class="dc-row"><span class="dc-row-label">Hiring Metrics</span><span class="dc-row-value">92% Offer Acceptance</span></div>
+        <p class="dc-text">Supported requisition tracking, documentation verification, and onboarding coordination for lateral hires across support functions.</p>
+        <div class="dc-tags"><span class="dc-tag">Documentation</span><span class="dc-tag">Onboarding</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-rec2" accept="image/*" multiple hidden id="file-rec2" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-rec2').click()">📷 Add Event / Campaign Images</button>
+          <div class="gallery-grid" id="grid-rec2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HR INITIATIVES -->
+<section id="initiatives" style="background: var(--navy);" class="on-dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">People Programs</div>
+      <h2 class="section-title" style="color: var(--white);">HR <em>Initiatives</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">PMS Gap Analysis Initiative</div>
+          <div class="dc-type">Process Improvement</div>
+        </div>
+        <div class="dc-meta">Objective: Improve appraisal accuracy & feedback quality</div>
+        <p class="dc-text">Led a structured gap analysis of the performance management system covering 2,154 employees, identifying process bottlenecks and proposing 17 actionable improvements.</p>
+        <div class="dc-row"><span class="dc-row-label">Result</span><span class="dc-row-value">+12% Efficiency Projected</span></div>
+        <div class="dc-row"><span class="dc-row-label">KPI Tracked</span><span class="dc-row-value">Appraisal Cycle Time</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-init1" accept="image/*" multiple hidden id="file-init1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-init1').click()">📷 Add Initiative Images</button>
+          <div class="gallery-grid" id="grid-init1"></div>
+        </div>
+      </div>
+      <div class="data-card reveal" style="transition-delay:0.1s">
+        <div class="dc-header">
+          <div class="dc-title">Employee Feedback Survey Program</div>
+          <div class="dc-type">Engagement</div>
+        </div>
+        <div class="dc-meta">Objective: Surface department-level improvement areas</div>
+        <p class="dc-text">Analyzed survey responses from 380 employees across 4 departments, identifying 5 key improvement areas aligned with organizational goals.</p>
+        <div class="dc-row"><span class="dc-row-label">Result</span><span class="dc-row-value">5 Focus Areas Identified</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-init2" accept="image/*" multiple hidden id="file-init2" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-init2').click()">📷 Add Initiative Images</button>
+          <div class="gallery-grid" id="grid-init2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYEE ENGAGEMENT -->
+<section id="engagement">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Culture & Connection</div>
+      <h2 class="section-title">Employee Engagement <em>Programs</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">Team Connect Sessions</div>
+          <div class="dc-type">Engagement</div>
+        </div>
+        <div class="dc-meta">Target Audience: All Employees · Purpose: Cross-team bonding</div>
+        <p class="dc-text">Coordinated recurring engagement sessions and feedback touchpoints to strengthen internal team communication and morale.</p>
+        <div class="dc-row"><span class="dc-row-label">Participation</span><span class="dc-row-value">85% Attendance</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-eng1" accept="image/*" multiple hidden id="file-eng1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-eng1').click()">📷 Add Event Photos</button>
+          <div class="gallery-grid" id="grid-eng1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING & DEVELOPMENT -->
+<section id="learning" style="background: var(--white);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Capability Building</div>
+      <h2 class="section-title">Learning &amp; <em>Development</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">HR Documentation & Compliance Workshop</div>
+          <div class="dc-type">Instructor-Led</div>
+        </div>
+        <div class="dc-meta">Audience: HR Support Team</div>
+        <div class="dc-row"><span class="dc-row-label">Participants</span><span class="dc-row-value">15</span></div>
+        <div class="dc-row"><span class="dc-row-label">Feedback Score</span><span class="dc-row-value">4.6 / 5</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-learn1" accept="image/*" multiple hidden id="file-learn1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-learn1').click()">📷 Add Training Images</button>
+          <div class="gallery-grid" id="grid-learn1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE MANAGEMENT -->
+<section id="performance" style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Driving Results</div>
+      <h2 class="section-title">Performance <em>Management</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">RINL Performance Framework</div>
+          <div class="dc-type">Framework</div>
+        </div>
+        <div class="dc-row"><span class="dc-row-label">Review Cycle</span><span class="dc-row-value">Annual</span></div>
+        <div class="dc-row"><span class="dc-row-label">Appraisal Method</span><span class="dc-row-value">360° Feedback</span></div>
+        <div class="dc-row"><span class="dc-row-label">Employees Covered</span><span class="dc-row-value">2,154</span></div>
+        <div class="dc-row"><span class="dc-row-label">Result</span><span class="dc-row-value">17 Process Improvements Proposed</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-perf1" accept="image/*" multiple hidden id="file-perf1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-perf1').click()">📷 Add Supporting Images/Documents</button>
+          <div class="gallery-grid" id="grid-perf1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HR POLICIES & COMPLIANCE -->
+<section id="policies" style="background: var(--navy);" class="on-dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Governance</div>
+      <h2 class="section-title" style="color: var(--white);">HR Policies &amp; <em>Compliance</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">Attendance & Leave Policy</div>
+          <div class="dc-type">Policy</div>
+        </div>
+        <p class="dc-text">Maintained and enforced attendance & leave documentation standards in line with internal compliance requirements.</p>
+        <div class="dc-row"><span class="dc-row-label">Category</span><span class="dc-row-value">Time & Attendance</span></div>
+        <div class="dc-row"><span class="dc-row-label">Implementation Date</span><span class="dc-row-value">2022</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-pol1" accept="image/*" multiple hidden id="file-pol1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-pol1').click()">📷 Add Document / Image</button>
+          <div class="gallery-grid" id="grid-pol1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYROLL & BENEFITS -->
+<section id="payroll">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Compensation</div>
+      <h2 class="section-title">Payroll &amp; Benefits <em>Management</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">Payroll Coordination — Capgemini</div>
+          <div class="dc-type">Coordination</div>
+        </div>
+        <div class="dc-row"><span class="dc-row-label">Employees Managed</span><span class="dc-row-value">200–250</span></div>
+        <div class="dc-row"><span class="dc-row-label">Compliance Responsibility</span><span class="dc-row-value">Attendance & Records</span></div>
+        <div class="dc-row"><span class="dc-row-label">Accuracy</span><span class="dc-row-value">99%+</span></div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-pay1" accept="image/*" multiple hidden id="file-pay1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-pay1').click()">📷 Add Supporting Files</button>
+          <div class="gallery-grid" id="grid-pay1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HR ANALYTICS -->
+<section id="analytics" style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Data-Driven HR</div>
+      <h2 class="section-title">HR <em>Analytics</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">HR MIS Dashboard</div>
+          <div class="dc-type">Reporting</div>
+        </div>
+        <div class="dc-row"><span class="dc-row-label">Metrics Tracked</span><span class="dc-row-value">Attendance, Compliance, Headcount</span></div>
+        <div class="dc-row"><span class="dc-row-label">Reporting Tools</span><span class="dc-row-value">Advanced Excel</span></div>
+        <p class="dc-text">Built recurring MIS reports enabling management to track workforce trends and compliance status at a glance.</p>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-ana1" accept="image/*" multiple hidden id="file-ana1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-ana1').click()">📷 Add Dashboard Screenshots</button>
+          <div class="gallery-grid" id="grid-ana1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+    </div>
+    <div class="skills-layout">
+      <div class="reveal">
+        <div class="skills-col-title"><span>◆</span> Technical / HR Skills</div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">HR Documentation & Compliance</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Employee Records Management</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Onboarding & Offboarding</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">HR MIS & Reporting</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Advanced Excel (VLOOKUP, Pivots)</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-meta"><span class="skill-name">Attendance & Leave Management</span><span class="skill-pct">93%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="93"></div></div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <div class="skills-col-title"><span>◆</span> Soft Skills</div>
+        <div class="soft-skills-grid">
+          <div class="soft-skill-pill">Communication</div>
+          <div class="soft-skill-pill">Team Collaboration</div>
+          <div class="soft-skill-pill">Time Management</div>
+          <div class="soft-skill-pill">Multitasking</div>
+          <div class="soft-skill-pill">Stakeholder Coordination</div>
+          <div class="soft-skill-pill">Process Improvement</div>
+          <div class="soft-skill-pill">Active Listening</div>
+          <div class="soft-skill-pill">Leadership</div>
+          <div class="soft-skill-pill">Adaptability</div>
+          <div class="soft-skill-pill">Data Accuracy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs-section reveal">
+      <div class="section-label" style="margin-top: 0;">Certifications</div>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon">🏅</div>
+          <div class="cert-name">Human Resource Management</div>
+          <div class="cert-org">AU MOOCS</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">💬</div>
+          <div class="cert-name">Business Communication Skills</div>
+          <div class="cert-org">AU MOOCS</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🌐</div>
+          <div class="cert-name">English for Effective Business Communications</div>
+          <div class="cert-org">Coursera (UCI)</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">⚖️</div>
+          <div class="cert-name">Intellectual Property Rights</div>
+          <div class="cert-org">AU MOOCS</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">📊</div>
+          <div class="cert-name">Data Analytics with Python</div>
+          <div class="cert-org">NPTEL</div>
+        </div>
+      </div>
+      <div class="upload-block">
+        <input type="file" data-role="gallery" data-grid="grid-certs" accept="image/*" multiple hidden id="file-certs" />
+        <button type="button" class="upload-btn" onclick="document.getElementById('file-certs').click()">📷 Add Certificate Images</button>
+        <div class="gallery-grid" id="grid-certs"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HR TOOLS & TECHNOLOGIES -->
+<section id="tools" style="background: var(--white);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Systems Proficiency</div>
+      <h2 class="section-title">HR Tools &amp; <em>Technologies</em></h2>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-pill-card reveal">
+        <div class="tool-name">Advanced Excel</div>
+        <div class="tool-bar"><div class="tool-bar-fill" style="width:90%"></div></div>
+        <div class="tool-meta">3+ Years · MIS Reporting</div>
+      </div>
+      <div class="tool-pill-card reveal" style="transition-delay:0.05s">
+        <div class="tool-name">SAP SuccessFactors</div>
+        <div class="tool-bar"><div class="tool-bar-fill" style="width:75%"></div></div>
+        <div class="tool-meta">2 Years · Records & Onboarding</div>
+      </div>
+      <div class="tool-pill-card reveal" style="transition-delay:0.1s">
+        <div class="tool-name">Workday</div>
+        <div class="tool-bar"><div class="tool-bar-fill" style="width:65%"></div></div>
+        <div class="tool-meta">1 Year · Attendance Tracking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Key <em>Achievements</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">PMS Gap Analysis — 12% Projected Efficiency Gain</div>
+          <div class="dc-type">2025</div>
+        </div>
+        <div class="dc-meta">Rashtriya Ispat Nigam Limited (RINL)</div>
+        <p class="dc-text">Recognized for delivering a data-backed PMS gap analysis covering 2,154 employees during internship.</p>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-ach1" accept="image/*" multiple hidden id="file-ach1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-ach1').click()">📷 Add Achievement Image</button>
+          <div class="gallery-grid" id="grid-ach1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS & RECOGNITION -->
+<section id="awards">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Honors</div>
+      <h2 class="section-title">Awards &amp; <em>Recognition</em></h2>
+    </div>
+    <div class="card-grid">
+      <div class="data-card reveal">
+        <div class="dc-header">
+          <div class="dc-title">Best Support Team Coordination</div>
+          <div class="dc-type">2023</div>
+        </div>
+        <div class="dc-meta">Capgemini · Internal HR & Admin Support</div>
+        <p class="dc-text">Acknowledged by leadership for consistent accuracy in employee records and lifecycle documentation.</p>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-award1" accept="image/*" multiple hidden id="file-award1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-award1').click()">📷 Add Award Image</button>
+          <div class="gallery-grid" id="grid-award1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages" style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Communication</div>
+      <h2 class="section-title">Languages</h2>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card reveal">
+        <div class="lang-name">English</div>
+        <div class="lang-skill-row"><span>Reading</span><span>Excellent</span></div>
+        <div class="lang-skill-row"><span>Writing</span><span>Excellent</span></div>
+        <div class="lang-skill-row"><span>Speaking</span><span>Excellent</span></div>
+        <div class="lang-level">Professional</div>
+      </div>
+      <div class="lang-card reveal" style="transition-delay:0.05s">
+        <div class="lang-name">Hindi</div>
+        <div class="lang-skill-row"><span>Reading</span><span>Excellent</span></div>
+        <div class="lang-skill-row"><span>Writing</span><span>Good</span></div>
+        <div class="lang-skill-row"><span>Speaking</span><span>Excellent</span></div>
+        <div class="lang-level">Native</div>
+      </div>
+      <div class="lang-card reveal" style="transition-delay:0.1s">
+        <div class="lang-name">Telugu</div>
+        <div class="lang-skill-row"><span>Reading</span><span>Excellent</span></div>
+        <div class="lang-skill-row"><span>Writing</span><span>Excellent</span></div>
+        <div class="lang-skill-row"><span>Speaking</span><span>Excellent</span></div>
+        <div class="lang-level">Native</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM SECTIONS -->
+<section id="custom">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Extend Your Portfolio</div>
+      <h2 class="section-title">Custom <em>Sections</em></h2>
+    </div>
+    <div id="customSections" class="card-grid"></div>
+    <button type="button" class="add-section-btn" id="showCustomFormBtn">+ Add Custom Section</button>
+    <div class="custom-form" id="customForm">
+      <label for="customTitle">Section Title</label>
+      <input type="text" id="customTitle" placeholder="e.g. Volunteering, Publications, Speaking Engagements" />
+      <label for="customSubtitle">Subtitle</label>
+      <input type="text" id="customSubtitle" placeholder="Optional subtitle" />
+      <label for="customDesc">Description</label>
+      <textarea id="customDesc" placeholder="Describe this item..."></textarea>
+      <label for="customTags">Tags</label>
+      <input type="text" id="customTags" placeholder="Comma-separated, e.g. Leadership, Volunteering" />
+      <label for="customLink">Reference Link</label>
+      <input type="text" id="customLink" placeholder="https://" />
+      <label>Images</label>
+      <input type="file" id="customImageInput" accept="image/*" multiple hidden />
+      <button type="button" class="upload-btn" onclick="document.getElementById('customImageInput').click()">📷 Attach Images</button>
+      <div class="gallery-grid" id="customImagePreview"></div>
+      <div class="custom-form-actions">
+        <button type="button" class="custom-save-btn" id="saveCustomSectionBtn">Save Section</button>
+        <button type="button" class="custom-cancel-btn" id="cancelCustomFormBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Academic Background</div>
+      <h2 class="section-title">Education &amp; <em>Qualifications</em></h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">Master of Business Administration</div>
+        <div class="edu-field">Human Resources</div>
+        <div class="edu-school">Andhra University</div>
+        <div class="edu-meta">Visakhapatnam, India · July 2025</div>
+        <div class="edu-gpa">🎓 GPA: 7.62 CGPA</div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-edu1" accept="image/*" multiple hidden id="file-edu1" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-edu1').click()">📷 Add Certificate</button>
+          <div class="gallery-grid" id="grid-edu1"></div>
+        </div>
+      </div>
+      <div class="edu-card reveal" style="transition-delay: 0.15s">
+        <div class="edu-degree">Bachelor of Technology</div>
+        <div class="edu-field">Computer Science Engineering</div>
+        <div class="edu-school">Vignan's Institute of Information Technology</div>
+        <div class="edu-meta">Visakhapatnam, India · August 2021</div>
+        <div class="edu-gpa">🎓 GPA: 8.05 CGPA</div>
+        <div class="upload-block">
+          <input type="file" data-role="gallery" data-grid="grid-edu2" accept="image/*" multiple hidden id="file-edu2" />
+          <button type="button" class="upload-btn" onclick="document.getElementById('file-edu2').click()">📷 Add Certificate</button>
+          <div class="gallery-grid" id="grid-edu2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-name">Kunal Rao Yadla</div>
+    <div class="footer-sub">HR Administrator · Dubai, UAE</div>
+    <div class="footer-contact">
+      <a href="tel:+971553770969">📞 +971 553 770 969</a>
+      <a href="mailto:kunal050999@gmail.com">✉️ kunal050999@gmail.com</a>
+      <a href="#">📍 Dubai, UAE</a>
+    </div>
+    <div class="footer-copy">© 2025 Kunal Rao Yadla — All Rights Reserved</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal, .timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Skill bars
+  const skillBars = document.querySelectorAll('.skill-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const w = entry.target.getAttribute('data-width');
+        entry.target.style.width = w + '%';
+      }
+    });
+  }, { threshold: 0.3 });
+  skillBars.forEach(bar => barObserver.observe(bar));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.padding = '14px 60px';
+    } else {
+      nav.style.padding = '22px 60px';
+    }
+  });
+
+  // ===== GENERIC GALLERY IMAGE UPLOAD =====
+  function wireGalleryInput(input) {
+    input.addEventListener('change', (e) => {
+      const grid = document.getElementById(input.dataset.grid);
+      if (!grid) return;
+      Array.from(e.target.files).forEach((file) => {
+        if (!file.type.startsWith('image/')) return;
+        const url = URL.createObjectURL(file);
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = file.name;
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'gallery-remove';
+        removeBtn.setAttribute('aria-label', 'Remove image');
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', () => {
+          URL.revokeObjectURL(url);
+          item.remove();
+        });
+        item.appendChild(img);
+        item.appendChild(removeBtn);
+        grid.appendChild(item);
+      });
+      input.value = '';
+    });
+  }
+  document.querySelectorAll('input[data-role="gallery"]').forEach(wireGalleryInput);
+
+  // ===== PROFILE PHOTO: UPLOAD / REPLACE / ADJUST / REMOVE =====
+  const heroPhotoImg = document.getElementById('heroPhotoImg');
+  const heroInitials = document.getElementById('heroInitials');
+  const profilePhotoInput = document.getElementById('profilePhotoInput');
+  const photoUploadBtn = document.getElementById('photoUploadBtn');
+  const photoAdjustBtn = document.getElementById('photoAdjustBtn');
+  const photoRemoveBtn = document.getElementById('photoRemoveBtn');
+  const photoZoomRow = document.getElementById('photoZoomRow');
+  const photoZoomSlider = document.getElementById('photoZoomSlider');
+  let currentPhotoUrl = null;
+
+  photoUploadBtn.addEventListener('click', () => profilePhotoInput.click());
+
+  profilePhotoInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    if (currentPhotoUrl) URL.revokeObjectURL(currentPhotoUrl);
+    currentPhotoUrl = URL.createObjectURL(file);
+    heroPhotoImg.src = currentPhotoUrl;
+    heroPhotoImg.style.display = 'block';
+    heroInitials.style.display = 'none';
+    photoZoomSlider.value = 100;
+    heroPhotoImg.style.transform = 'scale(1)';
+    profilePhotoInput.value = '';
+  });
+
+  photoAdjustBtn.addEventListener('click', () => {
+    if (!currentPhotoUrl) { profilePhotoInput.click(); return; }
+    photoZoomRow.classList.toggle('active');
+  });
+
+  photoZoomSlider.addEventListener('input', () => {
+    const scale = photoZoomSlider.value / 100;
+    heroPhotoImg.style.transform = `scale(${scale})`;
+  });
+
+  photoRemoveBtn.addEventListener('click', () => {
+    if (currentPhotoUrl) URL.revokeObjectURL(currentPhotoUrl);
+    currentPhotoUrl = null;
+    heroPhotoImg.src = '';
+    heroPhotoImg.style.display = 'none';
+    heroPhotoImg.style.transform = 'scale(1)';
+    heroInitials.style.display = 'flex';
+    photoZoomRow.classList.remove('active');
+    photoZoomSlider.value = 100;
+  });
+
+  // ===== CUSTOM SECTIONS =====
+  const showCustomFormBtn = document.getElementById('showCustomFormBtn');
+  const customForm = document.getElementById('customForm');
+  const cancelCustomFormBtn = document.getElementById('cancelCustomFormBtn');
+  const saveCustomSectionBtn = document.getElementById('saveCustomSectionBtn');
+  const customImageInput = document.getElementById('customImageInput');
+  const customImagePreview = document.getElementById('customImagePreview');
+  const customSectionsContainer = document.getElementById('customSections');
+  let pendingCustomImages = [];
+
+  showCustomFormBtn.addEventListener('click', () => {
+    customForm.classList.add('active');
+    showCustomFormBtn.style.display = 'none';
+  });
+
+  cancelCustomFormBtn.addEventListener('click', resetCustomForm);
+
+  customImageInput.addEventListener('change', (e) => {
+    Array.from(e.target.files).forEach((file) => {
+      if (!file.type.startsWith('image/')) return;
+      const url = URL.createObjectURL(file);
+      pendingCustomImages.push(url);
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.innerHTML = `<img src="${url}" alt="${file.name}">`;
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'gallery-remove';
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => {
+        pendingCustomImages = pendingCustomImages.filter(u => u !== url);
+        item.remove();
+      });
+      item.appendChild(removeBtn);
+      customImagePreview.appendChild(item);
+    });
+    customImageInput.value = '';
+  });
+
+  function resetCustomForm() {
+    customForm.classList.remove('active');
+    showCustomFormBtn.style.display = 'inline-flex';
+    document.getElementById('customTitle').value = '';
+    document.getElementById('customSubtitle').value = '';
+    document.getElementById('customDesc').value = '';
+    document.getElementById('customTags').value = '';
+    document.getElementById('customLink').value = '';
+    customImagePreview.innerHTML = '';
+    pendingCustomImages = [];
+  }
+
+  saveCustomSectionBtn.addEventListener('click', () => {
+    const title = document.getElementById('customTitle').value.trim();
+    if (!title) { document.getElementById('customTitle').focus(); return; }
+    const subtitle = document.getElementById('customSubtitle').value.trim();
+    const desc = document.getElementById('customDesc').value.trim();
+    const tags = document.getElementById('customTags').value.trim();
+    const link = document.getElementById('customLink').value.trim();
+
+    const card = document.createElement('div');
+    card.className = 'data-card reveal visible';
+
+    let html = `<button type="button" class="custom-remove-section" aria-label="Remove section">×</button>
+      <div class="dc-header"><div class="dc-title">${escapeHtml(title)}</div></div>`;
+    if (subtitle) html += `<div class="dc-meta">${escapeHtml(subtitle)}</div>`;
+    if (desc) html += `<p class="dc-text">${escapeHtml(desc)}</p>`;
+    if (tags) {
+      html += `<div class="dc-tags">${tags.split(',').map(t => t.trim()).filter(Boolean)
+        .map(t => `<span class="dc-tag">${escapeHtml(t)}</span>`).join('')}</div>`;
+    }
+    if (link) html += `<p class="dc-text"><a href="${escapeHtml(link)}" target="_blank" rel="noopener" style="color:var(--gold)">${escapeHtml(link)}</a></p>`;
+    if (pendingCustomImages.length) {
+      html += `<div class="gallery-grid">${pendingCustomImages.map(u => `<div class="gallery-item"><img src="${u}"></div>`).join('')}</div>`;
+    }
+    card.innerHTML = html;
+    card.querySelector('.custom-remove-section').addEventListener('click', () => card.remove());
+    customSectionsContainer.appendChild(card);
+    resetCustomForm();
+  });
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+</script>
+</body>
+</html>

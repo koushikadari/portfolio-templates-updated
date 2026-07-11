@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amara Reyes — People Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#241220;
+  --ink-soft:#341C30;
+  --cream:#FBF3EC;
+  --cream-deep:#F3E4D8;
+  --blush:#F0D9CE;
+  --berry:#9C4258;
+  --berry-deep:#7A2F42;
+  --gold:#C9A24A;
+  --gold-light:#E4C878;
+  --text:#2B1B24;
+  --text-soft:#6B5560;
+  --line:rgba(36,18,32,0.12);
+  --line-light:rgba(251,243,236,0.2);
+  --white:#FFFDF9;
+  --danger:#B4553F;
+  --radius:22px;
+  --radius-sm:14px;
+  --shadow:0 24px 60px -24px rgba(36,18,32,0.32);
+  --shadow-sm:0 10px 28px -14px rgba(36,18,32,0.22);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--cream);color:var(--text);font-family:'Manrope',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Newsreader',serif;margin:0;color:var(--ink);letter-spacing:-0.01em;}
+h1 em, h2 em, h3 em{font-style:italic;color:var(--berry);}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+ul{margin:0;padding:0;list-style:none;}
+img{max-width:100%;display:block;}
+[contenteditable]{outline:none;}
+[contenteditable]:hover{background:rgba(201,162,74,0.12);border-radius:4px;}
+[contenteditable]:focus{background:rgba(201,162,74,0.18);border-radius:4px;box-shadow:0 0 0 1px var(--gold);}
+::selection{background:var(--gold-light);}
+
+.eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--berry);display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:"●";font-size:7px;color:var(--gold);}
+
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px;}
+@media(max-width:700px){.wrap{padding:0 22px;}}
+
+/* ===== TOP NAV ===== */
+#topnav{position:sticky;top:0;z-index:60;background:rgba(251,243,236,0.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1160px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+@media(max-width:700px){.nav-inner{padding:14px 22px;}}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Newsreader',serif;font-weight:600;font-size:19px;flex-shrink:0;}
+.nav-brand .ring{width:30px;height:30px;border-radius:50%;border:2px solid var(--berry);position:relative;flex-shrink:0;}
+.nav-brand .ring::after{content:"";position:absolute;inset:5px;border-radius:50%;border:2px solid var(--gold);}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:flex-end;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-soft);padding:9px 13px;border-radius:100px;white-space:nowrap;transition:.2s;}
+.nav-links a:hover,.nav-links a.active{background:var(--ink);color:var(--cream);}
+
+/* ===== HERO ===== */
+#hero{padding:76px 0 60px;position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:center;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:44px;}}
+@media(max-width:900px){.hero-grid{display:flex;flex-direction:column-reverse;}}
+
+.rings-frame{position:relative;width:100%;max-width:420px;margin:0 auto;}
+.rings-frame svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.photo-circle{position:relative;z-index:1;width:78%;aspect-ratio:1/1;margin:11% auto;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--berry),var(--ink));box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;}
+.photo-circle img{width:100%;height:100%;object-fit:cover;}
+.photo-empty{color:var(--cream);text-align:center;font-family:'Space Mono',monospace;font-size:10.5px;padding:14px;}
+.photo-empty svg{width:32px;height:32px;margin-bottom:8px;opacity:.9;}
+.photo-actions{position:absolute;bottom:6%;left:15%;right:15%;display:flex;gap:6px;opacity:0;transition:.2s;z-index:2;}
+.photo-circle:hover ~ .photo-actions, .rings-frame:hover .photo-actions{opacity:1;}
+.photo-actions button{flex:1;background:rgba(36,18,32,0.85);color:var(--cream);border:none;border-radius:100px;padding:8px 4px;font-size:10px;font-family:'Space Mono',monospace;}
+.photo-actions button:hover{background:var(--gold);color:var(--ink);}
+.badge-tag{position:absolute;top:2%;right:2%;background:var(--gold);color:var(--ink);font-family:'Space Mono',monospace;font-size:10.5px;padding:8px 14px;border-radius:100px;box-shadow:var(--shadow-sm);z-index:3;}
+
+.hero-eyebrow{margin-bottom:20px;}
+h1.headline{font-size:clamp(32px,4.6vw,52px);font-weight:500;line-height:1.1;margin-bottom:22px;}
+.hero-sum{font-size:17px;color:var(--text-soft);max-width:480px;margin-bottom:28px;}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
+.chip{background:var(--white);border:1px solid var(--line);border-radius:100px;padding:8px 15px;font-size:13px;display:flex;align-items:center;gap:7px;box-shadow:var(--shadow-sm);}
+.social-row{display:flex;gap:10px;margin-bottom:30px;}
+.social-row a{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'Space Mono',monospace;background:var(--white);transition:.2s;}
+.social-row a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{padding:14px 28px;border-radius:100px;font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;transition:.2s;}
+.btn-primary{background:var(--ink);color:var(--cream);}
+.btn-primary:hover{background:var(--berry);transform:translateY(-1px);}
+.btn-outline{border-color:var(--line);color:var(--ink);background:var(--white);}
+.btn-outline:hover{border-color:var(--ink);}
+
+/* stats */
+#stats{padding:0 0 70px;}
+.stats-strip{background:var(--ink);border-radius:var(--radius);padding:38px 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;color:var(--cream);}
+@media(max-width:800px){.stats-strip{grid-template-columns:repeat(2,1fr);}}
+.stat-num{font-family:'Newsreader',serif;font-size:32px;font-weight:600;color:var(--gold-light);}
+.stat-label{font-size:12px;color:rgba(251,243,236,0.65);margin-top:4px;}
+
+/* sections */
+.section{padding:78px 0;border-top:1px solid var(--line);}
+.section.tint{background:var(--cream-deep);}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:42px;gap:20px;flex-wrap:wrap;}
+.section-title{font-size:clamp(26px,3vw,36px);font-weight:500;margin-top:10px;}
+.section-desc{color:var(--text-soft);max-width:460px;font-size:14.5px;margin-top:10px;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+.add-record-btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px dashed var(--berry);color:var(--berry-deep);padding:12px 22px;border-radius:100px;font-size:13px;font-weight:700;box-shadow:var(--shadow-sm);}
+.add-record-btn:hover{background:var(--blush);}
+
+/* pillow record card */
+.record-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;margin-bottom:22px;box-shadow:var(--shadow-sm);position:relative;}
+.section.tint .record-card{background:var(--cream);}
+.record-ring{position:absolute;top:-14px;left:28px;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;box-shadow:var(--shadow-sm);}
+.record-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:12px 0 16px;flex-wrap:wrap;}
+.record-title{font-family:'Newsreader',serif;font-weight:600;font-size:21px;color:var(--ink);}
+.record-sub{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--berry);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;}
+.record-tag{background:var(--blush);color:var(--berry-deep);font-size:11px;font-family:'Space Mono',monospace;padding:6px 12px;border-radius:100px;white-space:nowrap;}
+.record-fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px 22px;margin:16px 0;}
+.field-block label{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;}
+.field-block .val{font-size:14px;font-weight:600;color:var(--ink);}
+.record-para{font-size:14.5px;color:var(--text-soft);margin-top:14px;line-height:1.7;}
+.record-para strong{display:block;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--berry);margin-bottom:5px;font-weight:700;}
+
+.record-imgs{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.img-tile{width:96px;height:96px;border-radius:14px;overflow:hidden;position:relative;background:var(--cream-deep);border:1px solid var(--line);flex-shrink:0;}
+.img-tile img{width:100%;height:100%;object-fit:cover;}
+.img-tile .rm{position:absolute;top:3px;right:3px;width:18px;height:18px;background:rgba(36,18,32,0.75);color:#fff;border:none;border-radius:50%;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s;}
+.img-tile:hover .rm{opacity:1;}
+.img-add{width:96px;height:96px;border-radius:14px;border:1.5px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--berry);background:transparent;flex-shrink:0;}
+.img-add:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,74,0.08);}
+.img-add span{font-size:9px;font-family:'Space Mono',monospace;text-align:center;line-height:1.3;}
+.imgspec{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--text-soft);opacity:.75;margin-top:8px;}
+
+.card-toolbar{position:absolute;top:18px;right:20px;}
+.card-toolbar button{background:transparent;border:1px solid var(--line);color:var(--text-soft);width:26px;height:26px;border-radius:50%;font-size:13px;}
+.card-toolbar button:hover{border-color:var(--danger);color:var(--danger);}
+
+/* timeline (experience) */
+.timeline{position:relative;padding-left:34px;}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:repeating-linear-gradient(var(--berry),var(--berry) 4px,transparent 4px,transparent 9px);}
+.timeline-item{position:relative;margin-bottom:26px;}
+.timeline-dot{position:absolute;left:-34px;top:30px;width:20px;height:20px;border-radius:50%;background:var(--gold);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--berry);}
+.section.tint .timeline-dot{box-shadow:0 0 0 2px var(--berry), 0 0 0 4px var(--cream-deep);}
+
+/* skills clusters */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+.skill-cat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 22px;box-shadow:var(--shadow-sm);}
+.section.tint .skill-cat{background:var(--cream);}
+.skill-cat h4{font-size:16px;margin-bottom:4px;}
+.skill-cat .cat-tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--berry);text-transform:uppercase;letter-spacing:.06em;}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.pill{background:var(--cream-deep);border:1px solid var(--line);padding:7px 13px;border-radius:100px;font-size:12.5px;display:flex;align-items:center;gap:7px;}
+.section.tint .pill{background:var(--white);}
+.pill .rmx{color:var(--text-soft);font-size:12px;}
+.pill .rmx:hover{color:var(--danger);}
+.pill-add{border:1px dashed var(--line);color:var(--berry);background:transparent;padding:7px 13px;border-radius:100px;font-size:12px;}
+
+/* languages */
+.lang-table{width:100%;border-collapse:separate;border-spacing:0 10px;}
+.lang-table th{text-align:left;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-soft);padding:0 18px 6px;}
+.lang-table td{padding:16px 18px;background:var(--white);font-size:14px;}
+.lang-table tr td:first-child{border-radius:14px 0 0 14px;font-weight:600;font-family:'Newsreader',serif;}
+.lang-table tr td:last-child{border-radius:0 14px 14px 0;}
+.prof-bar{width:100px;height:6px;background:var(--cream-deep);border-radius:100px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:8px;}
+.prof-fill{height:100%;background:var(--gold);}
+
+/* achievements/awards */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.ach-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);}
+.ach-seal{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;font-weight:700;text-align:center;line-height:1.2;}
+.ach-card .yr{font-family:'Space Mono',monospace;color:var(--berry);font-size:11px;letter-spacing:.08em;}
+.ach-card h4{font-size:18px;margin-top:10px;max-width:80%;}
+.ach-card p{font-size:13px;color:var(--text-soft);margin-top:8px;}
+.ach-img{width:100%;height:120px;border-radius:14px;overflow:hidden;margin-top:16px;background:var(--cream-deep);}
+.ach-img img{width:100%;height:100%;object-fit:cover;}
+
+/* footer */
+#footer{background:var(--ink);color:rgba(251,243,236,0.65);padding:60px 0 30px;margin-top:0;}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:36px;border-bottom:1px solid var(--line-light);}
+.footer-top h3{color:var(--cream);font-size:26px;}
+#footer .social-row a{border-color:var(--line-light);color:var(--cream);background:transparent;}
+.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px;}
+
+.savebar{position:fixed;bottom:18px;right:18px;z-index:70;background:var(--ink);color:var(--cream);padding:10px 16px;border-radius:100px;font-family:'Space Mono',monospace;font-size:11px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none;}
+.savebar.show{opacity:1;transform:translateY(0);}
+.savebar .sdot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.resetlink{position:fixed;bottom:18px;left:18px;z-index:70;font-family:'Space Mono',monospace;font-size:10px;color:var(--text-soft);background:var(--white);border:1px solid var(--line);padding:8px 12px;border-radius:100px;}
+
+#cropmodal{position:fixed;inset:0;background:rgba(36,18,32,0.75);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;}
+#cropmodal.show{display:flex;}
+.crop-box{background:var(--cream);border-radius:20px;padding:26px;width:100%;max-width:420px;}
+.crop-canvas-wrap{width:100%;aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#111;position:relative;touch-action:none;}
+.crop-canvas-wrap canvas{width:100%;height:100%;cursor:grab;}
+.crop-controls{margin-top:16px;}
+.crop-controls input[type=range]{width:100%;accent-color:var(--gold);}
+.crop-btns{display:flex;gap:10px;margin-top:14px;}
+.crop-btns button{flex:1;padding:12px;border-radius:100px;border:1px solid var(--line);background:var(--white);font-size:13px;font-weight:700;}
+.crop-btns .apply{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+.hidden-input{display:none;}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="ring"></span> Amara Reyes</div>
+    <div class="nav-links">
+      <a href="#hero" class="active">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Recruitment</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#engagement">Engagement</a>
+      <a href="#learning">L&amp;D</a>
+      <a href="#performance">Performance</a>
+      <a href="#policies">Policies</a>
+      <a href="#payroll">Payroll</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certs</a>
+      <a href="#tools">Tools</a>
+      <a href="#awards">Awards</a>
+      <a href="#languages">Languages</a>
+      <a href="#custom-sections">More</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow hero-eyebrow">People &amp; Culture Portfolio</div>
+        <h1 class="headline" contenteditable="true">Amara Reyes — I help people <em>grow into who they're becoming.</em></h1>
+        <p class="hero-sum" contenteditable="true">HR &amp; People Operations lead with 8+ years building talent, culture and engagement programs for scale-up companies across the Gulf. I care about turning employee experience into a measurable business advantage, not a checkbox.</p>
+        <div class="contact-row">
+          <span class="chip">✉️ <span contenteditable="true">amara.reyes@peoplemail.com</span></span>
+          <span class="chip">📞 <span contenteditable="true">+971 50 987 6543</span></span>
+          <span class="chip">📍 <span contenteditable="true">Dubai, UAE</span></span>
+        </div>
+        <div class="social-row">
+          <a href="#" contenteditable="true">in</a>
+          <a href="#" contenteditable="true">tw</a>
+          <a href="#" contenteditable="true">be</a>
+          <a href="#" contenteditable="true">gh</a>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#experience">See my journey →</a>
+          <a class="btn btn-outline" href="#" onclick="alert('Resume download — connect this to your file.');return false;">Download Résumé</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="rings-frame">
+          <svg viewBox="0 0 420 420"><circle cx="210" cy="210" r="205" fill="none" stroke="#9C4258" stroke-width="1" opacity="0.35"/><circle cx="210" cy="210" r="185" fill="none" stroke="#C9A24A" stroke-width="1" opacity="0.45"/><circle cx="210" cy="210" r="165" fill="none" stroke="#9C4258" stroke-width="1" opacity="0.55"/></svg>
+          <div class="badge-tag">ID · HR‑2017</div>
+          <div class="photo-circle" id="profilePhotoFrame">
+            <div class="photo-empty" id="profilePhotoEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+              Upload profile photo
+            </div>
+            <img id="profilePhotoImg" style="display:none;">
+          </div>
+          <div class="photo-actions">
+            <button onclick="triggerProfileUpload()">Upload</button>
+            <button onclick="openCropOnCurrent()">Crop</button>
+            <button onclick="removeProfilePhoto()">Remove</button>
+          </div>
+          <input type="file" id="profilePhotoInput" class="hidden-input" accept="image/*" onchange="handleProfileUpload(event)">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-strip">
+      <div><div class="stat-num" contenteditable="true">950+</div><div class="stat-label">People hired &amp; onboarded</div></div>
+      <div><div class="stat-num" contenteditable="true">8 yrs</div><div class="stat-label">HR &amp; People Ops experience</div></div>
+      <div><div class="stat-num" contenteditable="true">88%</div><div class="stat-label">Employee engagement score</div></div>
+      <div><div class="stat-num" contenteditable="true">11</div><div class="stat-label">Culture programs built</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Capability Map</div><h2 class="section-title">Skills, <em>by discipline.</em></h2></div>
+      <button class="add-record-btn" onclick="addSkillCategory()">+ Add category</button>
+    </div>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE (timeline) ================= -->
+<section class="section tint" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Career Path</div><h2 class="section-title">Professional <em>Experience.</em></h2>
+      <p class="section-desc">Every role, and the people work behind it.</p></div>
+      <button class="add-record-btn" onclick="addExperience()">+ Add role</button>
+    </div>
+    <div class="timeline" id="experienceList"></div>
+  </div>
+</section>
+
+<!-- ================= RECRUITMENT PROJECTS ================= -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Hiring Stories</div><h2 class="section-title">Recruitment <em>Projects.</em></h2>
+      <p class="section-desc">Specific hiring drives, from sourcing to signed offer.</p></div>
+      <button class="add-record-btn" onclick="addProject()">+ Add project</button>
+    </div>
+    <div id="projectsList"></div>
+  </div>
+</section>
+
+<!-- ================= HR INITIATIVES ================= -->
+<section class="section tint" id="initiatives">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Strategic Programs</div><h2 class="section-title">HR <em>Initiatives.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('initiatives')">+ Add initiative</button>
+    </div>
+    <div id="initiativesList"></div>
+  </div>
+</section>
+
+<!-- ================= ENGAGEMENT ================= -->
+<section class="section" id="engagement">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Culture &amp; Experience</div><h2 class="section-title">Employee Engagement <em>Programs.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('engagement')">+ Add program</button>
+    </div>
+    <div id="engagementList"></div>
+  </div>
+</section>
+
+<!-- ================= L&D ================= -->
+<section class="section tint" id="learning">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Capability Building</div><h2 class="section-title">Learning &amp; <em>Development.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('learning')">+ Add program</button>
+    </div>
+    <div id="learningList"></div>
+  </div>
+</section>
+
+<!-- ================= PERFORMANCE ================= -->
+<section class="section" id="performance">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Review Cycles</div><h2 class="section-title">Performance <em>Management.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('performance')">+ Add framework</button>
+    </div>
+    <div id="performanceList"></div>
+  </div>
+</section>
+
+<!-- ================= POLICIES ================= -->
+<section class="section tint" id="policies">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Governance</div><h2 class="section-title">HR Policies &amp; <em>Compliance.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('policies')">+ Add policy</button>
+    </div>
+    <div id="policiesList"></div>
+  </div>
+</section>
+
+<!-- ================= PAYROLL ================= -->
+<section class="section" id="payroll">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Compensation Ops</div><h2 class="section-title">Payroll &amp; Benefits <em>Management.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('payroll')">+ Add record</button>
+    </div>
+    <div id="payrollList"></div>
+  </div>
+</section>
+
+<!-- ================= ANALYTICS ================= -->
+<section class="section tint" id="analytics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">People Data</div><h2 class="section-title">HR <em>Analytics.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('analytics')">+ Add dashboard</button>
+    </div>
+    <div id="analyticsList"></div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section class="section" id="achievements">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Milestones</div><h2 class="section-title">Achievements.</h2></div>
+      <button class="add-record-btn" onclick="addAchievement('achievementsGrid','ACH')">+ Add achievement</button>
+    </div>
+    <div class="ach-grid" id="achievementsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section class="section tint" id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Academic Record</div><h2 class="section-title">Education.</h2></div>
+      <button class="add-record-btn" onclick="addGeneric('education')">+ Add degree</button>
+    </div>
+    <div id="educationList"></div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section class="section" id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Verified Credentials</div><h2 class="section-title">Certifications.</h2></div>
+      <button class="add-record-btn" onclick="addGeneric('certifications')">+ Add certificate</button>
+    </div>
+    <div id="certificationsList"></div>
+  </div>
+</section>
+
+<!-- ================= TOOLS ================= -->
+<section class="section tint" id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Systems Fluency</div><h2 class="section-title">HR Tools &amp; <em>Technologies.</em></h2></div>
+      <button class="add-record-btn" onclick="addTool()">+ Add tool</button>
+    </div>
+    <div class="skills-grid" id="toolsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= AWARDS ================= -->
+<section class="section" id="awards">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Recognition</div><h2 class="section-title">Awards &amp; Recognition.</h2></div>
+      <button class="add-record-btn" onclick="addAchievement('awardsGrid','AWD')">+ Add award</button>
+    </div>
+    <div class="ach-grid" id="awardsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= LANGUAGES ================= -->
+<section class="section tint" id="languages">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Communication</div><h2 class="section-title">Languages.</h2></div>
+      <button class="add-record-btn" onclick="addLanguage()">+ Add language</button>
+    </div>
+    <table class="lang-table">
+      <thead><tr><th>Language</th><th>Reading</th><th>Writing</th><th>Speaking</th><th>Proficiency</th><th></th></tr></thead>
+      <tbody id="langBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= CUSTOM SECTIONS ================= -->
+<section class="section" id="custom-sections">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Open Pages</div><h2 class="section-title">Additional <em>Sections.</em></h2>
+      <p class="section-desc">Add anything else — side projects, volunteering, speaking, publications.</p></div>
+      <button class="add-record-btn" onclick="addCustomSection()">+ New custom section</button>
+    </div>
+    <div id="customSectionsWrap"></div>
+  </div>
+</section>
+
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <h3 contenteditable="true">Let's build a workplace people love.</h3>
+        <p style="margin-top:8px;color:rgba(251,243,236,0.55);">Open to HR leadership &amp; consulting engagements.</p>
+      </div>
+      <div class="social-row">
+        <a href="#" contenteditable="true">in</a>
+        <a href="#" contenteditable="true">tw</a>
+        <a href="#" contenteditable="true">be</a>
+        <a href="#" contenteditable="true">gh</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span contenteditable="true">© 2026 Amara Reyes. All rights reserved.</span>
+      <span>ID · HR‑2017 · Dubai, UAE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="savebar" id="saveBar"><span class="sdot"></span><span id="saveBarText">Saved locally</span></div>
+<button class="resetlink" onclick="resetPortfolio()">Reset template</button>
+
+<div id="cropmodal">
+  <div class="crop-box">
+    <h4 style="margin-bottom:14px;">Crop &amp; adjust photo</h4>
+    <div class="crop-canvas-wrap" id="cropCanvasWrap"><canvas id="cropCanvas" width="400" height="400"></canvas></div>
+    <div class="crop-controls">
+      <input type="range" id="zoomRange" min="1" max="3" step="0.01" value="1" oninput="renderCrop()">
+    </div>
+    <div class="crop-btns">
+      <button onclick="closeCropModal()">Cancel</button>
+      <button class="apply" onclick="applyCrop()">Apply crop</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   HR PORTFOLIO v2 — growth-ring / people-journal edition
+   ============================================================ */
+
+let recordCounter = 0;
+const STORAGE_KEY = 'hrPortfolio_amarareyes_v2';
+let saveTimer = null;
+function fileNo(prefix){ recordCounter++; return prefix + '-' + String(recordCounter).padStart(2,'0'); }
+
+/* ---------- generic image upload helpers ---------- */
+function makeImgTile(src){
+  const tile = document.createElement('div');
+  tile.className='img-tile';
+  const img = document.createElement('img'); img.src = src;
+  const rm = document.createElement('button'); rm.className='rm'; rm.innerText='✕';
+  rm.onclick = ()=>{ tile.remove(); queueSave(); };
+  tile.appendChild(img); tile.appendChild(rm);
+  return tile;
+}
+function makeAddTile(container, label){
+  const add = document.createElement('button');
+  add.className='img-add'; add.type='button';
+  add.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg><span>'+ (label||'Upload') +'</span>';
+  add.onclick = ()=> {
+    const inp = document.createElement('input');
+    inp.type='file'; inp.accept='image/*'; inp.multiple = true; inp.style.display='none';
+    document.body.appendChild(inp);
+    inp.onchange = (e)=>{
+      [...e.target.files].forEach(f=>{
+        const reader = new FileReader();
+        reader.onload = ev=>{
+          container.insertBefore(makeImgTile(ev.target.result), add);
+          queueSave();
+        };
+        reader.readAsDataURL(f);
+      });
+      inp.remove();
+    };
+    inp.click();
+  };
+  container.appendChild(add);
+}
+function buildImgRow(existing, spec){
+  const wrap = document.createElement('div');
+  const row = document.createElement('div'); row.className='record-imgs';
+  (existing||[]).forEach(src=> row.appendChild(makeImgTile(src)));
+  makeAddTile(row, 'Add photo');
+  wrap.appendChild(row);
+  if(spec){
+    const s = document.createElement('div');
+    s.className='imgspec'; s.innerText = spec;
+    wrap.appendChild(s);
+  }
+  return wrap;
+}
+
+/* ---------- profile photo (with crop) ---------- */
+function triggerProfileUpload(){ document.getElementById('profilePhotoInput').click(); }
+let pendingCropCallback = null, cropImg = null, cropZoom=1, cropOffset={x:0,y:0}, dragging=false, dragStart={x:0,y:0};
+
+function handleProfileUpload(e){
+  const f = e.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = ev=> openCropModal(ev.target.result, (finalDataUrl)=>{
+    document.getElementById('profilePhotoImg').src = finalDataUrl;
+    document.getElementById('profilePhotoImg').style.display='block';
+    document.getElementById('profilePhotoEmpty').style.display='none';
+    queueSave();
+  });
+  reader.readAsDataURL(f);
+  e.target.value='';
+}
+function openCropOnCurrent(){
+  const img = document.getElementById('profilePhotoImg');
+  if(img.style.display==='none' || !img.src){ triggerProfileUpload(); return; }
+  openCropModal(img.src, (finalDataUrl)=>{ img.src = finalDataUrl; queueSave(); });
+}
+function removeProfilePhoto(){
+  document.getElementById('profilePhotoImg').style.display='none';
+  document.getElementById('profilePhotoImg').src='';
+  document.getElementById('profilePhotoEmpty').style.display='flex';
+  queueSave();
+}
+function openCropModal(src, cb){
+  pendingCropCallback = cb;
+  cropImg = new Image();
+  cropImg.onload = ()=>{ cropZoom=1; cropOffset={x:0,y:0}; document.getElementById('zoomRange').value=1; renderCrop(); };
+  cropImg.src = src;
+  document.getElementById('cropmodal').classList.add('show');
+}
+function closeCropModal(){ document.getElementById('cropmodal').classList.remove('show'); pendingCropCallback=null; }
+function renderCrop(){
+  if(!cropImg) return;
+  cropZoom = parseFloat(document.getElementById('zoomRange').value);
+  const canvas = document.getElementById('cropCanvas');
+  const ctx = canvas.getContext('2d');
+  const S = canvas.width;
+  ctx.fillStyle='#111'; ctx.fillRect(0,0,S,S);
+  const scale = Math.max(S/cropImg.width, S/cropImg.height) * cropZoom;
+  const w = cropImg.width*scale, h = cropImg.height*scale;
+  const x = (S-w)/2 + cropOffset.x, y = (S-h)/2 + cropOffset.y;
+  ctx.drawImage(cropImg, x, y, w, h);
+}
+const cropCanvasEl = document.getElementById('cropCanvas');
+cropCanvasEl.addEventListener('mousedown', e=>{ dragging=true; dragStart={x:e.clientX-cropOffset.x, y:e.clientY-cropOffset.y}; });
+window.addEventListener('mouseup', ()=> dragging=false);
+window.addEventListener('mousemove', e=>{ if(!dragging) return; cropOffset = {x:e.clientX-dragStart.x, y:e.clientY-dragStart.y}; renderCrop(); });
+cropCanvasEl.addEventListener('touchstart', e=>{ const t=e.touches[0]; dragging=true; dragStart={x:t.clientX-cropOffset.x,y:t.clientY-cropOffset.y}; });
+window.addEventListener('touchend', ()=> dragging=false);
+window.addEventListener('touchmove', e=>{ if(!dragging) return; const t=e.touches[0]; cropOffset = {x:t.clientX-dragStart.x, y:t.clientY-dragStart.y}; renderCrop(); });
+function applyCrop(){
+  const canvas = document.getElementById('cropCanvas');
+  const out = canvas.toDataURL('image/jpeg', 0.95);
+  if(pendingCropCallback) pendingCropCallback(out);
+  closeCropModal();
+}
+
+/* ---------- SKILLS ---------- */
+const skillsData = [
+  {cat:'Talent Acquisition', tag:'Core', items:['Full-cycle Recruiting','Employer Branding','Structured Interviews','ATS Administration']},
+  {cat:'People Operations', tag:'Core', items:['Onboarding Design','HRIS Management','Policy Drafting','Offboarding']},
+  {cat:'Culture & Engagement', tag:'Leadership', items:['Program Design','Survey Design','Change Management','Internal Comms']},
+  {cat:'Analytics & Tools', tag:'Technical', items:['People Dashboards','Excel/SQL Reporting','Workday','BambooHR']},
+];
+function renderSkillCat(gridId, d){
+  const grid = document.getElementById(gridId);
+  const card = document.createElement('div'); card.className='skill-cat';
+  card.innerHTML = `<div class="cat-tag">${d.tag}</div><h4 contenteditable="true">${d.cat}</h4>`;
+  const row = document.createElement('div'); row.className='pill-row';
+  d.items.forEach(it=> row.appendChild(makePill(it)));
+  const addBtn = document.createElement('button'); addBtn.className='pill-add'; addBtn.innerText='+ Add';
+  addBtn.onclick = ()=>{ row.insertBefore(makePill('New item'), addBtn); queueSave(); };
+  row.appendChild(addBtn);
+  card.appendChild(row);
+  grid.appendChild(card);
+}
+function makePill(text){
+  const p = document.createElement('span'); p.className='pill';
+  const t = document.createElement('span'); t.contentEditable='true'; t.innerText=text;
+  const x = document.createElement('span'); x.className='rmx'; x.innerText='✕';
+  x.onclick=()=>{p.remove(); queueSave();};
+  p.appendChild(t); p.appendChild(x);
+  return p;
+}
+function addSkillCategory(){ renderSkillCat('skillsGrid', {cat:'New Category', tag:'Custom', items:['New skill']}); queueSave(); }
+skillsData.forEach(d=>renderSkillCat('skillsGrid', d));
+
+/* ---------- TOOLS ---------- */
+const toolsData = [
+  {cat:'ATS & Sourcing', tag:'Proficient', items:['LinkedIn Recruiter','Greenhouse','Bayt']},
+  {cat:'HRIS & Payroll', tag:'Expert', items:['Workday','BambooHR','ADP']},
+  {cat:'Engagement & L&D', tag:'Proficient', items:['Culture Amp','15Five','LinkedIn Learning']},
+];
+function addTool(){ renderSkillCat('toolsGrid', {cat:'New Tool Group', tag:'Level', items:['New tool']}); queueSave(); }
+toolsData.forEach(d=>renderSkillCat('toolsGrid', d));
+
+/* ---------- generic record card builder ---------- */
+function buildRecordCard({prefix, title, sub, tag, fields, paragraphs, imgSpec}){
+  const card = document.createElement('div'); card.className='record-card';
+  const ring = document.createElement('div'); ring.className='record-ring'; ring.innerText = fileNo(prefix);
+  card.appendChild(ring);
+
+  const toolbar = document.createElement('div'); toolbar.className='card-toolbar';
+  const del = document.createElement('button'); del.innerText='✕'; del.onclick=()=>{ card.remove(); queueSave(); };
+  toolbar.appendChild(del); card.appendChild(toolbar);
+
+  const top = document.createElement('div'); top.className='record-top';
+  const tWrap = document.createElement('div');
+  const h = document.createElement('div'); h.className='record-title'; h.contentEditable='true'; h.innerText=title;
+  const s = document.createElement('div'); s.className='record-sub'; s.contentEditable='true'; s.innerText=sub;
+  tWrap.appendChild(h); tWrap.appendChild(s);
+  top.appendChild(tWrap);
+  if(tag){ const tg = document.createElement('span'); tg.className='record-tag'; tg.contentEditable='true'; tg.innerText=tag; top.appendChild(tg); }
+  card.appendChild(top);
+
+  if(fields && fields.length){
+    const fr = document.createElement('div'); fr.className='record-fields';
+    fields.forEach(f=>{
+      const fb = document.createElement('div'); fb.className='field-block';
+      fb.innerHTML = `<label>${f.label}</label>`;
+      const v = document.createElement('div'); v.className='val'; v.contentEditable='true'; v.innerText=f.value;
+      fb.appendChild(v);
+      fr.appendChild(fb);
+    });
+    card.appendChild(fr);
+  }
+  if(paragraphs && paragraphs.length){
+    paragraphs.forEach(p=>{
+      const pel = document.createElement('div'); pel.className='record-para';
+      pel.innerHTML = `<strong>${p.label}</strong>`;
+      const v = document.createElement('span'); v.contentEditable='true'; v.innerText=p.value;
+      pel.appendChild(v);
+      card.appendChild(pel);
+    });
+  }
+  card.appendChild(buildImgRow([], imgSpec || '4K resolution supported \u00b7 displayed at 300\u00d7300'));
+  return card;
+}
+
+/* ---------- EXPERIENCE (timeline items) ---------- */
+function addExperience(sample){
+  sample = sample || {title:'HR Business Partner', sub:'Company Name \u00b7 Location', tag:'Current',
+    fields:[{label:'Duration',value:'Jan 2022 \u2013 Present'},{label:'Team Size Managed',value:'10'},{label:'HR Functions',value:'TA, ER, Ops'},{label:'HR Software',value:'Workday'}],
+    paragraphs:[
+      {label:'Role Summary', value:'Own the full people agenda for a 280-person division, partnering with leadership on org design, hiring and retention.'},
+      {label:'Key Responsibilities', value:'Lead workforce planning, manage employee relations cases, run quarterly performance calibration.'},
+      {label:'Major Contributions', value:'Redesigned onboarding and mentorship, lowering first-year attrition by 17%.'}
+    ]};
+  const item = document.createElement('div'); item.className='timeline-item';
+  const dot = document.createElement('div'); dot.className='timeline-dot'; item.appendChild(dot);
+  const card = buildRecordCard({prefix:'EXP', title:sample.title, sub:sample.sub, tag:sample.tag, fields:sample.fields, paragraphs:sample.paragraphs, imgSpec:'Workplace photos, certificates & team events'});
+  item.appendChild(card);
+  document.getElementById('experienceList').appendChild(item);
+  queueSave();
+}
+addExperience();
+addExperience({title:'Talent Acquisition Specialist', sub:'Previous Company \u00b7 Dubai, UAE', tag:'2019\u20132021',
+  fields:[{label:'Duration',value:'Mar 2019 \u2013 Dec 2021'},{label:'Team Size Managed',value:'3'},{label:'HR Functions',value:'Recruitment'},{label:'HR Software',value:'Greenhouse'}],
+  paragraphs:[
+    {label:'Role Summary', value:'Managed technical and commercial hiring pipelines for a Series B startup scaling from 60 to 220 employees.'},
+    {label:'Key Responsibilities', value:'Sourced, screened and closed candidates across engineering, sales and operations.'},
+    {label:'Major Contributions', value:'Built the company\u2019s first structured interview framework, cutting time-to-hire by 35%.'}
+  ]});
+
+/* ---------- RECRUITMENT PROJECTS ---------- */
+function addProject(sample){
+  sample = sample || {title:'Engineering Hiring Sprint', sub:'Bulk Hiring \u00b7 Technology Dept.', tag:'32 hires',
+    fields:[{label:'Positions Filled',value:'32'},{label:'Hiring Timeline',value:'8 weeks'},{label:'Sourcing Platforms',value:'LinkedIn, Referrals'},{label:'Interview Process',value:'4-stage: Screen, Technical, Panel, Offer'},{label:'Hiring Metrics',value:'Avg. 19 days/hire'}],
+    paragraphs:[{label:'Outcome', value:'Filled all engineering roles ahead of schedule while maintaining an 88% offer-acceptance rate.'}]};
+  const card = buildRecordCard({prefix:'REC', title:sample.title, sub:sample.sub, tag:sample.tag, fields:sample.fields, paragraphs:sample.paragraphs, imgSpec:'Event photos, campaign banners & screenshots \u00b7 300\u00d7300 \u00b7 4K'});
+  document.getElementById('projectsList').appendChild(card);
+  queueSave();
+}
+addProject();
+addProject({title:'Annual Career Fair \u2014 Dubai', sub:'Campus Hiring \u00b7 Multiple Departments', tag:'46 hires',
+  fields:[{label:'Positions Filled',value:'46'},{label:'Hiring Timeline',value:'3 weeks'},{label:'Sourcing Platforms',value:'University partnerships'},{label:'Interview Process',value:'On-site panel + case study'},{label:'Hiring Metrics',value:'1,400 applicants screened'}],
+  paragraphs:[{label:'Outcome', value:'Built the strongest graduate cohort in company history, with 90% retained past year one.'}]});
+
+/* ---------- generic sections config ---------- */
+const genericSectionConfig = {
+  initiatives: {prefix:'INI', listId:'initiativesList', sample:{title:'Flexible Work Policy Rollout', sub:'Culture Initiative', tag:'Company-wide',
+    fields:[{label:'Objective',value:'Improve retention & work-life balance'},{label:'Implementation',value:'Phased, 3 months'},{label:'KPIs',value:'Attrition, eNPS'}],
+    paragraphs:[{label:'Responsibilities', value:'Designed policy, ran pilot with 2 departments, trained managers.'},{label:'Results', value:'eNPS rose 11 points; attrition down 6% within two quarters.'}]}},
+  engagement: {prefix:'ENG', listId:'engagementList', sample:{title:'Wellness Wednesdays', sub:'Employee Engagement Program', tag:'Ongoing',
+    fields:[{label:'Target Audience',value:'All employees'},{label:'Activities',value:'Yoga, mental health talks, step challenges'},{label:'Participation',value:'78% monthly'}],
+    paragraphs:[{label:'Purpose', value:'Build a sustainable culture of wellbeing across a hybrid workforce.'},{label:'Results', value:'Sick-leave usage down 14% year-on-year.'}]}},
+  learning: {prefix:'LND', listId:'learningList', sample:{title:'Leadership Accelerator', sub:'Manager Development Track', tag:'Cohort 4',
+    fields:[{label:'Audience',value:'First-time managers'},{label:'Delivery Method',value:'Blended: workshops + coaching'},{label:'Participants',value:'24'},{label:'Feedback Score',value:'4.7 / 5'}],
+    paragraphs:[{label:'Training Outcome', value:'92% of participants promoted or given expanded scope within a year.'}]}},
+  performance: {prefix:'PMS', listId:'performanceList', sample:{title:'OKR-Based Review Cycle', sub:'Performance Framework', tag:'Bi-annual',
+    fields:[{label:'Goal Setting',value:'Quarterly OKRs cascaded from company goals'},{label:'Review Cycle',value:'Bi-annual + monthly check-ins'},{label:'Appraisal Method',value:'360-degree feedback'},{label:'KPIs Managed',value:'Goal completion, calibration variance'}],
+    paragraphs:[{label:'Results', value:'Manager-employee alignment scores improved from 71% to 89%.'}]}},
+  policies: {prefix:'POL', listId:'policiesList', sample:{title:'Remote Work Policy', sub:'Category: Workplace Flexibility', tag:'Active',
+    fields:[{label:'Compliance Standard',value:'UAE Labour Law'},{label:'Implementation Date',value:'Jan 2024'},{label:'Documentation',value:'Internal wiki link'}],
+    paragraphs:[{label:'Description', value:'Defines eligibility, expectations and equipment policy for hybrid and remote employees.'}]}},
+  payroll: {prefix:'PAY', listId:'payrollList', sample:{title:'Monthly Payroll Cycle', sub:'Payroll Software: ADP', tag:'380 employees',
+    fields:[{label:'Benefits Administered',value:'Health, life, transport allowance'},{label:'Employees Managed',value:'380'},{label:'Compliance',value:'WPS, EOSB calculations'},{label:'Accuracy',value:'99.7%'}],
+    paragraphs:[{label:'Notes', value:'Owns full payroll accuracy and statutory compliance across UAE entities.'}]}},
+  analytics: {prefix:'ANL', listId:'analyticsList', sample:{title:'People Ops Dashboard', sub:'Reporting Tool: Power BI', tag:'Live',
+    fields:[{label:'Metrics Tracked',value:'Attrition, TTH, eNPS, headcount'},{label:'Reporting Tools',value:'Power BI, Workday Reports'},{label:'Business Impact',value:'Guided 3 restructuring decisions'}],
+    paragraphs:[{label:'Insights Generated', value:'Identified attrition hotspot in one BU, leading to a targeted retention program.'}]}},
+  education: {prefix:'EDU', listId:'educationList', sample:{title:'MBA, Human Resource Management', sub:'Indian Institute of Management', tag:'2014\u20132016',
+    fields:[{label:'Specialization',value:'HR & Organisational Behaviour'},{label:'Location',value:'Ahmedabad, India'},{label:'Grade',value:'8.7 / 10 CGPA'}],
+    paragraphs:[]}},
+  certifications: {prefix:'CRT', listId:'certificationsList', sample:{title:'SHRM Senior Certified Professional (SHRM-SCP)', sub:'Society for Human Resource Management', tag:'2023',
+    fields:[{label:'Year Obtained',value:'2023'},{label:'Verification',value:'shrm.org/verify'}],
+    paragraphs:[]}},
+};
+function addGeneric(key, sample){
+  const cfg = genericSectionConfig[key];
+  const s = sample || cfg.sample;
+  const card = buildRecordCard({prefix:cfg.prefix, title:s.title, sub:s.sub, tag:s.tag, fields:s.fields, paragraphs:s.paragraphs});
+  document.getElementById(cfg.listId).appendChild(card);
+  queueSave();
+}
+Object.keys(genericSectionConfig).forEach(k=> addGeneric(k));
+addGeneric('policies', {title:'Code of Conduct & Anti-Harassment', sub:'Category: Compliance', tag:'Mandatory',
+  fields:[{label:'Compliance Standard',value:'UAE MOHRE Guidelines'},{label:'Implementation Date',value:'Jun 2022'},{label:'Documentation',value:'HR handbook, Section 4'}],
+  paragraphs:[{label:'Description', value:'Establishes reporting channels and investigation process for workplace conduct issues.'}]});
+addGeneric('certifications', {title:'Certified Professional in Learning & Performance (CPLP)', sub:'ATD', tag:'2021',
+  fields:[{label:'Year Obtained',value:'2021'},{label:'Verification',value:'td.org/verify'}], paragraphs:[]});
+
+/* ---------- ACHIEVEMENTS & AWARDS ---------- */
+function addAchievement(gridId, prefix, sample){
+  sample = sample || {title:'Best HR Team \u2014 MENA Talent Awards', org:'MENA Talent Awards', year:'2024', desc:'Recognised for building the region\u2019s most effective graduate hiring pipeline.'};
+  const grid = document.getElementById(gridId);
+  const card = document.createElement('div'); card.className='ach-card';
+  card.innerHTML = `
+    <div class="ach-seal">${prefix}</div>
+    <div class="yr" contenteditable="true">${sample.year}</div>
+    <h4 contenteditable="true">${sample.title}</h4>
+    <p contenteditable="true">${sample.desc}</p>
+    <div class="ach-img"></div>
+  `;
+  const del = document.createElement('button'); del.innerText='✕';
+  del.style.cssText='position:absolute;top:16px;left:16px;background:transparent;border:1px solid var(--line);color:var(--text-soft);width:24px;height:24px;border-radius:50%;font-size:11px;';
+  del.onclick=()=>{ card.remove(); queueSave(); };
+  card.appendChild(del);
+  const achImg = card.querySelector('.ach-img');
+  achImg.appendChild(buildAchUploader(achImg));
+  grid.appendChild(card);
+  queueSave();
+  return card;
+}
+function buildAchUploader(container){
+  const btn = document.createElement('button');
+  btn.style.cssText='width:100%;height:100%;background:transparent;border:1px dashed var(--line);border-radius:14px;color:var(--text-soft);font-size:10.5px;font-family:"Space Mono", monospace;';
+  btn.innerText='+ Upload image / certificate';
+  btn.onclick = ()=>{
+    const inp = document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.style.display='none';
+    document.body.appendChild(inp);
+    inp.onchange = e=>{
+      const f = e.target.files[0]; if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev=>{
+        container.innerHTML='';
+        const img = document.createElement('img'); img.src = ev.target.result;
+        container.appendChild(img);
+        queueSave();
+      };
+      reader.readAsDataURL(f);
+      inp.remove();
+    };
+    inp.click();
+  };
+  return btn;
+}
+addAchievement('achievementsGrid','ACH');
+addAchievement('achievementsGrid','ACH', {title:'Speaker \u2014 Future of Work Summit', org:'FOW Summit', year:'2023', desc:'Invited panelist on AI in talent acquisition, addressing 500+ HR leaders.'});
+addAchievement('awardsGrid','AWD', {title:'Rising HR Leader of the Year', org:'Gulf HR Awards', year:'2022', desc:'Awarded for redesigning onboarding that lifted 90-day retention by 22%.'});
+addAchievement('awardsGrid','AWD', {title:'Excellence in Diversity Hiring', org:'Emirates Diversity Council', year:'2021', desc:'Recognised for a sourcing program that doubled female representation in tech roles.'});
+
+/* ---------- LANGUAGES ---------- */
+function addLanguage(sample){
+  sample = sample || {lang:'English', level:90};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td contenteditable="true">${sample.lang}</td>
+    <td contenteditable="true">Native</td>
+    <td contenteditable="true">Native</td>
+    <td contenteditable="true">Native</td>
+    <td><span class="prof-bar"><span class="prof-fill" style="width:${sample.level}%"></span></span><span contenteditable="true">${sample.level}%</span></td>
+    <td><button onclick="this.closest('tr').remove(); queueSave();" style="background:transparent;border:none;color:var(--text-soft);cursor:pointer;">✕</button></td>
+  `;
+  document.getElementById('langBody').appendChild(tr);
+  queueSave();
+}
+addLanguage({lang:'English', level:95});
+addLanguage({lang:'Spanish', level:100});
+addLanguage({lang:'Arabic', level:55});
+
+/* ---------- CUSTOM SECTIONS ---------- */
+let customSectionCount = 0;
+function addCustomSection(){
+  customSectionCount++;
+  const wrap = document.getElementById('customSectionsWrap');
+  const block = document.createElement('div');
+  block.style.marginBottom='50px';
+  block.innerHTML = `
+    <div class="section-head" style="margin-bottom:24px;">
+      <div>
+        <div class="eyebrow" contenteditable="true">Custom Page ${customSectionCount}</div>
+        <h3 class="section-title" style="font-size:24px;" contenteditable="true">New Section Title</h3>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="add-record-btn" data-add>+ Add item</button>
+        <button data-delsection style="border:1px solid var(--line);background:var(--white);width:38px;height:38px;border-radius:50%;color:var(--danger);">✕</button>
+      </div>
+    </div>
+    <div data-list></div>
+  `;
+  const listEl = block.querySelector('[data-list]');
+  block.querySelector('[data-add]').onclick = ()=>{
+    const card = buildRecordCard({prefix:'CUS', title:'New Item', sub:'Subtitle / Category', tag:'Tag',
+      fields:[{label:'Reference Link',value:'https://example.com'}],
+      paragraphs:[{label:'Description', value:'Describe this item \u2014 project, publication, volunteering, or anything else.'}]});
+    listEl.appendChild(card); queueSave();
+  };
+  block.querySelector('[data-delsection]').onclick = ()=>{ block.remove(); queueSave(); };
+  wrap.appendChild(block);
+  block.querySelector('[data-add]').click();
+  queueSave();
+}
+addCustomSection();
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* ---------- scrollspy ---------- */
+const navLinks = document.querySelectorAll('.nav-links a');
+const secEls = [...navLinks].map(a=> document.querySelector(a.getAttribute('href')));
+window.addEventListener('scroll', ()=>{
+  let idx = 0;
+  secEls.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top - 120 <= 0) idx = i; });
+  navLinks.forEach(a=>a.classList.remove('active'));
+  navLinks[idx] && navLinks[idx].classList.add('active');
+}, {passive:true});
+
+/* ---------- autosave to localStorage ---------- */
+function queueSave(){ clearTimeout(saveTimer); saveTimer = setTimeout(doSave, 700); }
+function doSave(){
+  try{
+    localStorage.setItem(STORAGE_KEY, document.getElementById('main-content').innerHTML);
+    flashSaveBar('Saved locally');
+  }catch(err){
+    flashSaveBar('Storage full \u2014 remove some images');
+  }
+}
+function flashSaveBar(text){
+  const bar = document.getElementById('saveBar');
+  document.getElementById('saveBarText').innerText = text;
+  bar.classList.add('show');
+  clearTimeout(window.__sbTimer);
+  window.__sbTimer = setTimeout(()=> bar.classList.remove('show'), 1800);
+}
+function restoreSave(){
+  const data = localStorage.getItem(STORAGE_KEY);
+  if(data){ document.getElementById('main-content').innerHTML = data; return true; }
+  return false;
+}
+function resetPortfolio(){
+  if(confirm('Reset the template back to default sample content? This clears your saved edits.')){
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+document.getElementById('main-content').addEventListener('input', queueSave);
+document.getElementById('main-content').addEventListener('blur', queueSave, true);
+window.addEventListener('load', ()=>{
+  const restored = restoreSave();
+  if(restored){ document.querySelectorAll('.reveal').forEach(el=> io.observe(el)); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Nair — People &amp; Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B2621;
+  --ink-soft:#16332C;
+  --parchment:#F6F1E7;
+  --parchment-deep:#EFE7D6;
+  --sage:#7C9A82;
+  --sage-deep:#597C63;
+  --brass:#C89B5C;
+  --brass-light:#E3C48C;
+  --text:#1C2B27;
+  --text-soft:#4B5D57;
+  --line:rgba(11,38,33,0.14);
+  --line-light:rgba(246,241,231,0.18);
+  --white:#FFFDF8;
+  --danger:#B4553F;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 20px 50px -20px rgba(11,38,33,0.35);
+  --shadow-sm:0 8px 24px -12px rgba(11,38,33,0.25);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  opacity:0.5;
+  background-image:radial-gradient(rgba(11,38,33,0.045) 1px, transparent 1px);
+  background-size:3px 3px;
+  z-index:1;
+}
+h1,h2,h3,h4{font-family:'Fraunces',serif;margin:0;color:var(--ink);letter-spacing:-0.01em;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+ul{margin:0;padding:0;list-style:none;}
+img{max-width:100%;display:block;}
+[contenteditable]{outline:none;}
+[contenteditable]:hover{background:rgba(200,155,92,0.08);border-radius:4px;}
+[contenteditable]:focus{background:rgba(200,155,92,0.14);border-radius:4px;box-shadow:0 0 0 1px var(--brass);}
+::selection{background:var(--brass-light);}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--sage-deep);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--brass);display:inline-block;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px;position:relative;z-index:2;}
+@media(max-width:700px){.wrap{padding:0 20px;}}
+
+/* ===== Folder-tab side nav ===== */
+#tabnav{
+  position:fixed;left:0;top:0;height:100vh;width:64px;
+  background:var(--ink);
+  z-index:50;
+  display:flex;flex-direction:column;align-items:center;
+  padding:26px 0;
+  gap:2px;
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+#tabnav::-webkit-scrollbar{display:none;}
+#tabnav .brandmark{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--brass);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:700;font-size:16px;
+  margin-bottom:22px;flex-shrink:0;
+}
+#tabnav a{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  color:rgba(246,241,231,0.45);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;
+  padding:10px 0;
+  border-left:2px solid transparent;
+  transition:.2s;
+  white-space:nowrap;
+}
+#tabnav a:hover, #tabnav a.active{
+  color:var(--brass-light);
+  border-left-color:var(--brass);
+}
+@media(max-width:900px){#tabnav{display:none;}}
+
+#mobilebar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:var(--parchment);padding:14px 20px;align-items:center;justify-content:space-between;}
+#mobilebar select{background:var(--ink-soft);color:var(--parchment);border:1px solid var(--line-light);border-radius:8px;padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+@media(max-width:900px){#mobilebar{display:flex;} body{margin-left:0 !important;}}
+body{margin-left:64px;}
+@media(max-width:900px){body{margin-left:0;}}
+
+/* ===== HERO ===== */
+#hero{
+  background:var(--ink);
+  color:var(--parchment);
+  position:relative;
+  overflow:hidden;
+  padding:90px 0 70px;
+}
+#hero::after{
+  content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,155,92,0.18),transparent 70%);
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;position:relative;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+
+.badge-line{display:inline-flex;align-items:center;gap:8px;background:rgba(246,241,231,0.08);border:1px solid var(--line-light);padding:7px 14px 7px 8px;border-radius:100px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--brass-light);margin-bottom:26px;}
+.badge-line .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);}
+
+.hero-name{font-size:15px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;}
+h1.headline{font-size:clamp(34px,4.4vw,54px);font-weight:600;line-height:1.06;margin-bottom:22px;}
+h1.headline em{font-style:italic;font-weight:500;color:var(--brass-light);}
+.hero-sum{font-size:17px;color:rgba(246,241,231,0.75);max-width:520px;margin-bottom:32px;}
+
+.contact-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px;}
+.chip{background:rgba(246,241,231,0.07);border:1px solid var(--line-light);border-radius:100px;padding:9px 16px;font-size:13px;display:flex;align-items:center;gap:8px;color:var(--parchment);}
+.chip svg{width:14px;height:14px;flex-shrink:0;opacity:.8;}
+
+.social-row{display:flex;gap:10px;}
+.social-row a{width:38px;height:38px;border:1px solid var(--line-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'IBM Plex Mono',monospace;transition:.2s;}
+.social-row a:hover{background:var(--brass);color:var(--ink);border-color:var(--brass);}
+
+/* ID badge photo card */
+.idcard{
+  background:var(--parchment);
+  border-radius:20px;
+  padding:22px 22px 26px;
+  box-shadow:var(--shadow);
+  position:relative;
+  transform:rotate(2deg);
+  max-width:320px;margin:0 auto;
+}
+.idcard::before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:70px;height:26px;background:var(--brass);border-radius:0 0 10px 10px;}
+.photo-frame{
+  width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;
+  background:linear-gradient(135deg,var(--sage),var(--ink-soft));
+  position:relative;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;}
+.photo-empty{color:var(--white);text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.85;padding:10px;}
+.photo-empty svg{width:34px;height:34px;margin-bottom:8px;opacity:.9;}
+.photo-actions{position:absolute;bottom:8px;left:8px;right:8px;display:flex;gap:6px;opacity:0;transition:.2s;}
+.photo-frame:hover .photo-actions{opacity:1;}
+.photo-actions button{flex:1;background:rgba(11,38,33,0.85);color:var(--parchment);border:none;border-radius:6px;padding:7px 4px;font-size:10.5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.03em;}
+.photo-actions button:hover{background:var(--brass);color:var(--ink);}
+.idcard-name{font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--ink);}
+.idcard-role{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--sage-deep);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+.idcard-id{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-soft);}
+
+.cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+.btn{padding:13px 26px;border-radius:100px;font-size:13.5px;font-weight:600;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;transition:.2s;}
+.btn-primary{background:var(--brass);color:var(--ink);}
+.btn-primary:hover{background:var(--brass-light);transform:translateY(-1px);}
+.btn-ghost{border-color:var(--line-light);color:var(--parchment);}
+.btn-ghost:hover{background:rgba(246,241,231,0.08);}
+.btn-outline{border-color:var(--line);color:var(--ink);}
+.btn-outline:hover{background:rgba(11,38,33,0.05);}
+
+/* ===== STATS STRIP ===== */
+#stats{background:var(--white);margin-top:-1px;border-bottom:1px solid var(--line);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-cell{padding:34px 30px;border-right:1px solid var(--line);}
+.stat-cell:last-child{border-right:none;}
+.stat-num{font-family:'Fraunces',serif;font-size:36px;font-weight:600;color:var(--ink);}
+.stat-label{font-size:12.5px;color:var(--text-soft);margin-top:4px;}
+@media(max-width:800px){.stats-grid{grid-template-columns:repeat(2,1fr);}.stat-cell{border-bottom:1px solid var(--line);}}
+
+/* ===== SECTION SHELL ===== */
+.section{padding:90px 0;border-bottom:1px solid var(--line);position:relative;}
+.section.alt{background:var(--white);}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:20px;flex-wrap:wrap;}
+.section-title{font-size:clamp(26px,3vw,36px);font-weight:600;margin-top:10px;}
+.section-title em{font-style:italic;color:var(--brass);}
+.section-desc{color:var(--text-soft);max-width:460px;font-size:14.5px;margin-top:10px;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* record card (used across many sections) */
+.record-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 30px;
+  margin-bottom:20px;
+  box-shadow:var(--shadow-sm);
+  position:relative;
+}
+.section.alt .record-card{background:var(--parchment);}
+.record-file-no{position:absolute;top:-11px;left:26px;background:var(--ink);color:var(--brass-light);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;padding:4px 10px;border-radius:100px;}
+.record-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px;flex-wrap:wrap;}
+.record-title{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--ink);}
+.record-sub{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--sage-deep);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;}
+.record-tag{background:rgba(124,154,130,0.15);color:var(--sage-deep);font-size:11px;font-family:'IBM Plex Mono',monospace;padding:5px 11px;border-radius:100px;white-space:nowrap;}
+.record-tag.brass{background:rgba(200,155,92,0.18);color:#8a662f;}
+.record-fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px 22px;margin:16px 0;}
+.field-block label{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;}
+.field-block .val{font-size:14px;font-weight:500;color:var(--ink);}
+.record-para{font-size:14.5px;color:var(--text-soft);margin-top:14px;line-height:1.65;}
+.record-para strong{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:5px;font-weight:600;}
+
+.record-imgs{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.img-tile{width:96px;height:96px;border-radius:10px;overflow:hidden;position:relative;background:var(--parchment-deep);border:1px solid var(--line);flex-shrink:0;}
+.img-tile img{width:100%;height:100%;object-fit:cover;}
+.img-tile .rm{position:absolute;top:3px;right:3px;width:18px;height:18px;background:rgba(11,38,33,0.75);color:#fff;border:none;border-radius:50%;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s;}
+.img-tile:hover .rm{opacity:1;}
+.img-add{width:96px;height:96px;border-radius:10px;border:1.5px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--sage-deep);background:transparent;flex-shrink:0;}
+.img-add:hover{border-color:var(--brass);color:var(--brass);background:rgba(200,155,92,0.06);}
+.img-add span{font-size:9px;font-family:'IBM Plex Mono',monospace;text-align:center;line-height:1.3;}
+.imgspec{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--text-soft);opacity:.7;margin-top:8px;}
+
+.card-toolbar{position:absolute;top:16px;right:18px;display:flex;gap:8px;}
+.card-toolbar button{background:transparent;border:1px solid var(--line);color:var(--text-soft);width:26px;height:26px;border-radius:50%;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.card-toolbar button:hover{border-color:var(--danger);color:var(--danger);}
+
+.add-record-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px dashed var(--brass);color:#8a662f;padding:12px 22px;border-radius:100px;font-size:13px;font-weight:600;}
+.add-record-btn:hover{background:rgba(200,155,92,0.08);}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+.skill-cat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px;}
+.section.alt .skill-cat{background:var(--parchment);}
+.skill-cat h4{font-size:15px;margin-bottom:4px;}
+.skill-cat .cat-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--sage-deep);text-transform:uppercase;letter-spacing:.06em;}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.pill{background:var(--parchment-deep);border:1px solid var(--line);padding:7px 13px;border-radius:100px;font-size:12.5px;display:flex;align-items:center;gap:7px;}
+.section.alt .pill{background:var(--white);}
+.pill .rmx{color:var(--text-soft);font-size:12px;}
+.pill .rmx:hover{color:var(--danger);}
+.pill-add{border:1px dashed var(--line);color:var(--sage-deep);background:transparent;padding:7px 13px;border-radius:100px;font-size:12px;}
+
+/* languages */
+.lang-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);}
+.lang-table th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-soft);background:var(--parchment-deep);padding:12px 18px;}
+.lang-table td{padding:14px 18px;border-top:1px solid var(--line);font-size:14px;}
+.prof-bar{width:100px;height:6px;background:var(--parchment-deep);border-radius:100px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:8px;}
+.prof-fill{height:100%;background:var(--brass);}
+
+/* achievements/awards masonry-ish */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.ach-card{background:var(--ink);color:var(--parchment);border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;}
+.ach-card .yr{font-family:'IBM Plex Mono',monospace;color:var(--brass-light);font-size:11px;letter-spacing:.08em;}
+.ach-card h4{color:var(--parchment);font-size:17px;margin-top:8px;}
+.ach-card p{font-size:13px;color:rgba(246,241,231,0.65);margin-top:8px;}
+.ach-img{width:100%;height:120px;border-radius:8px;overflow:hidden;margin-top:14px;background:rgba(246,241,231,0.08);}
+.ach-img img{width:100%;height:100%;object-fit:cover;}
+
+/* footer */
+#footer{background:var(--ink);color:rgba(246,241,231,0.6);padding:60px 0 30px;}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:36px;border-bottom:1px solid var(--line-light);}
+.footer-top h3{color:var(--parchment);font-size:24px;}
+#footer .social-row a{border-color:var(--line-light);color:var(--parchment);}
+.footer-bottom{padding-top:24px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px;}
+
+.savebar{position:fixed;bottom:18px;right:18px;z-index:60;background:var(--ink);color:var(--parchment);padding:10px 16px;border-radius:100px;font-family:'IBM Plex Mono',monospace;font-size:11px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none;}
+.savebar.show{opacity:1;transform:translateY(0);}
+.savebar .sdot{width:7px;height:7px;border-radius:50%;background:var(--sage);}
+.resetlink{position:fixed;bottom:18px;left:76px;z-index:60;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-soft);background:var(--white);border:1px solid var(--line);padding:8px 12px;border-radius:100px;}
+@media(max-width:900px){.resetlink{left:18px;}}
+
+/* crop modal */
+#cropmodal{position:fixed;inset:0;background:rgba(11,38,33,0.75);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;}
+#cropmodal.show{display:flex;}
+.crop-box{background:var(--parchment);border-radius:16px;padding:26px;width:100%;max-width:420px;}
+.crop-canvas-wrap{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#111;position:relative;touch-action:none;}
+.crop-canvas-wrap canvas{width:100%;height:100%;cursor:grab;}
+.crop-controls{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+.crop-controls input[type=range]{width:100%;accent-color:var(--brass);}
+.crop-btns{display:flex;gap:10px;margin-top:14px;}
+.crop-btns button{flex:1;padding:11px;border-radius:8px;border:1px solid var(--line);background:var(--white);font-size:13px;font-weight:600;}
+.crop-btns .apply{background:var(--ink);color:var(--parchment);border-color:var(--ink);}
+
+.hidden-input{display:none;}
+</style>
+</head>
+<body>
+
+<nav id="tabnav">
+  <div class="brandmark">PN</div>
+  <a href="#hero" class="active">Profile</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Recruitment</a>
+  <a href="#initiatives">Initiatives</a>
+  <a href="#engagement">Engagement</a>
+  <a href="#learning">L&amp;D</a>
+  <a href="#performance">Performance</a>
+  <a href="#policies">Policies</a>
+  <a href="#payroll">Payroll</a>
+  <a href="#analytics">Analytics</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#education">Education</a>
+  <a href="#certifications">Certs</a>
+  <a href="#tools">Tools</a>
+  <a href="#awards">Awards</a>
+  <a href="#languages">Languages</a>
+  <a href="#custom-sections">More</a>
+</nav>
+
+<div id="mobilebar">
+  <strong style="font-family:'Fraunces',serif;">Priya Nair</strong>
+  <select onchange="location.hash=this.value">
+    <option value="#hero">Profile</option>
+    <option value="#skills">Skills</option>
+    <option value="#experience">Experience</option>
+    <option value="#projects">Recruitment</option>
+    <option value="#initiatives">Initiatives</option>
+    <option value="#engagement">Engagement</option>
+    <option value="#learning">L&amp;D</option>
+    <option value="#performance">Performance</option>
+    <option value="#policies">Policies</option>
+    <option value="#payroll">Payroll</option>
+    <option value="#analytics">Analytics</option>
+    <option value="#achievements">Achievements</option>
+    <option value="#education">Education</option>
+    <option value="#certifications">Certifications</option>
+    <option value="#tools">Tools</option>
+    <option value="#awards">Awards</option>
+    <option value="#languages">Languages</option>
+    <option value="#custom-sections">More</option>
+  </select>
+</div>
+
+<main id="main-content">
+
+<!-- ================= HERO / PROFILE ================= -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="badge-line"><span class="dot"></span> Available for HR Leadership roles</div>
+        <div class="hero-name">People &amp; Talent Portfolio</div>
+        <h1 class="headline" contenteditable="true">Priya Nair — building workplaces people <em>don't want to leave.</em></h1>
+        <p class="hero-sum" contenteditable="true">Senior HR Business Partner with 9+ years across talent acquisition, employee experience and HR operations for fast-growing tech and retail organisations in the UAE. I turn people strategy into measurable outcomes — from 40% faster hiring cycles to double-digit gains in engagement scores.</p>
+
+        <div class="contact-row">
+          <span class="chip">✉️ <span contenteditable="true">priya.nair@hrmail.com</span></span>
+          <span class="chip">📞 <span contenteditable="true">+971 55 123 4567</span></span>
+          <span class="chip">📍 <span contenteditable="true">Dubai, UAE</span></span>
+        </div>
+
+        <div class="social-row">
+          <a href="#" contenteditable="true">in</a>
+          <a href="#" contenteditable="true">tw</a>
+          <a href="#" contenteditable="true">be</a>
+          <a href="#" contenteditable="true">gh</a>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#experience">View Experience →</a>
+          <a class="btn btn-ghost" href="#" onclick="alert('Resume download — connect this to your file.');return false;">Download Résumé</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="idcard">
+          <div class="photo-frame" id="profilePhotoFrame">
+            <div class="photo-empty" id="profilePhotoEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+              Upload profile photo
+            </div>
+            <img id="profilePhotoImg" style="display:none;">
+            <div class="photo-actions">
+              <button onclick="triggerProfileUpload()">Upload</button>
+              <button onclick="openCropOnCurrent()">Crop</button>
+              <button onclick="removeProfilePhoto()">Remove</button>
+            </div>
+          </div>
+          <input type="file" id="profilePhotoInput" class="hidden-input" accept="image/*" onchange="handleProfileUpload(event)">
+          <div class="idcard-name" contenteditable="true">Priya Nair</div>
+          <div class="idcard-role" contenteditable="true">Senior HR Business Partner</div>
+          <div class="idcard-id">
+            <span>ID · HR-2016</span>
+            <span contenteditable="true">Dubai, UAE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-cell"><div class="stat-num" contenteditable="true">1,200+</div><div class="stat-label">Hires managed end-to-end</div></div>
+      <div class="stat-cell"><div class="stat-num" contenteditable="true">9 yrs</div><div class="stat-label">HR &amp; Talent experience</div></div>
+      <div class="stat-cell"><div class="stat-num" contenteditable="true">92%</div><div class="stat-label">Employee engagement score</div></div>
+      <div class="stat-cell"><div class="stat-num" contenteditable="true">14</div><div class="stat-label">HR programs launched</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Capability Map</div>
+        <h2 class="section-title">Skills, <em>organised by discipline.</em></h2>
+      </div>
+      <button class="add-record-btn" onclick="addSkillCategory()">+ Add category</button>
+    </div>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="section alt" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Employment Record</div><h2 class="section-title">Professional <em>Experience.</em></h2>
+      <p class="section-desc">Roles held, responsibilities owned, and the teams &amp; tools behind each one.</p></div>
+      <button class="add-record-btn" onclick="addExperience()">+ Add role</button>
+    </div>
+    <div id="experienceList"></div>
+  </div>
+</section>
+
+<!-- ================= RECRUITMENT PROJECTS ================= -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Hiring Case Files</div><h2 class="section-title">Recruitment <em>Projects.</em></h2>
+      <p class="section-desc">Specific hiring drives, from sourcing strategy to final outcome.</p></div>
+      <button class="add-record-btn" onclick="addProject()">+ Add project</button>
+    </div>
+    <div id="projectsList"></div>
+  </div>
+</section>
+
+<!-- ================= HR INITIATIVES ================= -->
+<section class="section alt" id="initiatives">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Strategic Programs</div><h2 class="section-title">HR <em>Initiatives.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('initiatives')">+ Add initiative</button>
+    </div>
+    <div id="initiativesList"></div>
+  </div>
+</section>
+
+<!-- ================= EMPLOYEE ENGAGEMENT ================= -->
+<section class="section" id="engagement">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Culture &amp; Experience</div><h2 class="section-title">Employee Engagement <em>Programs.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('engagement')">+ Add program</button>
+    </div>
+    <div id="engagementList"></div>
+  </div>
+</section>
+
+<!-- ================= LEARNING & DEVELOPMENT ================= -->
+<section class="section alt" id="learning">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Capability Building</div><h2 class="section-title">Learning &amp; <em>Development.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('learning')">+ Add program</button>
+    </div>
+    <div id="learningList"></div>
+  </div>
+</section>
+
+<!-- ================= PERFORMANCE MANAGEMENT ================= -->
+<section class="section" id="performance">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Review Cycles</div><h2 class="section-title">Performance <em>Management.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('performance')">+ Add framework</button>
+    </div>
+    <div id="performanceList"></div>
+  </div>
+</section>
+
+<!-- ================= POLICIES & COMPLIANCE ================= -->
+<section class="section alt" id="policies">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Governance</div><h2 class="section-title">HR Policies &amp; <em>Compliance.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('policies')">+ Add policy</button>
+    </div>
+    <div id="policiesList"></div>
+  </div>
+</section>
+
+<!-- ================= PAYROLL & BENEFITS ================= -->
+<section class="section" id="payroll">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Compensation Ops</div><h2 class="section-title">Payroll &amp; Benefits <em>Management.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('payroll')">+ Add record</button>
+    </div>
+    <div id="payrollList"></div>
+  </div>
+</section>
+
+<!-- ================= HR ANALYTICS ================= -->
+<section class="section alt" id="analytics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">People Data</div><h2 class="section-title">HR <em>Analytics.</em></h2></div>
+      <button class="add-record-btn" onclick="addGeneric('analytics')">+ Add dashboard</button>
+    </div>
+    <div id="analyticsList"></div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section class="section" id="achievements">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Milestones</div><h2 class="section-title">Achievements.</h2></div>
+      <button class="add-record-btn" onclick="addAchievement('achievementsGrid','ACH')">+ Add achievement</button>
+    </div>
+    <div class="ach-grid" id="achievementsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section class="section alt" id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Academic Record</div><h2 class="section-title">Education.</h2></div>
+      <button class="add-record-btn" onclick="addGeneric('education')">+ Add degree</button>
+    </div>
+    <div id="educationList"></div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section class="section" id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Verified Credentials</div><h2 class="section-title">Certifications.</h2></div>
+      <button class="add-record-btn" onclick="addGeneric('certifications')">+ Add certificate</button>
+    </div>
+    <div id="certificationsList"></div>
+  </div>
+</section>
+
+<!-- ================= TOOLS ================= -->
+<section class="section alt" id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Systems Fluency</div><h2 class="section-title">HR Tools &amp; <em>Technologies.</em></h2></div>
+      <button class="add-record-btn" onclick="addTool()">+ Add tool</button>
+    </div>
+    <div class="skills-grid" id="toolsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= AWARDS ================= -->
+<section class="section" id="awards">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Recognition</div><h2 class="section-title">Awards &amp; Recognition.</h2></div>
+      <button class="add-record-btn" onclick="addAchievement('awardsGrid','AWD')">+ Add award</button>
+    </div>
+    <div class="ach-grid" id="awardsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= LANGUAGES ================= -->
+<section class="section alt" id="languages">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Communication</div><h2 class="section-title">Languages.</h2></div>
+      <button class="add-record-btn" onclick="addLanguage()">+ Add language</button>
+    </div>
+    <table class="lang-table">
+      <thead><tr><th>Language</th><th>Reading</th><th>Writing</th><th>Speaking</th><th>Proficiency</th><th></th></tr></thead>
+      <tbody id="langBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= CUSTOM SECTIONS ================= -->
+<section class="section" id="custom-sections">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Open Files</div><h2 class="section-title">Additional <em>Sections.</em></h2>
+      <p class="section-desc">Add anything else — side projects, volunteering, speaking, publications.</p></div>
+      <button class="add-record-btn" onclick="addCustomSection()">+ New custom section</button>
+    </div>
+    <div id="customSectionsWrap"></div>
+  </div>
+</section>
+
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <h3 contenteditable="true">Let's build a better workplace.</h3>
+        <p style="margin-top:8px;color:rgba(246,241,231,0.55);">Open to HR leadership &amp; consulting engagements.</p>
+      </div>
+      <div class="social-row">
+        <a href="#" contenteditable="true">in</a>
+        <a href="#" contenteditable="true">tw</a>
+        <a href="#" contenteditable="true">be</a>
+        <a href="#" contenteditable="true">gh</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span contenteditable="true">© 2026 Priya Nair. All records reserved.</span>
+      <span>File no. HR‑2016 · Dubai, UAE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="savebar" id="saveBar"><span class="sdot"></span><span id="saveBarText">Saved locally</span></div>
+<button class="resetlink" onclick="resetPortfolio()">Reset template</button>
+
+<!-- crop modal -->
+<div id="cropmodal">
+  <div class="crop-box">
+    <h4 style="margin-bottom:14px;">Crop &amp; adjust photo</h4>
+    <div class="crop-canvas-wrap" id="cropCanvasWrap"><canvas id="cropCanvas" width="400" height="400"></canvas></div>
+    <div class="crop-controls">
+      <input type="range" id="zoomRange" min="1" max="3" step="0.01" value="1" oninput="renderCrop()">
+    </div>
+    <div class="crop-btns">
+      <button onclick="closeCropModal()">Cancel</button>
+      <button class="apply" onclick="applyCrop()">Apply crop</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="genericImgInput" class="hidden-input" accept="image/*" multiple>
+
+<script>
+/* ============================================================
+   HR PORTFOLIO — data-driven, editable, image-upload enabled
+   ============================================================ */
+
+let recordCounter = 0;
+const STORAGE_KEY = 'hrPortfolio_priyanair_v1';
+let saveTimer = null;
+function fileNo(prefix){ recordCounter++; return prefix + '-' + String(recordCounter).padStart(2,'0'); }
+
+/* ---------- generic image upload helpers ---------- */
+function makeImgTile(src){
+  const tile = document.createElement('div');
+  tile.className='img-tile';
+  const img = document.createElement('img'); img.src = src;
+  const rm = document.createElement('button'); rm.className='rm'; rm.innerText='✕';
+  rm.onclick = ()=>{ tile.remove(); queueSave(); };
+  tile.appendChild(img); tile.appendChild(rm);
+  return tile;
+}
+function makeAddTile(container, label, spec){
+  const add = document.createElement('button');
+  add.className='img-add'; add.type='button';
+  add.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg><span>'+ (label||'Upload') +'</span>';
+  add.onclick = ()=> {
+    const inp = document.createElement('input');
+    inp.type='file'; inp.accept='image/*'; inp.multiple = true; inp.style.display='none';
+    document.body.appendChild(inp);
+    inp.onchange = (e)=>{
+      [...e.target.files].forEach(f=>{
+        const reader = new FileReader();
+        reader.onload = ev=>{
+          container.insertBefore(makeImgTile(ev.target.result), add);
+          queueSave();
+        };
+        reader.readAsDataURL(f);
+      });
+      inp.remove();
+    };
+    inp.click();
+  };
+  container.appendChild(add);
+}
+function buildImgRow(existing, spec){
+  const wrap = document.createElement('div');
+  const row = document.createElement('div'); row.className='record-imgs';
+  (existing||[]).forEach(src=> row.appendChild(makeImgTile(src)));
+  makeAddTile(row, 'Add photo');
+  wrap.appendChild(row);
+  if(spec){
+    const s = document.createElement('div');
+    s.className='imgspec'; s.innerText = spec;
+    wrap.appendChild(s);
+  }
+  return wrap;
+}
+
+/* ---------- profile photo (with crop) ---------- */
+function triggerProfileUpload(){ document.getElementById('profilePhotoInput').click(); }
+let pendingCropCallback = null, cropImg = null, cropZoom=1, cropOffset={x:0,y:0}, dragging=false, dragStart={x:0,y:0};
+
+function handleProfileUpload(e){
+  const f = e.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = ev=> openCropModal(ev.target.result, (finalDataUrl)=>{
+    document.getElementById('profilePhotoImg').src = finalDataUrl;
+    document.getElementById('profilePhotoImg').style.display='block';
+    document.getElementById('profilePhotoEmpty').style.display='none';
+    queueSave();
+  });
+  reader.readAsDataURL(f);
+  e.target.value='';
+}
+function openCropOnCurrent(){
+  const img = document.getElementById('profilePhotoImg');
+  if(img.style.display==='none' || !img.src){ triggerProfileUpload(); return; }
+  openCropModal(img.src, (finalDataUrl)=>{
+    img.src = finalDataUrl; queueSave();
+  });
+}
+function removeProfilePhoto(){
+  document.getElementById('profilePhotoImg').style.display='none';
+  document.getElementById('profilePhotoImg').src='';
+  document.getElementById('profilePhotoEmpty').style.display='flex';
+  queueSave();
+}
+function openCropModal(src, cb){
+  pendingCropCallback = cb;
+  cropImg = new Image();
+  cropImg.onload = ()=>{
+    cropZoom=1; cropOffset={x:0,y:0};
+    document.getElementById('zoomRange').value=1;
+    renderCrop();
+  };
+  cropImg.src = src;
+  document.getElementById('cropmodal').classList.add('show');
+}
+function closeCropModal(){ document.getElementById('cropmodal').classList.remove('show'); pendingCropCallback=null; }
+function renderCrop(){
+  if(!cropImg) return;
+  cropZoom = parseFloat(document.getElementById('zoomRange').value);
+  const canvas = document.getElementById('cropCanvas');
+  const ctx = canvas.getContext('2d');
+  const S = canvas.width;
+  ctx.fillStyle='#111'; ctx.fillRect(0,0,S,S);
+  const scale = Math.max(S/cropImg.width, S/cropImg.height) * cropZoom;
+  const w = cropImg.width*scale, h = cropImg.height*scale;
+  const x = (S-w)/2 + cropOffset.x, y = (S-h)/2 + cropOffset.y;
+  ctx.drawImage(cropImg, x, y, w, h);
+}
+const cropCanvasEl = document.getElementById('cropCanvas');
+cropCanvasEl.addEventListener('mousedown', e=>{ dragging=true; dragStart={x:e.clientX-cropOffset.x, y:e.clientY-cropOffset.y}; });
+window.addEventListener('mouseup', ()=> dragging=false);
+window.addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  cropOffset = {x:e.clientX-dragStart.x, y:e.clientY-dragStart.y};
+  renderCrop();
+});
+cropCanvasEl.addEventListener('touchstart', e=>{ const t=e.touches[0]; dragging=true; dragStart={x:t.clientX-cropOffset.x,y:t.clientY-cropOffset.y}; });
+window.addEventListener('touchend', ()=> dragging=false);
+window.addEventListener('touchmove', e=>{
+  if(!dragging) return; const t=e.touches[0];
+  cropOffset = {x:t.clientX-dragStart.x, y:t.clientY-dragStart.y}; renderCrop();
+});
+function applyCrop(){
+  const canvas = document.getElementById('cropCanvas');
+  const out = canvas.toDataURL('image/jpeg', 0.95);
+  if(pendingCropCallback) pendingCropCallback(out);
+  closeCropModal();
+}
+
+/* ---------- SKILLS ---------- */
+const skillsData = [
+  {cat:'Talent Acquisition', tag:'Core', items:['Full-cycle Recruiting','Employer Branding','Boolean Sourcing','Interview Design','ATS Administration']},
+  {cat:'HR Operations', tag:'Core', items:['Onboarding Design','HRIS Management','Policy Drafting','Compliance Audits','Offboarding']},
+  {cat:'People Strategy', tag:'Leadership', items:['Org Design','Workforce Planning','Succession Planning','Change Management']},
+  {cat:'Analytics & Tools', tag:'Technical', items:['HR Dashboards','Excel/SQL Reporting','Workday','SAP SuccessFactors']},
+];
+function renderSkillCat(d){
+  const grid = document.getElementById('skillsGrid');
+  const card = document.createElement('div'); card.className='skill-cat';
+  card.innerHTML = `<div class="cat-tag">${d.tag}</div><h4 contenteditable="true">${d.cat}</h4>`;
+  const row = document.createElement('div'); row.className='pill-row';
+  d.items.forEach(it=> row.appendChild(makePill(it)));
+  const addBtn = document.createElement('button'); addBtn.className='pill-add'; addBtn.innerText='+ Add skill';
+  addBtn.onclick = ()=>{ row.insertBefore(makePill('New skill'), addBtn); queueSave(); };
+  row.appendChild(addBtn);
+  card.appendChild(row);
+  grid.appendChild(card);
+}
+function makePill(text){
+  const p = document.createElement('span'); p.className='pill';
+  const t = document.createElement('span'); t.contentEditable='true'; t.innerText=text;
+  const x = document.createElement('span'); x.className='rmx'; x.innerText='✕';
+  x.onclick=()=>{p.remove(); queueSave();};
+  p.appendChild(t); p.appendChild(x);
+  return p;
+}
+function addSkillCategory(){ renderSkillCat({cat:'New Category', tag:'Custom', items:['New skill']}); queueSave(); }
+skillsData.forEach(renderSkillCat);
+
+/* ---------- TOOLS (reuse skill-cat style, single group with proficiency) ---------- */
+const toolsData = [
+  {cat:'ATS & Sourcing', tag:'Proficient', items:['LinkedIn Recruiter','Greenhouse','Naukri','Bayt']},
+  {cat:'HRIS & Payroll', tag:'Expert', items:['Workday','SAP SuccessFactors','ADP']},
+  {cat:'Engagement & L&D', tag:'Proficient', items:['Culture Amp','15Five','LinkedIn Learning']},
+];
+function addTool(){ renderSkillCatInto('toolsGrid', {cat:'New Tool Group', tag:'Level', items:['New tool']}); queueSave(); }
+function renderSkillCatInto(gridId, d){
+  const grid = document.getElementById(gridId);
+  const card = document.createElement('div'); card.className='skill-cat';
+  card.innerHTML = `<div class="cat-tag">${d.tag}</div><h4 contenteditable="true">${d.cat}</h4>`;
+  const row = document.createElement('div'); row.className='pill-row';
+  d.items.forEach(it=> row.appendChild(makePill(it)));
+  const addBtn = document.createElement('button'); addBtn.className='pill-add'; addBtn.innerText='+ Add';
+  addBtn.onclick = ()=>{ row.insertBefore(makePill('New item'), addBtn); queueSave(); };
+  row.appendChild(addBtn);
+  card.appendChild(row);
+  grid.appendChild(card);
+}
+toolsData.forEach(d=>renderSkillCatInto('toolsGrid', d));
+
+/* ---------- generic record card builder ---------- */
+function buildRecordCard({prefix, title, sub, tag, fields, paragraphs, imgSpec}){
+  const card = document.createElement('div'); card.className='record-card';
+  const fno = document.createElement('div'); fno.className='record-file-no'; fno.innerText = fileNo(prefix);
+  card.appendChild(fno);
+
+  const toolbar = document.createElement('div'); toolbar.className='card-toolbar';
+  const del = document.createElement('button'); del.innerText='✕'; del.onclick=()=>{ card.remove(); queueSave(); };
+  toolbar.appendChild(del); card.appendChild(toolbar);
+
+  const top = document.createElement('div'); top.className='record-top';
+  const tWrap = document.createElement('div');
+  const h = document.createElement('div'); h.className='record-title'; h.contentEditable='true'; h.innerText=title;
+  const s = document.createElement('div'); s.className='record-sub'; s.contentEditable='true'; s.innerText=sub;
+  tWrap.appendChild(h); tWrap.appendChild(s);
+  top.appendChild(tWrap);
+  if(tag){ const tg = document.createElement('span'); tg.className='record-tag brass'; tg.contentEditable='true'; tg.innerText=tag; top.appendChild(tg); }
+  card.appendChild(top);
+
+  if(fields && fields.length){
+    const fr = document.createElement('div'); fr.className='record-fields';
+    fields.forEach(f=>{
+      const fb = document.createElement('div'); fb.className='field-block';
+      fb.innerHTML = `<label>${f.label}</label>`;
+      const v = document.createElement('div'); v.className='val'; v.contentEditable='true'; v.innerText=f.value;
+      fb.appendChild(v);
+      fr.appendChild(fb);
+    });
+    card.appendChild(fr);
+  }
+  if(paragraphs && paragraphs.length){
+    paragraphs.forEach(p=>{
+      const pel = document.createElement('div'); pel.className='record-para';
+      pel.innerHTML = `<strong>${p.label}</strong>`;
+      const v = document.createElement('span'); v.contentEditable='true'; v.innerText=p.value;
+      pel.appendChild(v);
+      card.appendChild(pel);
+    });
+  }
+  card.appendChild(buildImgRow([], imgSpec || '4K resolution supported · displayed at 300×300'));
+  return card;
+}
+
+/* ---------- EXPERIENCE ---------- */
+function addExperience(sample){
+  sample = sample || {title:'HR Business Partner', sub:'Company Name · Location', tag:'Current',
+    fields:[{label:'Duration',value:'Jan 2022 – Present'},{label:'Team Size Managed',value:'12'},{label:'HR Functions',value:'TA, ER, Ops'},{label:'HR Software',value:'Workday'}],
+    paragraphs:[
+      {label:'Role Summary', value:'Own the end-to-end people agenda for a 300-person tech division, partnering with leadership on org design, hiring and retention.'},
+      {label:'Key Responsibilities', value:'Lead workforce planning, manage employee relations cases, run quarterly performance calibration.'},
+      {label:'Major Contributions', value:'Reduced regrettable attrition by 18% through a redesigned onboarding and mentorship program.'}
+    ]};
+  const card = buildRecordCard({prefix:'EXP', title:sample.title, sub:sample.sub, tag:sample.tag, fields:sample.fields, paragraphs:sample.paragraphs, imgSpec:'Workplace photos, certificates & team events'});
+  document.getElementById('experienceList').appendChild(card);
+  queueSave();
+}
+addExperience();
+addExperience({title:'Talent Acquisition Specialist', sub:'Previous Company · Dubai, UAE', tag:'2019–2021',
+  fields:[{label:'Duration',value:'Mar 2019 – Dec 2021'},{label:'Team Size Managed',value:'3'},{label:'HR Functions',value:'Recruitment'},{label:'HR Software',value:'Greenhouse'}],
+  paragraphs:[
+    {label:'Role Summary', value:'Managed technical and commercial hiring pipelines for a Series B startup scaling from 60 to 220 employees.'},
+    {label:'Key Responsibilities', value:'Sourced, screened and closed candidates across engineering, sales and operations.'},
+    {label:'Major Contributions', value:'Built the company\'s first structured interview framework, cutting time-to-hire by 35%.'}
+  ]});
+
+/* ---------- RECRUITMENT PROJECTS ---------- */
+function addProject(sample){
+  sample = sample || {title:'Engineering Hiring Sprint', sub:'Bulk Hiring · Technology Dept.', tag:'32 hires',
+    fields:[{label:'Positions Filled',value:'32'},{label:'Hiring Timeline',value:'8 weeks'},{label:'Sourcing Platforms',value:'LinkedIn, Naukri, Referrals'},{label:'Interview Process',value:'4-stage: Screen, Technical, Panel, Offer'},{label:'Hiring Metrics',value:'Avg. 19 days/hire'}],
+    paragraphs:[{label:'Outcome', value:'Filled all engineering roles ahead of schedule while maintaining an 88% offer-acceptance rate.'}]};
+  const card = buildRecordCard({prefix:'REC', title:sample.title, sub:sample.sub, tag:sample.tag, fields:sample.fields, paragraphs:sample.paragraphs, imgSpec:'Event photos, campaign banners & screenshots · 300×300 · 4K'});
+  document.getElementById('projectsList').appendChild(card);
+  queueSave();
+}
+addProject();
+addProject({title:'Annual Career Fair — Dubai', sub:'Campus Hiring · Multiple Departments', tag:'46 hires',
+  fields:[{label:'Positions Filled',value:'46'},{label:'Hiring Timeline',value:'3 weeks'},{label:'Sourcing Platforms',value:'University partnerships'},{label:'Interview Process',value:'On-site panel + case study'},{label:'Hiring Metrics',value:'1,400 applicants screened'}],
+  paragraphs:[{label:'Outcome', value:'Built the strongest graduate cohort in company history, with 90% retained past year one.'}]});
+
+/* ---------- Generic sections (initiatives, engagement, learning, performance, policies, payroll, analytics, education, certifications) ---------- */
+const genericSectionConfig = {
+  initiatives: {prefix:'INI', listId:'initiativesList', sample:{title:'Flexible Work Policy Rollout', sub:'Culture Initiative', tag:'Company-wide',
+    fields:[{label:'Objective',value:'Improve retention & work-life balance'},{label:'Implementation',value:'Phased, 3 months'},{label:'KPIs',value:'Attrition, eNPS'}],
+    paragraphs:[{label:'Responsibilities', value:'Designed policy, ran pilot with 2 departments, trained managers.'},{label:'Results', value:'eNPS rose 11 points; attrition down 6% within two quarters.'}]}},
+  engagement: {prefix:'ENG', listId:'engagementList', sample:{title:'Wellness Wednesdays', sub:'Employee Engagement Program', tag:'Ongoing',
+    fields:[{label:'Target Audience',value:'All employees'},{label:'Activities',value:'Yoga, mental health talks, step challenges'},{label:'Participation',value:'78% monthly'}],
+    paragraphs:[{label:'Purpose', value:'Build a sustainable culture of wellbeing across a hybrid workforce.'},{label:'Results', value:'Sick-leave usage down 14% year-on-year.'}]}},
+  learning: {prefix:'LND', listId:'learningList', sample:{title:'Leadership Accelerator', sub:'Manager Development Track', tag:'Cohort 4',
+    fields:[{label:'Audience',value:'First-time managers'},{label:'Delivery Method',value:'Blended: workshops + coaching'},{label:'Participants',value:'24'},{label:'Feedback Score',value:'4.7 / 5'}],
+    paragraphs:[{label:'Training Outcome', value:'92% of participants promoted or given expanded scope within a year.'}]}},
+  performance: {prefix:'PMS', listId:'performanceList', sample:{title:'OKR-Based Review Cycle', sub:'Performance Framework', tag:'Bi-annual',
+    fields:[{label:'Goal Setting',value:'Quarterly OKRs cascaded from company goals'},{label:'Review Cycle',value:'Bi-annual + monthly check-ins'},{label:'Appraisal Method',value:'360-degree feedback'},{label:'KPIs Managed',value:'Goal completion, calibration variance'}],
+    paragraphs:[{label:'Results', value:'Manager-employee alignment scores improved from 71% to 89%.'}]}},
+  policies: {prefix:'POL', listId:'policiesList', sample:{title:'Remote Work Policy', sub:'Category: Workplace Flexibility', tag:'Active',
+    fields:[{label:'Compliance Standard',value:'UAE Labour Law'},{label:'Implementation Date',value:'Jan 2024'},{label:'Documentation',value:'Internal wiki link'}],
+    paragraphs:[{label:'Description', value:'Defines eligibility, expectations and equipment policy for hybrid and remote employees.'}]}},
+  payroll: {prefix:'PAY', listId:'payrollList', sample:{title:'Monthly Payroll Cycle', sub:'Payroll Software: ADP', tag:'420 employees',
+    fields:[{label:'Benefits Administered',value:'Health, life, transport allowance'},{label:'Employees Managed',value:'420'},{label:'Compliance',value:'WPS, EOSB calculations'},{label:'Accuracy',value:'99.7%'}],
+    paragraphs:[{label:'Notes', value:'Owns full payroll accuracy and statutory compliance across UAE entities.'}]}},
+  analytics: {prefix:'ANL', listId:'analyticsList', sample:{title:'People Ops Dashboard', sub:'Reporting Tool: Power BI', tag:'Live',
+    fields:[{label:'Metrics Tracked',value:'Attrition, TTH, eNPS, headcount'},{label:'Reporting Tools',value:'Power BI, Workday Reports'},{label:'Business Impact',value:'Guided 3 restructuring decisions'}],
+    paragraphs:[{label:'Insights Generated', value:'Identified attrition hotspot in one BU, leading to a targeted retention program.'}]}},
+  education: {prefix:'EDU', listId:'educationList', sample:{title:'MBA, Human Resource Management', sub:'Indian Institute of Management', tag:'2014–2016',
+    fields:[{label:'Specialization',value:'HR & Organisational Behaviour'},{label:'Location',value:'Ahmedabad, India'},{label:'Grade',value:'8.7 / 10 CGPA'}],
+    paragraphs:[]}},
+  certifications: {prefix:'CRT', listId:'certificationsList', sample:{title:'SHRM Senior Certified Professional (SHRM-SCP)', sub:'Society for Human Resource Management', tag:'2023',
+    fields:[{label:'Year Obtained',value:'2023'},{label:'Verification',value:'shrm.org/verify'}],
+    paragraphs:[]}},
+};
+function addGeneric(key, sample){
+  const cfg = genericSectionConfig[key];
+  const s = sample || cfg.sample;
+  const card = buildRecordCard({prefix:cfg.prefix, title:s.title, sub:s.sub, tag:s.tag, fields:s.fields, paragraphs:s.paragraphs});
+  document.getElementById(cfg.listId).appendChild(card);
+  queueSave();
+}
+Object.keys(genericSectionConfig).forEach(k=> addGeneric(k));
+// second sample for a couple of sections to feel fuller
+addGeneric('policies', {title:'Code of Conduct & Anti-Harassment', sub:'Category: Compliance', tag:'Mandatory',
+  fields:[{label:'Compliance Standard',value:'UAE MOHRE Guidelines'},{label:'Implementation Date',value:'Jun 2022'},{label:'Documentation',value:'HR handbook, Section 4'}],
+  paragraphs:[{label:'Description', value:'Establishes reporting channels and investigation process for workplace conduct issues.'}]});
+addGeneric('certifications', {title:'Certified Professional in Learning & Performance (CPLP)', sub:'ATD', tag:'2021',
+  fields:[{label:'Year Obtained',value:'2021'},{label:'Verification',value:'td.org/verify'}], paragraphs:[]});
+
+/* ---------- ACHIEVEMENTS & AWARDS (card style) ---------- */
+function addAchievement(gridId, prefix, sample){
+  sample = sample || {title:'Best HR Team — MENA Talent Awards', org:'MENA Talent Awards', year:'2024', desc:'Recognised for building the region\'s most effective graduate hiring pipeline.'};
+  const grid = document.getElementById(gridId);
+  const card = document.createElement('div'); card.className='ach-card';
+  card.innerHTML = `
+    <div class="yr" contenteditable="true">${sample.year}</div>
+    <h4 contenteditable="true">${sample.title}</h4>
+    <p contenteditable="true">${sample.desc}</p>
+    <div class="ach-img"></div>
+  `;
+  const del = document.createElement('button'); del.innerText='✕';
+  del.style.cssText='position:absolute;top:14px;right:14px;background:transparent;border:1px solid var(--line-light);color:var(--parchment);width:24px;height:24px;border-radius:50%;font-size:11px;';
+  del.onclick=()=>{ card.remove(); queueSave(); };
+  card.appendChild(del);
+  const achImg = card.querySelector('.ach-img');
+  achImg.appendChild(buildAchUploader(achImg));
+  grid.appendChild(card);
+  queueSave();
+  return card;
+}
+function buildAchUploader(container){
+  const btn = document.createElement('button');
+  btn.style.cssText='width:100%;height:100%;background:transparent;border:1px dashed rgba(246,241,231,0.35);border-radius:8px;color:rgba(246,241,231,0.6);font-size:10.5px;font-family:IBM Plex Mono, monospace;';
+  btn.innerText='+ Upload image / certificate';
+  btn.onclick = ()=>{
+    const inp = document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.style.display='none';
+    document.body.appendChild(inp);
+    inp.onchange = e=>{
+      const f = e.target.files[0]; if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev=>{
+        container.innerHTML='';
+        const img = document.createElement('img'); img.src = ev.target.result;
+        container.appendChild(img);
+        queueSave();
+      };
+      reader.readAsDataURL(f);
+      inp.remove();
+    };
+    inp.click();
+  };
+  return btn;
+}
+addAchievement('achievementsGrid','ACH');
+addAchievement('achievementsGrid','ACH', {title:'Speaker — Future of Work Summit', org:'FOW Summit', year:'2023', desc:'Invited panelist on AI in talent acquisition, addressing 500+ HR leaders.'});
+addAchievement('awardsGrid','AWD', {title:'Rising HR Leader of the Year', org:'Gulf HR Awards', year:'2022', desc:'Awarded for redesigning onboarding that lifted 90-day retention by 22%.'});
+addAchievement('awardsGrid','AWD', {title:'Excellence in Diversity Hiring', org:'Emirates Diversity Council', year:'2021', desc:'Recognised for a sourcing program that doubled female representation in tech roles.'});
+
+/* ---------- LANGUAGES ---------- */
+function profDots(level){ return level; }
+function addLanguage(sample){
+  sample = sample || {lang:'English', level:90};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td contenteditable="true">${sample.lang}</td>
+    <td contenteditable="true">Native</td>
+    <td contenteditable="true">Native</td>
+    <td contenteditable="true">Native</td>
+    <td><span class="prof-bar"><span class="prof-fill" style="width:${sample.level}%"></span></span><span contenteditable="true">${sample.level}%</span></td>
+    <td><button onclick="this.closest('tr').remove(); queueSave();" style="background:transparent;border:none;color:var(--text-soft);cursor:pointer;">✕</button></td>
+  `;
+  document.getElementById('langBody').appendChild(tr);
+  queueSave();
+}
+addLanguage({lang:'English', level:95});
+addLanguage({lang:'Hindi', level:100});
+addLanguage({lang:'Arabic', level:60});
+
+/* ---------- CUSTOM SECTIONS ---------- */
+let customSectionCount = 0;
+function addCustomSection(){
+  customSectionCount++;
+  const wrap = document.getElementById('customSectionsWrap');
+  const block = document.createElement('div');
+  block.style.marginBottom='50px';
+  block.innerHTML = `
+    <div class="section-head" style="margin-bottom:24px;">
+      <div>
+        <div class="eyebrow" contenteditable="true">Custom File ${customSectionCount}</div>
+        <h3 class="section-title" style="font-size:24px;" contenteditable="true">New Section Title</h3>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="add-record-btn" data-add>+ Add item</button>
+        <button class="card-toolbar" style="position:static;" data-delsection><span style="border:1px solid var(--line);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--danger);">✕</span></button>
+      </div>
+    </div>
+    <div data-list></div>
+  `;
+  const listEl = block.querySelector('[data-list]');
+  block.querySelector('[data-add]').onclick = ()=>{
+    const card = buildRecordCard({prefix:'CUS', title:'New Item', sub:'Subtitle / Category', tag:'Tag',
+      fields:[{label:'Reference Link',value:'https://example.com'}],
+      paragraphs:[{label:'Description', value:'Describe this item — project, publication, volunteering, or anything else.'}]});
+    listEl.appendChild(card); queueSave();
+  };
+  block.querySelector('[data-delsection]').onclick = ()=>{ block.remove(); queueSave(); };
+  wrap.appendChild(block);
+  block.querySelector('[data-add]').click();
+  queueSave();
+}
+addCustomSection();
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* ---------- scrollspy ---------- */
+const navLinks = document.querySelectorAll('#tabnav a');
+const secEls = [...navLinks].map(a=> document.querySelector(a.getAttribute('href')));
+window.addEventListener('scroll', ()=>{
+  let idx = 0;
+  secEls.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top - 120 <= 0) idx = i; });
+  navLinks.forEach(a=>a.classList.remove('active'));
+  navLinks[idx] && navLinks[idx].classList.add('active');
+}, {passive:true});
+
+/* ---------- autosave to localStorage ---------- */
+function queueSave(){ clearTimeout(saveTimer); saveTimer = setTimeout(doSave, 700); }
+function doSave(){
+  try{
+    localStorage.setItem(STORAGE_KEY, document.getElementById('main-content').innerHTML);
+    flashSaveBar('Saved locally');
+  }catch(err){
+    flashSaveBar('Storage full — remove some images');
+  }
+}
+function flashSaveBar(text){
+  const bar = document.getElementById('saveBar');
+  document.getElementById('saveBarText').innerText = text;
+  bar.classList.add('show');
+  clearTimeout(window.__sbTimer);
+  window.__sbTimer = setTimeout(()=> bar.classList.remove('show'), 1800);
+}
+function restoreSave(){
+  const data = localStorage.getItem(STORAGE_KEY);
+  if(data){
+    document.getElementById('main-content').innerHTML = data;
+    return true;
+  }
+  return false;
+}
+function resetPortfolio(){
+  if(confirm('Reset the template back to default sample content? This clears your saved edits.')){
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+// listen for edits anywhere in main content
+document.getElementById('main-content').addEventListener('input', queueSave);
+document.getElementById('main-content').addEventListener('blur', queueSave, true);
+
+// On load, try restore (skip building samples above if restored) — for simplicity we rebuild then override if saved data exists
+window.addEventListener('load', ()=>{
+  const restored = restoreSave();
+  if(restored){
+    // rebind delegated handlers that rely on closures are inline via onclick attributes, so they still work.
+    // Re-attach IntersectionObserver to restored .reveal elements
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  }
+});
+</script>
+</body>
+</html>
